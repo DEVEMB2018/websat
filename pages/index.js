@@ -5,7 +5,7 @@ import Nav from '../components/nav'
 
 const Home = () => (
   <div>
-    <Head title="Home" />
+    <Head title="Embou, líder en Internet Rural en Aragón. Tecnología Wimax | Embou" />
     <Nav />
 
     <div className="hero">
