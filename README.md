@@ -2,6 +2,15 @@ This project was bootstrapped with [Create Next App](https://github.com/segmenti
 
 Find the most recent version of this guide at [here](https://github.com/segmentio/create-next-app/blob/master/lib/templates/default/README.md). And check out [Next.js repo](https://github.com/zeit/next.js) for the most up-to-date info.
 
+## Make commands
+We use `make` to run most of the app commands:
+
+`make install` Installs the project dependencies
+`make run` Runs the app in local server
+`make build` Builds the app in local
+`make test` Runs the unit tests
+`make build-prod-image` Build the production docker image
+
 ## Table of Contents
 
 - [Questions? Feedback?](#questions-feedback)
