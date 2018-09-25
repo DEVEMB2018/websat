@@ -10,7 +10,8 @@ sharedConfig: &sharedConfig
   docker:
     - image: yoigo/circleci:node-8.9
   <<: *sharedEnvironment
-
+sharedContext: &sharedContext
+  context: embou
 # -----------------------------------------------------------
 # Jobs definition
 # -----------------------------------------------------------
@@ -122,11 +123,13 @@ workflows:
   build_test_deploy:
     jobs:
       - build:
+          <<: *sharedContext
           filters:
             tags:
               only: /.*/
 
       - test_unit:
+          <<: *sharedContext
           requires:
             - build
           filters:
@@ -134,6 +137,7 @@ workflows:
               only: /.*/
 
       - build_docker_image:
+          <<: *sharedContext
           requires:
             - build
           filters:
@@ -141,6 +145,7 @@ workflows:
               only: /.*/
 
       - deploy:
+          <<: *sharedContext
           requires:
             - build_docker_image
             - test_unit
