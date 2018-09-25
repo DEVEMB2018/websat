@@ -3,8 +3,8 @@ lint:
 test:
 	npm run test
 
-.PHONY: dependencies
-dependencies:
+.PHONY: install
+install:
 	npm install
 
 .PHONY: build

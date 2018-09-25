@@ -1,0 +1,158 @@
+# -----------------------------------------------------------
+# Shared config definition
+# -----------------------------------------------------------
+
+sharedEnvironment: &sharedEnvironment
+  environment:
+    KUBERNETES_SERVICE_NAME: embou-frontend
+
+sharedConfig: &sharedConfig
+  docker:
+    - image: yoigo/circleci:node-8.9
+  <<: *sharedEnvironment
+
+sharedContext: &sharedContext
+  context: embou
+
+# -----------------------------------------------------------
+# Jobs definition
+# -----------------------------------------------------------
+version: 2
+jobs:
+  build:
+    <<: *sharedEnvironment
+    <<: *sharedConfig
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node_modules-{{ checksum "package.json" }}
+            - node_modules-
+      - run:
+          name: install dependencies
+          command: make install
+      - run:
+          name: build server
+          command: make build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+            - .next
+      - save_cache:
+          key: node_modules-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+
+  test_unit:
+    <<: *sharedConfig
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Unit test
+          command: make test
+# -----------------------------------------------------------
+# TODO: Build and push to container registry
+# -----------------------------------------------------------
+  build_docker_image:
+    docker:
+      - image: yoigo/circleci:docker-17.10.0-ce-git-gcloud
+    <<: *sharedEnvironment
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - docker-{{ .Branch }}
+            - docker-
+          paths:
+            - /caches/app.tar
+      - run:
+          name: Load Docker image layer cache
+          command: |
+            set +o pipefail
+            docker load -i /caches/app.tar | true
+      - attach_workspace:
+          at: .
+      - run:
+          name: Get deployment scripts
+          command: make get-deployment-scripts
+      - run:
+          name: Build docker image
+          command: make ARGS="--rm=false" build-prod-image
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/app.tar ${KUBERNETES_SERVICE_NAME}
+      - save_cache:
+          key: docker-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /caches/app.tar
+      - run:
+          name: Push docker image
+          command: ./deployment/push-docker-image-to-gcr.sh
+      - persist_to_workspace:
+          root: .
+          paths:
+            - deployment
+
+
+# -----------------------------------------------------------
+# TODO: Deploy to GKE
+# -----------------------------------------------------------
+  deploy:
+    docker:
+      - image: yoigo/circleci:docker-17.10.0-ce-git-gcloud
+    <<: *sharedEnvironment
+    steps:
+      - checkout
+      - run:
+          name: Get deployment scripts
+          command: make get-deployment-scripts
+      - run:
+          name: Deploy helm package
+          command: ./deployment/deploy-2-k8s.sh
+# -----------------------------------------------------------
+# Workflows definition
+# -----------------------------------------------------------
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - build:
+          <<: *sharedContext
+          filters:
+            tags:
+              only: /.*/
+
+      - test_unit:
+          <<: *sharedContext
+          requires:
+            - build
+          filters:
+            tags:
+              only: /.*/
+
+      - build_docker_image:
+          <<: *sharedContext
+          requires:
+            - build
+          filters:
+            tags:
+              only: /.*/
+
+      - deploy:
+          <<: *sharedContext
+          requires:
+            - build_docker_image
+            - test_unit
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
