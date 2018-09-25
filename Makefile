@@ -13,8 +13,7 @@ build:
 
 .PHONY: run
 run:
-	npm run build
-	npm start
+	npm run dev
 
 .PHONY: test
 test:
