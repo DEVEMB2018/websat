@@ -11,9 +11,6 @@ sharedConfig: &sharedConfig
     - image: yoigo/circleci:node-8.9
   <<: *sharedEnvironment
 
-sharedContext: &sharedContext
-  context: embou
-
 # -----------------------------------------------------------
 # Jobs definition
 # -----------------------------------------------------------
