@@ -5,11 +5,11 @@ Find the most recent version of this guide at [here](https://github.com/segmenti
 ## Make commands
 We use `make` to run most of the app commands:
 
-`make install` Installs the project dependencies
-`make run` Runs the app in local server
-`make build` Builds the app in local
-`make test` Runs the unit tests
-`make build-prod-image` Build the production docker image
+- `make install` Installs the project dependencies
+- `make run` Runs the app in local server
+- `make build` Builds the app in local
+- `make test` Runs the unit tests
+- `make build-prod-image` Build the production docker image
 
 ## Table of Contents
 
