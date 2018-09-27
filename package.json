@@ -7,13 +7,17 @@
     "lint": "node_modules/.bin/eslint ."
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "next": "^7.0.0",
+    "node-sass": "^4.9.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   },
   "devDependencies": {
+    "@zeit/next-sass": "^1.0.1",
     "babel-eslint": "^9.0.0",
     "eslint": "^5.6.0",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "next-optimized-images": "^1.4.1"
   }
 }

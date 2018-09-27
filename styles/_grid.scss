@@ -1,0 +1,41 @@
+//
+// Custom grid breakpoints
+//
+$grid-breakpoints: (
+    xs: 0,
+    sm: 320px, // min tablet width
+    md: 680px, // min desktop width
+    lg: 980px,
+    xl: 1220px
+) !default;
+
+@mixin mobile {
+  @media (max-width: #{map-get($grid-breakpoints, md) - 1}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: map-get($grid-breakpoints, md)) and (max-width: #{map-get($grid-breakpoints, lg) - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: map-get($grid-breakpoints, lg)) {
+    @content;
+  }
+}
+
+@mixin mobile-tablet {
+  @media (max-width: #{map-get($grid-breakpoints, lg) - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-desktop {
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    @content;
+  }
+}
+
