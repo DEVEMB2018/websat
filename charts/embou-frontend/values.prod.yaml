@@ -1,0 +1,28 @@
+# Default values for api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 2
+environment: prod
+autoscaler:
+  enabled: true
+disruptionbudget:
+  enabled: true
+ingress:
+  # Used to create an Ingress record.
+  tls: false
+  records:
+    - host: embou.digitalhub.masmovil.com
+      path: /
+sentry:
+  dsn: https://9b06236dc4464a9fb2ef82dc51351aa3:3d1ae00ddb664cbda0488b276af532ad@sentry.monitoring.thor-dev.com/29
+resources:
+   limits:
+    cpu: 1000m
+    memory: 1500Mi
+   requests:
+    cpu: 100m
+    memory: 512Mi
+backend:
+  apiBase: "https://services.pepephone.com/v1"
+  coverage: "https://services.pepephone.com/cobertura"
+  gdpr: "https://econsent-pro.ecixgroup.com/v1/"

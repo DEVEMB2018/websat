@@ -1,0 +1,42 @@
+{{- if .Values.ingress.enabled -}}
+{{- $serviceName := include "api.name" . -}}
+{{- $servicePort := .Values.service.externalPort -}}
+{{- $basePath := .Values.ingress.basepath -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "api.name" . }}
+  labels:
+    app: {{ template "api.fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+spec:
+  rules:
+    - host: {{ .Release.Namespace }}.{{ .Values.environment }}.{{ .Values.ingress.basefqdn }}
+      http:
+        paths:
+          - path: {{ $basePath }}
+            backend:
+              serviceName: {{ $serviceName }}
+              servicePort: {{ $servicePort }}
+    {{- range $record := .Values.ingress.records }}
+    - host: {{ $record.host }}
+      http:
+        paths:
+          - path: {{ default $basePath $record.path }}
+            backend:
+              serviceName: {{ $serviceName }}
+              servicePort: {{ $servicePort }}
+    {{- end -}}
+  {{- if .Values.ingress.tls }}
+  tls:
+  - hosts:
+    - {{ .Release.Namespace }}.{{ .Values.environment }}.{{ .Values.ingress.basefqdn }}
+    {{- range $record := .Values.ingress.records }}
+    - {{ $record.host }}
+    {{- end }}
+    secretName: {{ .Values.ingress.tlsSecret }}
+  {{- end -}}
+{{- end -}}
