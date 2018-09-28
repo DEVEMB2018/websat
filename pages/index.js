@@ -1,77 +1,46 @@
 import React from 'react'
-import Link from 'next/link'
 import Head from '../components/head'
 import Nav from '../components/nav'
+import Hero from '../components/hero'
+
+// import css from 'styles/pages/index.scss'
 
 const Home = () => (
   <div>
     <Head title="Embou, líder en Internet Rural en Aragón. Tecnología Wimax | Embou" />
     <Nav />
+    <Hero />
+    <style jsx global>{`
+      body {
+        padding: 0;
+        margin: 0;
+        font-size: 16px;
+        font-family: Din, Comic Sans;
+        font-weight: 300;
+      }
 
-    <div className="hero">
-      <h1 className="title">EMBOU</h1>
-      <div className="row">
-        <Link>
-          <a className="card" href="http://embou.com" target="blank">
-            <h3>Sitio web legacy &rarr;</h3>
-            <p>Echa un vistazo al antiguo sitio web de Embou</p>
-          </a>
-        </Link>
-        <Link>
-          <a className="card" href="https://github.com/yoigo-thor/embou-frontend" target="blank">
-            <h3>Github &rarr;</h3>
-            <p>
-              Accede al repositorio del proyecto
-            </p>
-          </a>
-        </Link>
-      </div>
-    </div>
+      @font-face {
+        font-family: Din;
+        font-weight: 300;
+        src: url('/static/fonts/din/din-regular.eot?#iefix') format('embedded-opentype'),
+          url('/static/fonts/din/din-regular.woff') format('woff'),
+          url('/static/fonts/din/din-regular.ttf') format('truetype');
+      }
 
-    <style jsx>{`
-      .hero {
-        width: 100%;
-        color: #333;
+      @font-face {
+        font-family: Din;
+        font-weight: 500;
+        src: url('/static/fonts/din/din-medium.eot?#iefix') format('embedded-opentype'),
+          url('/static/fonts/din/din-medium.woff') format('woff'),
+          url('/static/fonts/din/din-medium.ttf') format('truetype');
       }
-      .title {
-        margin: 0;
-        width: 100%;
-        padding-top: 80px;
-        line-height: 1.15;
-        font-size: 48px;
-      }
-      .title,
-      .description {
-        text-align: center;
-      }
-      .row {
-        max-width: 880px;
-        margin: 80px auto 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .card {
-        padding: 18px 18px 24px;
-        width: 220px;
-        text-align: left;
-        text-decoration: none;
-        color: #434343;
-        border: 1px solid #9b9b9b;
-      }
-      .card:hover {
-        border-color: #067df7;
-      }
-      .card h3 {
-        margin: 0;
-        color: #067df7;
-        font-size: 18px;
-      }
-      .card p {
-        margin: 0;
-        padding: 12px 0 0;
-        font-size: 13px;
-        color: #333;
+
+      @font-face {
+        font-family: Din;
+        font-weight: 700;
+        src: url('/static/fonts/din/din-bold.eot?#iefix') format('embedded-opentype'),
+          url('/static/fonts/din/din-bold.woff') format('woff'),
+          url('/static/fonts/din/din-bold.ttf') format('truetype');
       }
     `}</style>
   </div>
