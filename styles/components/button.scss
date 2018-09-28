@@ -1,0 +1,23 @@
+@import '../colors';
+
+.button {
+  border-color: transparent;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.primaryButton {
+  @extend .button;
+
+  background-color: $green;
+  color: $white;
+}
+
+.secondaryButton {
+  @extend .button;
+
+  background-color: $yellow;
+  color: $black;
+}

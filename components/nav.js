@@ -1,55 +1,75 @@
 import React from 'react'
 import Link from 'next/link'
 
-const links = [
-  { href: '/', label: 'Home' },
-  { href: '/tarifas', label: 'Tarifas' },
-  { href: '/por-que-embou', label: 'Por qué embou' },
-  { href: '/ayuda', label: 'Ayuda' }
+import styles from '../styles/components/nav.scss'
+import buttonStyles from '../styles/components/button.scss'
+import classNames from 'classnames'
+
+import PropTypes from 'prop-types'
+
+const mainLinks = [
+  { href: '', label: 'Inicio' },
+  { href: '/internet-satelite', label: 'Internet satélite' },
+  { href: '/preguntas-frecuentes', label: 'Preguntas frecuentes' },
+  { href: '/contacto', label: 'contacto' }
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`
   return link
 })
 
-const Nav = () => (
-  <nav>
-    <ul>
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <Link href={href}>
-            <a>{label}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
+const topNavLinks = [
+  { href: '/ayuda', label: 'Ayuda' },
+  { href: '/area-cliente', label: 'Accede a tu área de cliente' }
+].map(link => {
+  link.key = `top-nav-link-${link.href}-${link.href}`
+  return link
+})
 
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
-      }
-    `}</style>
-  </nav>
-)
+class Nav extends React.Component {
+  static getInitialProps ({ pathname, req }) {
+    return { pathName: req && req.url || pathname  }
+  }
+
+  render () {
+    return <nav className={styles.nav}>
+      <ul className={styles.topMenu}>
+        {topNavLinks.map(({key, href, label}) => (
+          <li key={key}>
+            <Link href={href}>
+              <a className={styles.topMenuLink}>{label}</a>
+            </Link>
+          </li>
+        ))
+        }
+      </ul>
+      <div className={styles.mainMenuContainer}>
+        <img className={styles.logo} src="https://www.embou.com/data/img/logo_embou.png" />
+        <ul className={styles.mainMenu}>
+          {mainLinks.map(({ href, label, key }) => (
+            <li className={styles.listItem} key={key}>
+              <Link href={href}>
+                <a className={ classNames(styles.menuLink, { [styles.linkActive]: this.isLinkActive(href)}) }>{label}</a>
+              </Link>
+            </li>
+          ))}
+          <li className={styles.listItem}>
+            <button type="button" className={buttonStyles.primaryButton}>
+              Te llamamos gratis
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  }
+
+  isLinkActive (href) {
+    return this.props.pathName === href
+  }
+
+}
+
+Nav.propTypes = {
+  pathName: PropTypes.string
+}
 
 export default Nav
