@@ -4,6 +4,7 @@ import Nav from '../components/nav'
 import Hero from '../components/hero'
 import InternetSatellite from '../components/internet-satellite'
 import Tariffs from '../components/tariffs'
+import MobileTariffs from '../components/mobile-tariffs'
 
 // import css from 'styles/pages/index.scss'
 
@@ -14,6 +15,7 @@ const Home = () => (
     <Hero />
     <InternetSatellite />
     <Tariffs />
+    <MobileTariffs />
     <style jsx global>{`
       body {
         padding: 0;
