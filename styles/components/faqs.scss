@@ -1,0 +1,40 @@
+@import '../colors';
+
+.container {
+  background-color: $grey;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.titleContainer {
+  margin-top: 20px;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 500;
+  color: $grey-black;
+  display: inline;
+}
+
+.faqsContainer {
+  max-width: 800px;
+  text-align: left;
+}
+
+.faqCard {
+  padding: 15px;
+  border-radius: 2px;
+  border: 1px solid $grey-dark;
+  margin: 5px 0;
+  background-color: $white;
+}
+
+.tab {
+  cursor: pointer;
+  border-bottom: 1px solid $grey-dark;
+}
