@@ -1,0 +1,63 @@
+@import '../colors';
+
+.container {
+  padding: 30px 10px;
+}
+
+.titleContainer {
+  display: block;
+  text-align: center;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 500;
+  color: $grey-black;
+}
+
+.subtitle {
+  font-weight: 300;
+  color: $grey-black;
+}
+
+.mainFeaturueContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 50px;
+}
+
+.imageBig {
+  flex: 40% 0;
+  height: 200px;
+  background-color: $grey;
+}
+
+.imageSmall {
+  height: 100px;
+  width: 100px;
+  background-color: $grey;
+}
+
+.imageBigText {
+  flex: 50%;
+  margin-left: 20px;
+  line-height: 1.4;
+}
+
+.divider {
+  margin: 30px 0;
+}
+
+.featuresContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
+.feature {
+  margin: 0 10px;
+}
+
+.featureTitleSmall {
+  font-weight: 700;
+}
