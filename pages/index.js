@@ -3,6 +3,7 @@ import Head from '../components/head'
 import Nav from '../components/nav'
 import Hero from '../components/hero'
 import InternetSatellite from '../components/internet-satellite'
+import Tariffs from '../components/tariffs'
 
 // import css from 'styles/pages/index.scss'
 
@@ -12,13 +13,22 @@ const Home = () => (
     <Nav />
     <Hero />
     <InternetSatellite />
+    <Tariffs />
     <style jsx global>{`
       body {
         padding: 0;
         margin: 0;
         font-size: 16px;
         font-family: Din, Comic Sans;
-        font-weight: 300;
+        font-weight: 100;
+      }
+
+      @font-face {
+        font-family: Din;
+        font-weight: 100;
+        src: url('/static/fonts/din/din-light.eot?#iefix') format('embedded-opentype'),
+          url('/static/fonts/din/din-light.woff') format('woff'),
+          url('/static/fonts/din/din-light.ttf') format('truetype');
       }
 
       @font-face {

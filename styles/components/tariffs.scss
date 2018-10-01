@@ -1,0 +1,74 @@
+@import '../colors';
+
+.container {
+  background-color: $grey;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleContainer {
+  margin-top: 20px;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 500;
+  color: $grey-black;
+  display: inline;
+}
+
+.contentText {
+  max-width: 500px;
+  line-height: 1.3;
+}
+
+.tariffTitle {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.tariffsContainer {
+  // padding: 0 10px;
+}
+
+.tariffCard {
+  margin-left: 20px;
+  display: inline-block;
+}
+
+.tariffWhite {
+  background-color: white;
+  border-radius: 5px;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.tariffBlack {
+  background-color: $grey-black;
+  border-radius: 5px;
+  padding: 30px 20px;
+  text-align: center;
+  color: white;
+}
+
+.priceContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.tariffPrice {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.contractButton {
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.linkContainer {
+  padding: 1em 0;
+}
