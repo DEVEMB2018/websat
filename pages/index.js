@@ -6,6 +6,7 @@ import InternetSatellite from '../components/internet-satellite'
 import Tariffs from '../components/tariffs'
 import MobileTariffs from '../components/mobile-tariffs'
 import Faqs from '../components/faqs'
+import Contact from '../components/contact'
 
 // import css from 'styles/pages/index.scss'
 
@@ -18,6 +19,7 @@ const Home = () => (
     <Tariffs />
     <MobileTariffs />
     <Faqs />
+    <Contact />
     <style jsx global>{`
       body {
         padding: 0;

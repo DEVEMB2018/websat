@@ -1,0 +1,67 @@
+@import '../colors';
+
+.container {
+  background-color: $white;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.titleContainer {
+  flex: 50%;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 500;
+  color: $grey-black;
+  display: inline;
+}
+
+.formContainer {
+  padding: 20px;
+  background-color: $grey;
+  flex: 50%;
+  color: $grey-black;
+}
+
+.inputLabel {
+  display: block;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.input {
+  display: block;
+  margin: 5px 0;
+  padding: 5px;
+  width: 100%;
+}
+
+.textArea {
+  display: block;
+  flex: 100% 1;
+  min-height: 200px;
+}
+
+.inputsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.inputContainer {
+  display: inline-block;
+  position: relative;
+  flex: 35% 0;
+  margin: 5px 0;
+}
+
+.button {
+  display: block;
+  margin-top: 20px;
+}
+
+.inputContainerSpace {
+  margin-left: 40px;
+}
