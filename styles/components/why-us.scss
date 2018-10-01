@@ -1,0 +1,54 @@
+@import '../colors';
+
+.container {
+  background-color: $black;
+  color: $white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.titleContainer {
+  margin-top: 20px;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 500;
+  color: $yellow;
+  display: inline;
+}
+
+
+.contentContainer {
+  display: flex;
+}
+
+.contentBoldText {
+
+}
+
+.titleText {
+  max-width: 700px;
+  line-height: 1.3;
+  margin: 20px auto;
+
+}
+
+.logosContainer {
+  flex: 30% 0;
+}
+
+.textContainer {
+  flex: 60% 0;
+  text-align: left;
+}
+
+.contentBoldText {
+  font-weight: 500;
+}
+
+.contentText {
+  line-height: 1.3;
+  flex: 100%;
+}
