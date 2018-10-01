@@ -49,7 +49,7 @@ class MobileTariffs extends React.Component {
     return <div className={tariffsStyles.container}>
       <div className={tariffsStyles.titleContainer}>
         <h2 className={tariffsStyles.title}>Traete además tu móvil con nosotros y ahorra dinero</h2>
-        <p className={tariffsStyles.contentText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis odio lectus, nec condimentum orci ultricies quis.</p>
+        <p className={tariffsStyles.contentText}>La mejor oferta de internet + móvil con la telefonía móvil del Grupo MásMóvil.</p>
       </div>
       <Tabs className={tariffsStyles.tabContainer}>
         <TabList className={tariffsStyles.tabList}>

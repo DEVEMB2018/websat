@@ -31,7 +31,8 @@ const Tariffs = () => (
   <div className={tariffsStyles.container}>
     <div className={tariffsStyles.titleContainer}>
       <h2 className={tariffsStyles.title}>Nuestras tarifas</h2>
-      <p className={tariffsStyles.contentText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis odio lectus, nec condimentum orci ultricies quis. Vivamus fermentum, libero non interdum dignissim, nulla diam aliquam enim, cursus interdum dolor felis quis arcu. Maecenas nec magna commodo, facilisis turpis sit amet, maximus arcu.</p>
+      <p className={tariffsStyles.contentText}>LTe ofrecemos las mejores tarifas del mercado de internet por satélite, con 60 GB y 150 GB para que puedas hacer un uso intensivo de tu conexión sin preocupaciones (audio, vídeo, multimedia, navegación y descarga).</p>
+      <p className={tariffsStyles.contentText}>¡Elige la tuya!</p>
     </div>
     <div className={tariffsStyles.tariffsContainer}>
       {tariffs.map((tariff, index) => (
