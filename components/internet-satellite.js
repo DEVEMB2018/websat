@@ -8,19 +8,23 @@ import dividerStyles from '../styles/components/divider.scss'
 const features = [
   {
     title: 'Navega a Alta Velocidad',
-    content: 'Conéctate desde cualquier sitio con nuestros 30 Mb de velocidad de descarga y 6 Mb de subida. ¡Aprovecha la navegación ilimitada!'
+    content: 'Conéctate desde cualquier sitio con nuestros 30 Mb de velocidad de descarga y 6 Mb de subida. ¡Aprovecha la navegación ilimitada!',
+    src: '/static/images/speed.svg'
   },
   {
     title: 'La mejor oferta',
-    content: 'Ofrecemos las mejores tarifas para que puedas navegar sin preocuparte. También tenemos los mejores packs con la telefonía móvil del grupo MásMóvil.'
+    content: 'Ofrecemos las mejores tarifas para que puedas navegar sin preocuparte. También tenemos los mejores packs con la telefonía móvil del grupo MásMóvil.',
+    src: '/static/images/satellite.svg'
   },
   {
     title: '¡Alta gratis!',
-    content: 'Ahorra más de 150€ de la instalación y 400€ de los equipos con la subvención de Feder y red.es. Nosotros lo gestionamos todo. ¡Aprovecha este ocasión!'
+    content: 'Ahorra más de 150€ de la instalación y 400€ de los equipos con la subvención de Feder y red.es. Nosotros lo gestionamos todo. ¡Aprovecha este ocasión!',
+    src: '/static/images/offer.svg'
   },
   {
     title: 'Cobertura garantizada',
-    content: 'Tenemos la solución a tus problemas de conectividad, estés donde estés. La mayor parte de nuestros clientes se encuentran en zonas dispersas o rurales.'
+    content: 'Tenemos la solución a tus problemas de conectividad, estés donde estés. La mayor parte de nuestros clientes se encuentran en zonas dispersas o rurales.',
+    src: '/static/images/mountains.svg'
   }
 ].map((feature, index) => {
   feature.key = 'feature' + index
@@ -47,9 +51,9 @@ class InternetSatellite extends React.Component {
         </div>
         <div className={`${dividerStyles.horizontalDivider} ${satelliteStyles.divider}`}></div>
         <div className={satelliteStyles.featuresContainer}>
-          {features.map(({ title, content, key }) => (
+          {features.map(({ title, content, key, src }) => (
             <div key={key} className={satelliteStyles.feature}>
-              <div className={satelliteStyles.imageSmall}></div>
+              <img className={satelliteStyles.imageSmall} src={src}></img>
               <p className={satelliteStyles.featureTitleSmall}>{title}</p>
               <p className={satelliteStyles.imageSmallText}>{content}</p>
             </div>

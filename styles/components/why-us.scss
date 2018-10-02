@@ -23,10 +23,11 @@
 
 .contentContainer {
   display: flex;
+  padding-top: 20px;
 }
 
 .contentBoldText {
-
+  margin-top: 0;
 }
 
 .titleText {
@@ -38,6 +39,15 @@
 
 .logosContainer {
   flex: 30% 0;
+}
+
+.imageLogo {
+  width: 190px;
+  height: 60px;
+}
+
+.imageLogo2 {
+  margin-top: 60px;
 }
 
 .textContainer {

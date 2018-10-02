@@ -18,6 +18,8 @@ class WhyUs extends React.Component {
         </div>
         <div className={whyStyles.contentContainer}>
           <div className={whyStyles.logosContainer}>
+            <img className={whyStyles.imageLogo} src='/static/images/logo-negativo.svg'></img>
+            <img className={`${whyStyles.imageLogo} ${whyStyles.imageLogo2}`} src='/static/images/logo-masmovil.svg'></img>
           </div>
           <div className={whyStyles.textContainer}>
             <p className={`${whyStyles.contentText} ${whyStyles.contentBoldText}`}>Embou es una filial del Grupo MÁSMÓVIL especializada desde hace más de 15 años en servicios inalámbricos de conectividad a internet.</p>

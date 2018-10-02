@@ -43,7 +43,7 @@ class Nav extends React.Component {
         }
       </ul>
       <div className={styles.mainMenuContainer}>
-        <img className={styles.logo} src="https://www.embou.com/data/img/logo_embou.png" />
+        <img className={styles.logo} src="/static/images/logo-embou-sat.svg" />
         <ul className={styles.mainMenu}>
           {mainLinks.map(({ anchor, label, key }) => (
             <li className={styles.listItem} key={key}>
