@@ -47,7 +47,7 @@ class Nav extends React.Component {
         <ul className={styles.mainMenu}>
           {mainLinks.map(({ anchor, label, key }) => (
             <li className={styles.listItem} key={key}>
-              <Link className={styles.menuLink} activeClass={styles.linkActive} to={anchor} spy={true} smooth={true} hashSpy={true}>
+              <Link className={styles.menuLink} activeClass={styles.linkActive} to={anchor} spy={true} smooth={true} hashSpy={false}>
                 {label}
               </Link>
             </li>
