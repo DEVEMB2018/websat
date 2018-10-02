@@ -1,12 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import contactStyles from '../styles/components/contact.scss'
 import buttonStyles from '../styles/components/button.scss'
 
 class Contact extends React.Component {
 
+  static propTypes = {
+    idName: PropTypes.string
+  }
+
   render () {
-    return <div className={contactStyles.container}>
+    return <div className={contactStyles.container} id={this.props.idName}>
       <div className={contactStyles.titleContainer}>
         <h1 className={contactStyles.title}>¿Tienes dudas?</h1>
         <p className={contactStyles.subtitle}>Estamos a tu disposición para resolver cualquier duda que pueda surgirte.</p>

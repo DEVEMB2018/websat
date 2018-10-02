@@ -47,8 +47,12 @@ const faqs = [
 
 class Faqs extends React.Component {
 
+  static propTypes = {
+    idName: PropTypes.string
+  }
+
   render () {
-    return <div className={faqsStyles.container}>
+    return <div className={faqsStyles.container} id={this.props.idName}>
       <div className={faqsStyles.titleContainer}>
         <h1 className={faqsStyles.title}>Preguntas frecuentes</h1>
         <p className={faqsStyles.subtitle}>Aquí respondemos a las preguntas más habituales de nuestros clientes antes de contratar</p>

@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Head from '../components/head'
 import Nav from '../components/nav'
 import Hero from '../components/hero'
@@ -15,13 +16,13 @@ import Footer from '../components/footer'
 const Home = () => (
   <div>
     <Head title="Embou, líder en Internet Rural en Aragón. Tecnología Wimax | Embou" />
-    <Nav />
+    <Nav idName={'inicio'}/>
     <Hero />
-    <InternetSatellite />
-    <Tariffs />
+    <InternetSatellite idName={'internet-satelite'}/>
+    <Tariffs idName={'tarifas'}/>
     <MobileTariffs />
-    <Faqs />
-    <Contact />
+    <Faqs idName={'preguntas-frecuentes'}/>
+    <Contact idName={'contacto'}/>
     <WhyUs />
     <Footer />
     <style jsx global>{`

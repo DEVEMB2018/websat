@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Price from './price'
 
@@ -46,8 +47,12 @@ const tariffs = [
 
 class MobileTariffs extends React.Component {
 
+  static propTypes = {
+    idName: PropTypes.string
+  }
+
   render () {
-    return <div className={tariffsStyles.container}>
+    return <div className={tariffsStyles.container} id={this.props.idName}>
       <div className={tariffsStyles.titleContainer}>
         <h2 className={tariffsStyles.title}>Traete además tu móvil con nosotros y ahorra dinero</h2>
         <p className={tariffsStyles.contentText}>La mejor oferta de internet + móvil con la telefonía móvil del Grupo MásMóvil.</p>
