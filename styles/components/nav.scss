@@ -23,10 +23,10 @@
 .mainMenu {
   list-style: none;
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   margin: 0 0 0 10px;
-  padding: 5px 20px;
+  padding: 5px 0;
   width: 100%;
 }
 
@@ -50,11 +50,12 @@
 }
 
 .menuLink {
-  color: black;
+  color: $grey-black;
   text-decoration: none;
   font-size: 14px;
 }
 
 .linkActive {
-  font-weight: 500;
+  color: $black;
+  font-weight: 700;
 }

@@ -49,6 +49,7 @@
 
 .tabPanel {
   display: flex;
+  margin-top: 20px;
 }
 
 .selectedTab {
@@ -74,8 +75,8 @@
   line-height: 1;
 }
 
-.tariffPriceContainer {
-  text-align: center;
+.priceContainer {
+  padding: 20px 0;
 }
 
 .tariffPrice {

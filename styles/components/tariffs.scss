@@ -2,9 +2,12 @@
 
 .container {
   background-color: $grey;
+  color: $grey-black;
   padding: 40px 20px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  font-size: 14px;
 }
 
 .titleContainer {
@@ -15,7 +18,7 @@
   text-transform: uppercase;
   font-size: 25px;
   font-weight: 500;
-  color: $grey-black;
+  color: $black;
   display: inline;
 }
 
@@ -25,8 +28,9 @@
 }
 
 .tariffTitle {
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 0;
 }
 
 .tariffsContainer {
@@ -50,17 +54,15 @@
   border-radius: 5px;
   padding: 30px 20px;
   text-align: center;
-  color: white;
+  color: $grey-white;
 }
 
-.priceContainer {
-  display: flex;
-  justify-content: center;
+.tariffPriceContainer {
+  padding: 20px 0;
 }
 
-.tariffPrice {
-  font-size: 40px;
-  font-weight: 700;
+.linkContainer {
+  padding-top: 20px;
 }
 
 .contractButton {
@@ -69,6 +71,3 @@
   margin-top: 40px;
 }
 
-.linkContainer {
-  padding: 1em 0;
-}

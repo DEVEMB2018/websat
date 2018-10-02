@@ -5,6 +5,7 @@
   padding: 40px 20px;
   display: flex;
   justify-content: center;
+  color: $grey-black;
 }
 
 .titleContainer {
@@ -15,7 +16,7 @@
   text-transform: uppercase;
   font-size: 25px;
   font-weight: 500;
-  color: $grey-black;
+  color: $black;
   display: inline;
 }
 
@@ -23,7 +24,7 @@
   padding: 20px;
   background-color: $grey;
   flex: 50%;
-  color: $grey-black;
+  margin-left: 20px;
 }
 
 .inputLabel {

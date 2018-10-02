@@ -1,7 +1,8 @@
 @import '../colors';
 
 .container {
-  padding: 30px 10px;
+  padding: 60px 50px;
+  color: $grey-black;
 }
 
 .titleContainer {
@@ -12,12 +13,12 @@
 .title {
   font-size: 30px;
   font-weight: 500;
-  color: $grey-black;
+  color: $black;
+  margin-top: 0;
 }
 
 .subtitle {
   font-weight: 300;
-  color: $grey-black;
 }
 
 .mainFeaturueContainer {
@@ -60,4 +61,8 @@
 
 .featureTitleSmall {
   font-weight: 700;
+}
+
+.imageSmallText {
+  line-height: 1.4;
 }

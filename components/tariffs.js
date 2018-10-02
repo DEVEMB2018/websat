@@ -39,7 +39,9 @@ const Tariffs = () => (
       {tariffs.map((tariff, index) => (
         <div className={`${tariffsStyles.tariffCard} ${index == 0 ? tariffsStyles.tariffWhite : tariffsStyles.tariffBlack}`} key={tariff.key}>
           <h3 className={tariffsStyles.tariffTitle}>{tariff.description}</h3>
-          <Price price={tariff.price} currency={'€/mes'} iva={'IVA incl.'} />
+          <div className={tariffsStyles.tariffPriceContainer}>
+            <Price price={tariff.price} currency={'€/mes'} iva={'IVA incl.'} />
+          </div>
           <div className={dividerStyles.horizontalDivider}></div>
           <p><b>{tariff.data} GB</b> de datos</p>
           <p>(Navegación ilimitada de 1 a 6 am)</p>
