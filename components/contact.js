@@ -34,7 +34,7 @@ class Contact extends React.Component {
             <label className={contactStyles.inputLabel}>Mensaje</label>
             <textarea placeholder="Escribe aquí tus dudas, preguntas." className={contactStyles.textArea}></textarea>
           </div>
-          <checkbox></checkbox>
+          <label className={contactStyles.inputLabel}><input type="checkbox" />Acepto lo que haya que aceptar para cumplir la GDPR</label>
           <button type="button" className={`${buttonStyles.primaryButton} ${contactStyles.button}`}>Enviar</button>
         </form>
       </div>
