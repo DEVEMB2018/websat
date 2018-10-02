@@ -8,6 +8,7 @@ import MobileTariffs from '../components/mobile-tariffs'
 import Faqs from '../components/faqs'
 import Contact from '../components/contact'
 import WhyUs from '../components/why-us'
+import Footer from '../components/footer'
 
 // import css from 'styles/pages/index.scss'
 
@@ -22,6 +23,7 @@ const Home = () => (
     <Faqs />
     <Contact />
     <WhyUs />
+    <Footer />
     <style jsx global>{`
       body {
         padding: 0;

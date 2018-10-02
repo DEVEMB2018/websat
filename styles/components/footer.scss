@@ -1,0 +1,24 @@
+@import '../colors';
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  color: $grey-black;
+}
+
+.list {
+  list-style: none;
+}
+
+.listItem {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.link {
+  text-transform: uppercase;
+  cursor: pointer;
+  color: $grey-black;
+  text-decoration: none;
+}
