@@ -37,9 +37,7 @@ class Nav extends React.Component {
       <ul className={styles.topMenu}>
         {topNavLinks.map(({key, href, label}) => (
           <li key={key}>
-            <Link href={href} to="porque" spy={true}>
-              <a className={styles.topMenuLink}>{label}</a>
-            </Link>
+            <a href={href} className={styles.topMenuLink}>{label}</a>
           </li>
         ))
         }
