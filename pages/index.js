@@ -1,5 +1,7 @@
 import React from 'react'
 
+import styles from '../styles/pages/index.scss'
+
 import Head from '../components/head'
 import Nav from '../components/nav'
 import Hero from '../components/hero'
@@ -14,7 +16,7 @@ import Footer from '../components/footer'
 // import css from 'styles/pages/index.scss'
 
 const Home = () => (
-  <div>
+  <div className={styles.layout}>
     <Head title="Embou, líder en Internet Rural en Aragón. Tecnología Wimax | Embou" />
     <Nav idName={'inicio'}/>
     <Hero />

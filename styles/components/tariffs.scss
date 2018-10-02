@@ -5,13 +5,14 @@
   color: $grey-black;
   padding: 40px 20px;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
   font-size: 14px;
 }
 
 .titleContainer {
   margin-top: 20px;
+  flex: 30% 0;
 }
 
 .title {
@@ -40,6 +41,7 @@
 .tariffCard {
   margin-left: 20px;
   display: inline-block;
+  flex: 30% 0;
 }
 
 .tariffWhite {
