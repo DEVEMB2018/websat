@@ -1,22 +1,25 @@
 import React from 'react'
 
+import Price from './price'
+
 import heroStyles from '../styles/components/hero.scss'
 import buttonStyles from '../styles/components/button.scss'
 
 const Hero = () => (
   <div className={heroStyles.container}>
-    <p className={heroStyles.title}>Llevamos internet donde <span className={heroStyles.breakTitle}>ni siquiera llega el ADSL</span></p>
-    <p className={heroStyles.content}>
+    <div className={heroStyles.titleListContainer}>
+      <p className={heroStyles.title}>Llevamos internet donde ni siquiera llega el ADSL</p>
+      <ul className={heroStyles.list}>
+        <li className={heroStyles.listItem}>30 Mb de velocidad de descarga</li>
+        <li className={heroStyles.listItem}>Alta, instalación y router WiFi GRATIS</li>
+        <li className={heroStyles.listItem}>¡Cobertura garantizada!</li>
+      </ul>
+    </div>
+    <div className={heroStyles.content}>
       <span className={heroStyles.smallLabel}>Desde</span>
-      <div className={heroStyles.priceLabelContainer}>
-        <span className={heroStyles.bigLabel}>67</span>
-        <div>
-          <span className={heroStyles.mediumLabel}>€/mes</span>
-          <span className={heroStyles.mediumLabel}>IVA incl.</span>
-        </div>
-      </div>
+      <Price price={67} currency={'€/mes'} iva={'IVA incl.'} />
       <button type="button" className={buttonStyles.secondaryButton}>VER TARIFAS</button>
-    </p>
+    </div>
   </div>
 )
 

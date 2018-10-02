@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Price from './price'
 
 import tariffsStyles from '../styles/components/tariffs.scss'
 import buttonStyles from '../styles/components/button.scss'
@@ -38,15 +39,7 @@ const Tariffs = () => (
       {tariffs.map((tariff, index) => (
         <div className={`${tariffsStyles.tariffCard} ${index == 0 ? tariffsStyles.tariffWhite : tariffsStyles.tariffBlack}`} key={tariff.key}>
           <h3 className={tariffsStyles.tariffTitle}>{tariff.description}</h3>
-          <div className={tariffsStyles.priceContainer}>
-            <div>
-              <p className={tariffsStyles.tariffPrice}>{tariff.price}</p>
-            </div>
-            <div>
-              <p>€/mes</p>
-              <p>IVA incl.</p>
-            </div>
-          </div>
+          <Price price={tariff.price} currency={'€/mes'} iva={'IVA incl.'} />
           <div className={dividerStyles.horizontalDivider}></div>
           <p><b>{tariff.data} GB</b> de datos</p>
           <p>(Navegación ilimitada de 1 a 6 am)</p>

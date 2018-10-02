@@ -1,0 +1,27 @@
+.priceContainer {
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.price {
+  font-size: 64px;
+}
+
+.textContainer {
+  font-size: 14px;
+  font-weight: 700;
+  vertical-align: baseline;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.currency {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.iva {
+  margin-bottom: 10px;
+}

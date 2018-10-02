@@ -6,26 +6,44 @@
   height: 350px;
   position: relative;
   color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 90px;
 }
 
 .title {
-  font-size: 18px;
+  font-size: 35px;
   font-weight: 700;
-  position: absolute;
-  top: 30px;
-  left: 30px;
   margin: 0;
 }
 
-.breakTitle {
-  display: block;
+.list {
+  margin: 10px 0;
+  padding: 0 10px;
+  font-size: 18px;
+  list-style-type: none;
+}
+
+.list > li {
+  text-indent: -10px;
+}
+
+.list > li:before {
+  content: "-";
+  text-indent: -10px;
+  padding-right: 10px;
+}
+
+.listItem {
+  margin-top: 5px;
 }
 
 .content {
-  margin: 0;
-  position: absolute;
-  bottom: 30px;
-  left: 30px;
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .priceLabelContainer {
@@ -34,7 +52,7 @@
 }
 
 .smallLabel {
-  font-size: 10px;
+  font-size: 14px;
   display: block;
 }
 

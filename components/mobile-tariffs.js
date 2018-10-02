@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Price from './price'
 
 import tariffsStyles from '../styles/components/mobile-tariffs.scss'
 import buttonStyles from '../styles/components/button.scss'
@@ -80,11 +81,7 @@ class MobileTariffs extends React.Component {
         <p className={tariffsStyles.tariffTitle}>{tariff.mobileData} de datos</p>
         <p className={tariffsStyles.tariffTitle}>Llamadas ilimitadas</p>
       </div>
-      <div className={tariffsStyles.tariffPriceContainer}>
-        <p className={tariffsStyles.tariffPrice}>{tariff.price}</p>
-        <p>€/mes</p>
-        <p>IVA incl.</p>
-      </div>
+      <Price price={tariff.price} currency={'€/mes'} iva={'IVA incl.'} />
       <button type="button" className={`${buttonStyles.primaryButton} ${tariffsStyles.button}`}>Lo quiero</button>
       <div className={tariffsStyles.linkContainer}>
         <a className={linkStyles.link}>Ver detalles</a>
