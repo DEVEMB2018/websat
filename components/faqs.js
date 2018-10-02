@@ -1,7 +1,10 @@
 import React from 'react'
+import Collapsible from 'react-collapsible'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
 
 import faqsStyles from '../styles/components/faqs.scss'
-import Collapsible from 'react-collapsible'
+import caretStyles from '../styles/components/caret.scss'
 
 const faqs = [
   {
@@ -44,22 +47,68 @@ class Faqs extends React.Component {
       </div>
       <div className={faqsStyles.faqsContainer}>
         {faqs.map((faq) => (
-          <div className={faqsStyles.faqCard} key={faq.key}>
-            <Collapsible trigger={this.renderFaqTitle(faq.title)} triggerClassName={faqsStyles.tab} triggerOpenedClassName={faqsStyles.tab}>
-              <p>{faq.content}</p>
-            </Collapsible>
-          </div>
+          <CollapsibleCard title={faq.title} content={faq.content} key={faq.key} />
         ))
         }
       </div>
     </div>
   }
+}
+
+class CollapsibleCard extends React.Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      isCollapsed: true
+    }
+    this.handlerOpen = this.handlerOpen.bind(this)
+    this.handlerClose = this.handlerClose.bind(this)
+  }
+
+  render () {
+    return (
+      <div className={faqsStyles.faqCard}>
+        <Collapsible
+          trigger={this.renderFaqTitle(this.props.title)}
+          triggerClassName={faqsStyles.tab}
+          triggerOpenedClassName={faqsStyles.openedTab}
+          contentOuterClassName={faqsStyles.collapsableContent}
+          onOpen={this.handlerOpen}
+          onClose={this.handlerClose}
+        >
+          <p>{this.props.content}</p>
+        </Collapsible>
+      </div>
+    )
+  }
+
+  handlerOpen () {
+    this.setState({ isCollapsed: false })
+  }
+
+  handlerClose () {
+    this.setState({ isCollapsed: true })
+  }
 
   renderFaqTitle (title) {
-    return <div className={faqsStyles.tab}>
+    const classes = classNames({
+      [caretStyles.caretDown]: this.state.isCollapsed,
+      [caretStyles.caretUp]: !this.state.isCollapsed
+    })
+
+    return <div>
+      <span className={classes}></span>
       {title}
     </div>
   }
+
+
 }
 
 export default Faqs

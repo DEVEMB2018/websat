@@ -21,20 +21,33 @@
   display: inline;
 }
 
+.tab {
+  padding: 15px;
+  box-sizing: content-box;
+  position: relative;
+  display: block;
+  font-weight: 500;
+  color: #40474c;
+  cursor: pointer;
+}
+
+.openedTab {
+  @extend .tab;
+  border-bottom: 1px solid #D7D7D7;
+}
+
+.collapsableContent {
+  padding: 0 15px;
+}
+
 .faqsContainer {
   max-width: 800px;
   text-align: left;
 }
 
 .faqCard {
-  padding: 15px;
   border-radius: 2px;
   border: 1px solid $grey-dark;
   margin: 5px 0;
   background-color: $white;
-}
-
-.tab {
-  cursor: pointer;
-  border-bottom: 1px solid $grey-dark;
 }
