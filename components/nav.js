@@ -16,7 +16,7 @@ const mainLinks = [
   { anchor: 'internet-satelite', label: 'Internet satélite' },
   { anchor: 'tarifas', label: 'Tarifas' },
   { anchor: 'preguntas-frecuentes', label: 'Preguntas frecuentes' },
-  { anchor: 'contacto', label: 'contacto' }
+  { anchor: 'contacto', label: 'Contacto' }
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`
   return link
