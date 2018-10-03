@@ -109,8 +109,6 @@ class Nav extends React.Component {
   }
 
   scrollListener () {
-    console.log('scroll happens')
-
     const scrollTop = window.scrollY
 
     if (window.scrollY > 500 && !this.scrollingToTop) {
