@@ -18,8 +18,8 @@ import Footer from '../components/footer'
 const Home = () => (
   <div className={styles.layout}>
     <Head title="Embou, líder en Internet Rural en Aragón. Tecnología Wimax | Embou" />
-    <Nav idName={'inicio'}/>
-    <Hero />
+    <Nav />
+    <Hero idName={'inicio'} />
     <InternetSatellite idName={'internet-satelite'}/>
     <Tariffs idName={'tarifas'}/>
     <MobileTariffs />

@@ -3,6 +3,16 @@
 .container {
   padding: 60px 50px;
   color: $grey-black;
+  position: relative;
+}
+
+.anchor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 100px;
+  z-index: 1;
 }
 
 .titleContainer {
