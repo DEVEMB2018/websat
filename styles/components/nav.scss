@@ -17,13 +17,24 @@
   justify-content: flex-end;
   background-color: $grey;
   margin: 0;
-  padding: 5px 20px;
+  padding: 0 40px;
+  font-size: 14px;
+  color: $grey-black;
+}
+
+.topMenuItem {
+  padding: 10px 0;
+}
+
+.topMenuItem2 {
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 .mainMenuContainer {
   display: flex;
   justify-content: flex-start;
-  padding: 10px;
+  padding: 10px 40px;
 }
 
 .mainMenu {

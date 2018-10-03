@@ -23,7 +23,6 @@ const mainLinks = [
 })
 
 const topNavLinks = [
-  { href: '/ayuda', label: 'Ayuda' },
   { href: '/area-cliente', label: 'Accede a tu área de cliente' }
 ].map(link => {
   link.key = `top-nav-link-${link.href}-${link.href}`
@@ -71,11 +70,14 @@ class Nav extends React.Component {
       <nav className={styles.nav} id={this.props.idName}>
         <ul className={styles.topMenu}>
           {topNavLinks.map(({key, href, label}) => (
-            <li key={key}>
+            <li key={key} className={styles.topMenuItem}>
               <a href={href} className={styles.topMenuLink}>{label}</a>
             </li>
           ))
           }
+          <li className={classNames(styles.topMenuItem2, styles.topMenuItem)}>
+            Llámanos al <strong>900 696 897</strong>
+          </li>
         </ul>
         <div className={styles.mainMenuContainer}>
           <img className={styles.logo} src="/static/images/logo-embou-sat.svg" />
