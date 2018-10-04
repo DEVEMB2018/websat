@@ -1,4 +1,5 @@
 @import '../colors';
+@import '../grid';
 
 .container {
   padding: 60px 50px;
@@ -35,13 +36,18 @@
 .mainFeaturueContainer {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   margin-top: 50px;
 }
 
 .imageBig {
-  flex: 40% 0;
+  flex: 100%;
   height: 200px;
   background-color: $grey;
+
+  @include tablet-desktop {
+    flex: 40% 0;
+  }
 }
 
 .imageSmall {
@@ -50,9 +56,13 @@
 }
 
 .imageBigText {
-  flex: 50%;
+  flex: 100%;
   margin-left: 20px;
   line-height: 1.4;
+
+  @include tablet-desktop {
+    flex: 50%;
+  }
 }
 
 .divider {
@@ -61,12 +71,26 @@
 
 .featuresContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
-  flex-wrap: nowrap;
+  text-align: center;
+
+  @include desktop {
+    flex-wrap: nowrap;
+  }
+
+  @include tablet-desktop {
+    text-align: left;
+    justify-content: space-between;
+  }
 }
 
 .feature {
   margin: 0 10px;
+
+  @include tablet {
+    flex: 45% 0;
+  }
 }
 
 .featureTitleSmall {

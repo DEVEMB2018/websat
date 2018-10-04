@@ -1,15 +1,27 @@
 @import '../colors';
+@import '../grid';
 
 .container {
   background-color: $white;
   padding: 40px 20px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   color: $grey-black;
+
+  @include tablet-desktop {
+    flex-wrap: nowrap;
+  }
 }
 
 .titleContainer {
-  flex: 50%;
+  flex: 100%;
+  text-align: center;
+
+  @include tablet-desktop {
+    text-align: left;
+    flex: 50%;
+  }
 }
 
 .title {
@@ -23,13 +35,22 @@
 .formContainer {
   padding: 20px;
   background-color: $grey;
-  flex: 50%;
   margin-left: 20px;
+  margin-top: 20px;
+  flex: 100%;
+  text-align: center;
+
+  @include desktop {
+    text-align: left;
+    flex: 50%;
+    margin-top: 0;
+  }
 }
 
 .inputLabel {
   display: block;
-  margin: 5px 0;
+  margin: 10px 0;
+  text-align: left;
   font-size: 14px;
 }
 
@@ -54,8 +75,13 @@
 .inputContainer {
   display: inline-block;
   position: relative;
-  flex: 35% 0;
+  flex: 51% 0;
   margin: 5px 0;
+  text-align: left;
+
+  @include desktop {
+    flex: 35% 0;
+  }
 }
 
 .button {
@@ -64,5 +90,7 @@
 }
 
 .inputContainerSpace {
-  margin-left: 40px;
+  @include desktop {
+    margin-left: 40px;
+  }
 }

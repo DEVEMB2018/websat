@@ -1,18 +1,34 @@
 @import '../colors';
+@import '../grid';
 
 .container {
   background-color: $grey;
   color: $grey-black;
   padding: 40px 20px;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: center;
   font-size: 14px;
+  flex-wrap: wrap;
+
+  @include tablet {
+    justify-content: flex-start;
+  }
+
+  @include desktop {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
 }
 
 .titleContainer {
   margin-top: 20px;
-  flex: 30% 0;
+  flex: 100% 0;
+  text-align: center;
+
+  @include desktop {
+    flex: 30% 0;
+    text-align: left;
+  }
 }
 
 .title {
@@ -24,8 +40,15 @@
 }
 
 .contentText {
+  text-align: center;
+  margin: 20px auto;
   max-width: 500px;
   line-height: 1.3;
+
+  @include desktop {
+    margin: 20px 0;
+    text-align: left;
+  }
 }
 
 .tariffTitle {
@@ -39,9 +62,20 @@
 }
 
 .tariffCard {
-  margin-left: 20px;
+  margin-left: 50px;
   display: inline-block;
-  flex: 30% 0;
+  flex: 70% 0;
+  margin-top: 20px;
+
+  @include tablet {
+    flex: 35% 0;
+  }
+
+  @include desktop {
+    flex: 30% 0;
+    margin-top: 0;
+    margin-left: 20px;
+  }
 }
 
 .tariffWhite {

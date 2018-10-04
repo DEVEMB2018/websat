@@ -1,4 +1,5 @@
 @import '../colors';
+@import '../grid';
 
 .container {
   background-color: $yellow;
@@ -51,6 +52,13 @@
   display: flex;
   margin-top: 20px;
   width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+
+ @include tablet-desktop {
+  flex-wrap: nowrap;
+  justify-content: left;
+ }
 }
 
 .selectedTab {
@@ -62,9 +70,14 @@
   padding: 20px 30px;
   background-color: $white;
   border-radius: 5px;
-  margin: 0 10px;
   text-align: center;
-  flex: 30% 0;
+  flex: 70% 0;
+  margin-bottom: 40px;
+
+  @include tablet-desktop {
+    flex: 30% 0;
+    margin: 0 10px;
+  }
 }
 
 .tariffTitleContainer {

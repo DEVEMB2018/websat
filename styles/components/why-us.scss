@@ -1,4 +1,5 @@
 @import '../colors';
+@import '../grid';
 
 .container {
   background-color: $black;
@@ -24,6 +25,13 @@
 .contentContainer {
   display: flex;
   padding-top: 20px;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+
+  @include tablet-desktop {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
 }
 
 .contentBoldText {
@@ -38,7 +46,12 @@
 }
 
 .logosContainer {
-  flex: 30% 0;
+  margin-top: 40px;
+
+  @include tablet-desktop {
+    margin-top: 0;
+    flex: 30% 0;
+  }
 }
 
 .imageLogo {
@@ -47,12 +60,17 @@
 }
 
 .imageLogo2 {
-  margin-top: 60px;
+  @include tablet-desktop {
+    margin-top: 60px;
+  }
 }
 
 .textContainer {
-  flex: 60% 0;
   text-align: left;
+
+  @include tablet-desktop {
+    flex: 60% 0;
+  }
 }
 
 .contentBoldText {
