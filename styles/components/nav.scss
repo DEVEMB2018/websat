@@ -60,7 +60,7 @@
   flex-direction: column;
   justify-content: flex-start;
 
-  @include tablet-desktop {
+  @include desktop {
     justify-content: flex-end;
     align-items: center;
     position: relative;
@@ -89,7 +89,7 @@
 .listItem {
   margin: 15px;
 
-  @include tablet-desktop {
+  @include desktop {
     margin: 0 0 0 30px;
   }
 }
