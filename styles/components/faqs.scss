@@ -1,7 +1,13 @@
 @import '../colors';
+@import '../layout';
+
+.fullWidthContainer {
+  @extend %full-width-container;
+  background-color: $grey;
+}
 
 .container {
-  background-color: $grey;
+  @extend %content-container;
   padding: 40px 20px;
   display: flex;
   justify-content: center;
@@ -42,6 +48,7 @@
 
 .faqsContainer {
   max-width: 800px;
+  margin-top: 25px;
   text-align: left;
 }
 

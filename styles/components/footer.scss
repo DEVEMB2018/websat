@@ -1,7 +1,14 @@
 @import '../colors';
 @import '../grid';
+@import '../layout';
+
+
+.fullWidthContainer {
+  @extend %full-width-container;
+}
 
 .navContainer {
+  @extend %content-container;
   display: flex;
   justify-content: center;
   padding: 20px 40px;
@@ -10,6 +17,10 @@
   @include tablet-desktop {
     justify-content: space-between;
   }
+}
+
+.copyItem {
+  padding: 40px 0;
 }
 
 .list {

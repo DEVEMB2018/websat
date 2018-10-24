@@ -1,24 +1,39 @@
 @import '../colors';
 @import '../grid';
+@import '../layout';
+
 
 .nav {
+  @extend %full-width-container;
   display: flex;
   flex-direction: column;
   position: fixed;
-  max-width: 1280px;
   top: 0;
   z-index: 2;
   background-color: $white;
   width: 100%;
+  min-width: 100%;
+}
+
+.topMenuContainer {
+  @extend %full-width-container;
+  background-color: $grey;
+}
+
+.mainMenuContainer {
+  @extend %full-width-container;
+}
+
+.topMenuContent {
+  @extend %content-container;
 }
 
 .topMenu {
   list-style: none;
   display: none;
   justify-content: flex-end;
-  background-color: $grey;
   margin: 0;
-  padding: 0 40px;
+  padding: 0 0 0 40px;
   font-size: 14px;
   color: $grey-black;
 
@@ -36,10 +51,13 @@
   background-color: rgba(0, 0, 0, 0.15);
 }
 
-.mainMenuContainer {
+.mainMenuContent {
+  @extend %content-container;
+
   display: flex;
   justify-content: center;
-  padding: 10px 40px;
+  padding: 10px 0 10px 20px;
+  margin: 0 auto;
 
   @include tablet-desktop {
     justify-content: flex-start;

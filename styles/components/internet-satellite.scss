@@ -1,8 +1,14 @@
 @import '../colors';
 @import '../grid';
+@import '../layout';
+
+.fullWidthContainer {
+  @extend %full-width-container;
+}
 
 .container {
-  padding: 60px 50px;
+  @extend %content-container;
+  padding: 60px 20px;
   color: $grey-black;
   position: relative;
 }
@@ -91,6 +97,10 @@
   @include tablet {
     flex: 45% 0;
   }
+}
+
+.feature:first-of-type {
+  margin: 0;
 }
 
 .featureTitleSmall {

@@ -1,8 +1,14 @@
 @import '../colors';
 @import '../grid';
+@import '../layout';
+
+.fullWidthContainer {
+  @extend %full-width-container;
+  background-color: $grey;
+}
 
 .container {
-  background-color: $grey;
+  @extend %content-container;
   color: $grey-black;
   padding: 40px 20px;
   display: flex;

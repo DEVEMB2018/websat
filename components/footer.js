@@ -16,18 +16,20 @@ const links = [
 })
 
 const Footer = () => (
-  <nav className={footerStyles.navContainer}>
-    <span className={footerStyles.copyItem}></span>
-    <ul className={footerStyles.list}>
-      {links.map((link) => (
-        <li key={link.key} className={footerStyles.listItem}>
-          <Link href={link.href}>
-            <a className={footerStyles.link}>{link.label}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </nav>
+  <div className={footerStyles.fullWidthContainer}>
+    <nav className={footerStyles.navContainer}>
+      <span className={footerStyles.copyItem}>© 2018 Embou</span>
+      <ul className={footerStyles.list}>
+        {links.map((link) => (
+          <li key={link.key} className={footerStyles.listItem}>
+            <Link href={link.href}>
+              <a className={footerStyles.link}>{link.label}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 )
 
 export default Footer

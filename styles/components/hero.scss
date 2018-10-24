@@ -1,10 +1,17 @@
 @import '../colors';
 @import '../grid';
+@import '../layout';
 
-.container {
+.fullWidthContainer {
+  @extend %full-width-container;
+
   background-image: url('/static/images/hero-landscape.jpg');
   background-size: cover;
   height: 350px;
+}
+
+.container {
+  @extend %content-container;
   position: relative;
   color: $white;
   display: flex;

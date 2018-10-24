@@ -52,18 +52,22 @@ class Faqs extends React.Component {
   }
 
   render () {
-    return <div className={faqsStyles.container} id={this.props.idName}>
-      <div className={faqsStyles.titleContainer}>
-        <h1 className={faqsStyles.title}>Preguntas frecuentes</h1>
-        <p className={faqsStyles.subtitle}>Aquí respondemos a las preguntas más habituales de nuestros clientes antes de contratar</p>
+    return (
+      <div className={faqsStyles.fullWidthContainer} id={this.props.idName}>
+        <div className={faqsStyles.container}>
+          <div className={faqsStyles.titleContainer}>
+            <h1 className={faqsStyles.title}>Preguntas frecuentes</h1>
+            <p className={faqsStyles.subtitle}>Aquí respondemos a las preguntas más habituales de nuestros clientes antes de contratar</p>
+          </div>
+          <div className={faqsStyles.faqsContainer}>
+            {faqs.map((faq) => (
+              <CollapsibleCard title={faq.title} content={faq.content} key={faq.key} />
+            ))
+            }
+          </div>
+        </div>
       </div>
-      <div className={faqsStyles.faqsContainer}>
-        {faqs.map((faq) => (
-          <CollapsibleCard title={faq.title} content={faq.content} key={faq.key} />
-        ))
-        }
-      </div>
-    </div>
+    )
   }
 }
 

@@ -27,6 +27,12 @@ $grid-breakpoints: (
   }
 }
 
+@mixin desktop-hd {
+  @media (min-width: map-get($grid-breakpoints, xl)) {
+    @content;
+  }
+}
+
 @mixin mobile-tablet {
   @media (max-width: #{map-get($grid-breakpoints, lg) - 1px}) {
     @content;

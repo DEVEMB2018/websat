@@ -1,8 +1,14 @@
 @import '../colors';
 @import '../grid';
+@import '../layout';
+
+.fullWidthContainer {
+  @extend %full-width-container;
+  background-color: $yellow;
+}
 
 .container {
-  background-color: $yellow;
+  @extend %content-container;
   padding: 40px 20px;
   display: flex;
   justify-content: center;
@@ -77,6 +83,12 @@
   @include tablet-desktop {
     flex: 30% 0;
     margin: 0 10px;
+  }
+}
+
+.tariffCard:first-of-type {
+  @include tablet-desktop {
+    margin: 0;
   }
 }
 

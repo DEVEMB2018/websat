@@ -52,30 +52,34 @@ class MobileTariffs extends React.Component {
   }
 
   render () {
-    return <div className={tariffsStyles.container} id={this.props.idName}>
-      <div className={tariffsStyles.titleContainer}>
-        <h2 className={tariffsStyles.title}>Traete además tu móvil con nosotros y ahorra dinero</h2>
-        <p className={tariffsStyles.contentText}>La mejor oferta de internet + móvil con la telefonía móvil del Grupo MásMóvil.</p>
+    return (
+    <div className={tariffsStyles.fullWidthContainer} id={this.props.idName}>
+      <div className={tariffsStyles.container}>
+        <div className={tariffsStyles.titleContainer}>
+          <h2 className={tariffsStyles.title}>Traete además tu móvil con nosotros y ahorra dinero</h2>
+          <p className={tariffsStyles.contentText}>La mejor oferta de internet + móvil con la telefonía móvil del Grupo MásMóvil.</p>
+        </div>
+        <Tabs className={tariffsStyles.tabContainer}>
+          <TabList className={tariffsStyles.tabList}>
+            <Tab className={tariffsStyles.tab} selectedClassName={tariffsStyles.selectedTab}>con tarifa satélite 60 GB</Tab>
+            <Tab className={tariffsStyles.tab} selectedClassName={tariffsStyles.selectedTab}>con tarifa satélite 150 GB</Tab>
+          </TabList>
+          <TabPanel className={tariffsStyles.tabPanel}>
+            {tariffs
+              .filter((tariff) => tariff.satelliteData === 60)
+              .map((tariff) => this.renderTariff(tariff))
+            }
+          </TabPanel>
+          <TabPanel className={tariffsStyles.tabPanel}>
+            {tariffs
+              .filter((tariff) => tariff.satelliteData === 150)
+              .map((tariff) => this.renderTariff(tariff))
+            }
+          </TabPanel>
+        </Tabs>
       </div>
-      <Tabs className={tariffsStyles.tabContainer}>
-        <TabList className={tariffsStyles.tabList}>
-          <Tab className={tariffsStyles.tab} selectedClassName={tariffsStyles.selectedTab}>con tarifa satélite 60 GB</Tab>
-          <Tab className={tariffsStyles.tab} selectedClassName={tariffsStyles.selectedTab}>con tarifa satélite 150 GB</Tab>
-        </TabList>
-        <TabPanel className={tariffsStyles.tabPanel}>
-          {tariffs
-            .filter((tariff) => tariff.satelliteData === 60)
-            .map((tariff) => this.renderTariff(tariff))
-          }
-        </TabPanel>
-        <TabPanel className={tariffsStyles.tabPanel}>
-          {tariffs
-            .filter((tariff) => tariff.satelliteData === 150)
-            .map((tariff) => this.renderTariff(tariff))
-          }
-        </TabPanel>
-      </Tabs>
     </div>
+    )
   }
 
   renderTariff (tariff) {

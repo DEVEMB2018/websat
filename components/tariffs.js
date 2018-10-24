@@ -36,32 +36,34 @@ class Tariffs extends React.Component {
 
   render () {
     return (
-      <div className={tariffsStyles.container} id={this.props.idName}>
-        <div className={tariffsStyles.titleContainer}>
-          <h2 className={tariffsStyles.title}>Nuestras tarifas</h2>
-          <p className={tariffsStyles.contentText}>LTe ofrecemos las mejores tarifas del mercado de internet por satélite, con 60 GB y 150 GB para que puedas hacer un uso intensivo de tu conexión sin preocupaciones (audio, vídeo, multimedia, navegación y descarga).</p>
-          <p className={tariffsStyles.contentText}>¡Elige la tuya!</p>
-        </div>
-        {tariffs.map((tariff, index) => (
-          <div className={`${tariffsStyles.tariffCard} ${index == 0 ? tariffsStyles.tariffWhite : tariffsStyles.tariffBlack}`} key={tariff.key}>
-            <h3 className={tariffsStyles.tariffTitle}>{tariff.description}</h3>
-            <div className={tariffsStyles.tariffPriceContainer}>
-              <Price price={tariff.price} currency={'€/mes'} iva={'IVA incl.'} />
-            </div>
-            <div className={dividerStyles.horizontalDivider}></div>
-            <p><b>{tariff.data} GB</b> de datos</p>
-            <p>(Navegación ilimitada de 1 a 6 am)</p>
-            <div className={dividerStyles.horizontalDivider}></div>
-            <p><b>{tariff.downloadSpeed} Mbps</b> de subida / <b>{tariff.uploadSpeed} Mbps</b> de subida</p>
-            <div className={dividerStyles.horizontalDivider}></div>
-            <p>Instalación y router WiFi <b>GRATIS</b></p>
-            <div className={dividerStyles.horizontalDivider}></div>
-            <div className={tariffsStyles.linkContainer}>
-              <a className={linkStyles.link}>Ver detalles</a>
-            </div>
-            <button type="button" className={`${buttonStyles.primaryButton} ${tariffsStyles.contractButton}`}>¡Contrátala ahora!</button>
+      <div className={tariffsStyles.fullWidthContainer} id={this.props.idName}>
+        <div className={tariffsStyles.container}>
+          <div className={tariffsStyles.titleContainer}>
+            <h2 className={tariffsStyles.title}>Nuestras tarifas</h2>
+            <p className={tariffsStyles.contentText}>LTe ofrecemos las mejores tarifas del mercado de internet por satélite, con 60 GB y 150 GB para que puedas hacer un uso intensivo de tu conexión sin preocupaciones (audio, vídeo, multimedia, navegación y descarga).</p>
+            <p className={tariffsStyles.contentText}>¡Elige la tuya!</p>
           </div>
-        ))}
+          {tariffs.map((tariff, index) => (
+            <div className={`${tariffsStyles.tariffCard} ${index == 0 ? tariffsStyles.tariffWhite : tariffsStyles.tariffBlack}`} key={tariff.key}>
+              <h3 className={tariffsStyles.tariffTitle}>{tariff.description}</h3>
+              <div className={tariffsStyles.tariffPriceContainer}>
+                <Price price={tariff.price} currency={'€/mes'} iva={'IVA incl.'} />
+              </div>
+              <div className={dividerStyles.horizontalDivider}></div>
+              <p><b>{tariff.data} GB</b> de datos</p>
+              <p>(Navegación ilimitada de 1 a 6 am)</p>
+              <div className={dividerStyles.horizontalDivider}></div>
+              <p><b>{tariff.downloadSpeed} Mbps</b> de subida / <b>{tariff.uploadSpeed} Mbps</b> de subida</p>
+              <div className={dividerStyles.horizontalDivider}></div>
+              <p>Instalación y router WiFi <b>GRATIS</b></p>
+              <div className={dividerStyles.horizontalDivider}></div>
+              <div className={tariffsStyles.linkContainer}>
+                <a className={linkStyles.link}>Ver detalles</a>
+              </div>
+              <button type="button" className={`${buttonStyles.primaryButton} ${tariffsStyles.contractButton}`}>¡Contrátala ahora!</button>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }

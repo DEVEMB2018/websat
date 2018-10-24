@@ -66,20 +66,26 @@ class Nav extends React.Component {
   }
 
   render () {
-    return <div>
-      <nav className={styles.nav} id={this.props.idName}>
-        <ul className={styles.topMenu}>
-          {topNavLinks.map(({key, href, label}) => (
-            <li key={key} className={styles.topMenuItem}>
-              <a href={href} className={styles.topMenuLink}>{label}</a>
+    return (
+    <nav className={styles.nav} id={this.props.idName}>
+      <div className={styles.topMenuContainer}>
+        <div className={styles.topMenuContent}>
+          <ul className={styles.topMenu}>
+            {topNavLinks.map(({key, href, label}) => (
+              <li key={key} className={styles.topMenuItem}>
+                <a href={href} className={styles.topMenuLink}>{label}</a>
+              </li>
+            ))
+            }
+            <li className={classNames(styles.topMenuItem2, styles.topMenuItem)}>
+              Llámanos al <strong>900 696 897</strong>
             </li>
-          ))
-          }
-          <li className={classNames(styles.topMenuItem2, styles.topMenuItem)}>
-            Llámanos al <strong>900 696 897</strong>
-          </li>
-        </ul>
-        <div className={styles.mainMenuContainer}>
+          </ul>
+        </div>
+      </div>
+
+      <div className={styles.mainMenuContainer}>
+        <div className={styles.mainMenuContent}>
           <img className={styles.logo} src="/static/images/logo-embou-sat.svg" />
           <ul className={styles.mainMenu}>
             {mainLinks.map(({ anchor, label, key }) => (
@@ -96,9 +102,10 @@ class Nav extends React.Component {
             </li>
           </ul>
         </div>
-      </nav>
+      </div>
       <div className={classNames(styles.topNavigation, { [styles.displayed]: this.state.showScrollToTop })} onClick={this.handlerScrollToTop}></div>
-    </div>
+    </nav>
+    )
   }
 
   isLinkActive (href) {

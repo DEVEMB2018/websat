@@ -1,12 +1,18 @@
 @import '../colors';
 @import '../grid';
+@import '../layout';
+
+.fullWidthContainer {
+  @extend %full-width-container;
+  background-color: $black;
+  border-bottom: 20px solid $yellow;
+}
 
 .container {
-  background-color: $black;
+  @extend %content-container;
   color: $white;
   padding: 40px 20px;
   text-align: center;
-  border-bottom: 20px solid $yellow;
 }
 
 .titleContainer {
