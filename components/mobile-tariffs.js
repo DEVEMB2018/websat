@@ -11,6 +11,21 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 const tariffs = [
   {
     price: 76,
+    satelliteData: 30,
+    mobileData: 5
+  },
+  {
+    price: 79,
+    satelliteData: 30,
+    mobileData: 8
+  },
+  {
+    price: 83,
+    satelliteData: 30,
+    mobileData: 12
+  },
+  {
+    price: 76,
     satelliteData: 60,
     mobileData: 5
   },
@@ -61,9 +76,16 @@ class MobileTariffs extends React.Component {
         </div>
         <Tabs className={tariffsStyles.tabContainer}>
           <TabList className={tariffsStyles.tabList}>
-            <Tab className={tariffsStyles.tab} selectedClassName={tariffsStyles.selectedTab}>con tarifa satélite 60 GB</Tab>
-            <Tab className={tariffsStyles.tab} selectedClassName={tariffsStyles.selectedTab}>con tarifa satélite 150 GB</Tab>
+            <Tab className={tariffsStyles.tab} selectedClassName={tariffsStyles.selectedTab}>con satélite 30 GB</Tab>
+            <Tab className={tariffsStyles.tab} selectedClassName={tariffsStyles.selectedTab}>con satélite 60 GB</Tab>
+            <Tab className={tariffsStyles.tab} selectedClassName={tariffsStyles.selectedTab}>con satélite 150 GB</Tab>
           </TabList>
+          <TabPanel className={tariffsStyles.tabPanel}>
+            {tariffs
+              .filter((tariff) => tariff.satelliteData === 30)
+              .map((tariff) => this.renderTariff(tariff))
+            }
+          </TabPanel>
           <TabPanel className={tariffsStyles.tabPanel}>
             {tariffs
               .filter((tariff) => tariff.satelliteData === 60)
