@@ -32,20 +32,32 @@ const Home = () => (
         padding: 0;
         margin: 0;
         font-size: 16px;
-        font-family: NotoSans, Din, Comic Sans;
+        font-family: Lato, Din, Comic Sans;
         font-weight: 100;
       }
 
       @font-face {
-        font-family: NotoSans;
-        font-weight: 400;
-        src: url('/static/fonts/noto-sans/noto-sans-regular.ttf') format('truetype');
+        font-family: Lato;
+        font-weight: 300;
+        src: url('/static/fonts/lato/lato-light.ttf') format('truetype');
       }
 
       @font-face {
-        font-family: NotoSans;
+        font-family: Lato;
+        font-weight: 500;
+        src: url('/static/fonts/lato/lato-regular.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: Lato;
         font-weight: 700;
-        src: url('/static/fonts/noto-sans/noto-sans-bold.ttf') format('truetype');
+        src: url('/static/fonts/lato/lato-bold.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: Lato;
+        font-weight: 900;
+        src: url('/static/fonts/lato/lato-black.ttf') format('truetype');
       }
 
       @font-face {

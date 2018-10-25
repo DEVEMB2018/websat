@@ -36,7 +36,7 @@ class Price extends React.Component {
     const commaPrice = this.getCommaPrice(price)
 
     if (commaPrice > 0) {
-      return (<div className={styles.currency}>´{commaPrice + 1}</div>)
+      return (<div className={styles.commaPrice}>'{commaPrice + 1}</div>)
     }
   }
 

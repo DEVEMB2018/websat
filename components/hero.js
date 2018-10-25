@@ -26,7 +26,7 @@ class Hero extends React.Component {
             <div className={heroStyles.content}>
               <span className={heroStyles.smallLabel}>Desde</span>
               <Price price={34.90} currency={'€/mes'} iva={'IVA incl.'} />
-              <button type="button" className={`${buttonStyles.secondaryButton} ${heroStyles.button}`}>VER TARIFAS</button>
+              <button type="button" className={buttonStyles.secondaryButton}>VER TARIFAS</button>
             </div>
           </div>
         </div>

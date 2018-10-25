@@ -9,7 +9,7 @@
   background-image: url('/static/images/hero-banner-980.png');
   background-size: cover;
   background-position: right bottom;
-  height: 350px;
+  height: 400px;
 
   @include desktop {
     background-image: url('/static/images/hero-banner-1220.png');
@@ -40,10 +40,6 @@
   margin: 0;
 }
 
-.button {
-  margin-top: 5px;
-}
-
 .list {
   margin: 10px 0;
   padding: 0 10px;
@@ -72,6 +68,7 @@
 
   @include tablet-desktop {
     align-items: flex-start;
+    margin-top: 40px;
   }
 }
 
@@ -83,6 +80,7 @@
 .smallLabel {
   font-size: 14px;
   display: block;
+  font-weight: 100;
 }
 
 .mediumLabel {
