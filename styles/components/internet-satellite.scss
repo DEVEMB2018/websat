@@ -62,11 +62,11 @@
 
 .imageBigText {
   flex: 100%;
-  margin-left: 20px;
   line-height: 1.4;
 
   @include tablet-desktop {
     flex: 50%;
+    margin-left: 20px;
   }
 }
 
@@ -78,14 +78,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  text-align: center;
+  text-align: left;
 
   @include desktop {
     flex-wrap: nowrap;
   }
 
   @include tablet-desktop {
-    text-align: left;
     justify-content: space-between;
   }
 }
