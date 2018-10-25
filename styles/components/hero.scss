@@ -5,9 +5,18 @@
 .fullWidthContainer {
   @extend %full-width-container;
 
-  background-image: url('/static/images/hero-landscape.jpg');
+  background-image: url('/static/images/hero-banner-980.png');
   background-size: cover;
+  background-position: right bottom;
   height: 350px;
+
+  @include desktop {
+    background-image: url('/static/images/hero-banner-1220.png');
+  }
+
+  @include desktop-hd {
+    background-image: url('/static/images/hero-banner-1220.png');
+  }
 }
 
 .container {
@@ -28,6 +37,10 @@
   font-size: 35px;
   font-weight: 700;
   margin: 0;
+}
+
+.button {
+  margin-top: 5px;
 }
 
 .list {
