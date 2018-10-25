@@ -10,47 +10,47 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 
 const tariffs = [
   {
-    price: 76,
+    price: 56.80,
     satelliteData: 30,
     mobileData: 5
   },
   {
-    price: 79,
+    price: 59.80,
     satelliteData: 30,
     mobileData: 8
   },
   {
-    price: 83,
+    price: 63.80,
     satelliteData: 30,
     mobileData: 12
   },
   {
-    price: 76,
+    price: 70.75,
     satelliteData: 60,
     mobileData: 5
   },
   {
-    price: 79,
+    price: 73.75,
     satelliteData: 60,
     mobileData: 8
   },
   {
-    price: 83,
+    price: 77.75,
     satelliteData: 60,
     mobileData: 12
   },
   {
-    price: 85,
+    price: 108.80,
     satelliteData: 150,
     mobileData: 5
   },
   {
-    price: 95,
+    price: 111.80,
     satelliteData: 150,
     mobileData: 8
   },
   {
-    price: 100,
+    price: 115.80,
     satelliteData: 150,
     mobileData: 12
   }
