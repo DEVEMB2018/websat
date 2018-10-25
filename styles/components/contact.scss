@@ -1,6 +1,7 @@
 @import '../colors';
 @import '../grid';
 @import '../layout';
+@import '../titles';
 
 .fullWidthContainer {
   @extend %full-width-container;
@@ -31,11 +32,46 @@
 }
 
 .title {
+  @extend %title;
   text-transform: uppercase;
-  font-size: 25px;
-  font-weight: 500;
-  color: $black;
   display: inline;
+}
+
+.underlinedTitle {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.callInfoContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.callInfo {
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.callInfoTitle {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.callInfoNumber {
+  font-size: 24px;
+  display: block;
+}
+
+.callInfoTime {
+  font-size: 14px;
+  display: block;
+  margin: 5px 0;
+}
+
+.callInfoTimeLabel {
+  font-weight: 300;
 }
 
 .formContainer {

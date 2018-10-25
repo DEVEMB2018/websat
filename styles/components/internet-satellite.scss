@@ -1,6 +1,7 @@
 @import '../colors';
 @import '../grid';
 @import '../layout';
+@import '../titles';
 
 .fullWidthContainer {
   @extend %full-width-container;
@@ -28,9 +29,7 @@
 }
 
 .title {
-  font-size: 36px;
-  font-weight: 500;
-  color: $black;
+  @extend %title;
   margin-top: 0;
   text-transform: uppercase;
 }

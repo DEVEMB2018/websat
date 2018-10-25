@@ -17,7 +17,16 @@ class Contact extends React.Component {
           <div className={contactStyles.titleContainer}>
             <h1 className={contactStyles.title}>¿Tienes dudas?</h1>
             <p className={contactStyles.subtitle}>Estamos a tu disposición para resolver cualquier duda que pueda surgirte.</p>
-            <p className={contactStyles.subtitle}>Completa este formulario, llámanos gratis, o si lo prefieres, nosotros te llamamos.</p>
+            <p className={contactStyles.subtitle}>Completa este formulario, llámanos gratis, o si lo prefieres, <span className={contactStyles.underlinedTitle}>nosotros te llamamos</span>.</p>
+            <div className={contactStyles.callInfoContainer}>
+              <img src="/static/images/speech-bubble.svg"/>
+              <div className={contactStyles.callInfo}>
+                <span className={contactStyles.callInfoTitle}>Llamada gratuita</span>
+                <span className={contactStyles.callInfoNumber}>900 696 897</span>
+                <span className={contactStyles.callInfoTime}><span className={contactStyles.callInfoTimeLabel}>Días laborables:</span> 08:00h a 22:00h</span>
+                <span className={contactStyles.callInfoTime}><span className={contactStyles.callInfoTimeLabel}>Días festivos:</span> 10:00h a 22:00h</span>
+              </div>
+            </div>
           </div>
           <div className={contactStyles.formContainer}>
             <form>

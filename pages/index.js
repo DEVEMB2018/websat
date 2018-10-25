@@ -32,8 +32,20 @@ const Home = () => (
         padding: 0;
         margin: 0;
         font-size: 16px;
-        font-family: Din, Comic Sans;
+        font-family: NotoSans, Din, Comic Sans;
         font-weight: 100;
+      }
+
+      @font-face {
+        font-family: NotoSans;
+        font-weight: 400;
+        src: url('/static/fonts/noto-sans/noto-sans-regular.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: NotoSans;
+        font-weight: 700;
+        src: url('/static/fonts/noto-sans/noto-sans-bold.ttf') format('truetype');
       }
 
       @font-face {
