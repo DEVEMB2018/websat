@@ -113,7 +113,7 @@ class MobileTariffs extends React.Component {
         <p className={tariffsStyles.tariffTitle}>Llamadas ilimitadas</p>
       </div>
       <div className={tariffsStyles.priceContainer}>
-        <Price price={tariff.price} currency={'€/mes'} iva={'IVA incl.'} />
+        <Price price={tariff.price} currency={'€/mes'} iva={'IVA incl.'} center={true} />
       </div>
       <button type="button" className={`${buttonStyles.primaryButton} ${tariffsStyles.button}`}>Lo quiero</button>
       <div className={tariffsStyles.linkContainer}>

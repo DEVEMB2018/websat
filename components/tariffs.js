@@ -53,7 +53,7 @@ class Tariffs extends React.Component {
           <div className={`${tariffsStyles.tariffCard} ${this.getTariffColor(index)}`} key={tariff.key}>
             <h3 className={tariffsStyles.tariffTitle}>{tariff.description}</h3>
             <div className={tariffsStyles.tariffPriceContainer}>
-              <Price price={tariff.price} currency={'€/mes'} iva={'IVA incl.'} />
+              <Price price={tariff.price} currency={'€/mes'} iva={'IVA incl.'} center={true} />
             </div>
             <div className={dividerStyles.horizontalDivider}></div>
             <p><b>{tariff.data} GB</b> de datos</p>

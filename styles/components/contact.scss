@@ -33,8 +33,19 @@
 
 .title {
   @extend %title;
-  text-transform: uppercase;
-  display: inline;
+
+  text-align: left;
+  margin: 0;
+
+  @include tablet-desktop {
+    text-align: center;
+    text-transform: uppercase;
+    display: inline;
+  }
+}
+
+.subtitle {
+  text-align: left;
 }
 
 .underlinedTitle {
@@ -44,14 +55,29 @@
 
 .callInfoContainer {
   display: flex;
-  flex-wrap: nowrap;
   align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   margin-top: 20px;
+
+  @include desktop {
+    flex-wrap: nowrap;
+    justify-content: left;
+  }
 }
 
 .callInfo {
+  flex: 1 0 100%;
   font-weight: bold;
-  margin-left: 20px;
+  justify-content: flex-start;
+  text-align: left;
+  margin: 10px 0;
+
+  @include desktop {
+    flex: 1;
+    margin: 0 20px;
+    text-align: left;
+  }
 }
 
 .callInfoTitle {
@@ -77,15 +103,14 @@
 .formContainer {
   padding: 20px;
   background-color: $grey;
-  margin-left: 20px;
-  margin-top: 20px;
+  margin: 20px 0;
   flex: 100%;
   text-align: center;
 
   @include desktop {
     text-align: left;
     flex: 50%;
-    margin-top: 0;
+    margin: 20px 0;
   }
 }
 
@@ -112,14 +137,19 @@
 .inputsContainer {
   display: flex;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .inputContainer {
   display: inline-block;
   position: relative;
-  flex: 51% 0;
+  flex: 100% 0;
   margin: 5px 0;
   text-align: left;
+
+  @include tablet {
+    flex: 51% 0;
+  }
 
   @include desktop {
     flex: 35% 0;

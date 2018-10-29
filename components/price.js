@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import styles from '../styles/components/price.scss'
 
@@ -7,12 +8,13 @@ class Price extends React.Component {
   static propTypes = {
     price: PropTypes.number.isRequired,
     currency: PropTypes.string.isRequired,
-    iva: PropTypes.string
+    iva: PropTypes.string,
+    center: PropTypes.bool
   }
 
   render () {
     return (
-      <div className={styles.priceContainer}>
+      <div className={classNames(styles.priceContainer, { [styles.priceContainerCenter]: this.props.center })}>
           <div className={styles.price}>{this.getIntPrice(this.props.price)}</div>
           <div className={styles.textContainer}>
             { this.renderCommaPrice(this.props.price) }

@@ -1,10 +1,9 @@
 import React from 'react'
 import Collapsible from 'react-collapsible'
-import classNames from 'classnames'
+import Caret from './caret'
 import PropTypes from 'prop-types'
 
 import faqsStyles from '../styles/components/faqs.scss'
-import caretStyles from '../styles/components/caret.scss'
 
 const faqs = [
   {
@@ -114,14 +113,9 @@ class CollapsibleCard extends React.Component {
   }
 
   renderFaqTitle (title) {
-    const classes = classNames({
-      [caretStyles.caretDown]: this.state.isCollapsed,
-      [caretStyles.caretUp]: !this.state.isCollapsed
-    })
-
-    return <div>
-      <span className={classes}></span>
-      {title}
+    return <div className={faqsStyles.faqTitleContainer}>
+      <span className={faqsStyles.faqTitle}>{title}</span>
+      <Caret up={!this.state.isCollapsed} />
     </div>
   }
 

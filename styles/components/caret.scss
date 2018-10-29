@@ -1,9 +1,7 @@
 .caretDown {
-  position: absolute;
-  width: 10px;
+  position: relative;
+  width: 20px;
   height: 10px;
-  right: 20px;
-  top: 20px;
 }
 
 .caretDown:before {
@@ -27,11 +25,9 @@
 }
 
 .caretUp {
-  position: absolute;
-  width: 10px;
+  position: relative;
+  width: 20px;
   height: 10px;
-  right: 20px;
-  top: 20px;
 }
 
 .caretUp:before {

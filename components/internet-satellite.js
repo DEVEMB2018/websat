@@ -48,7 +48,10 @@ class InternetSatellite extends React.Component {
           </div>
           <div className={satelliteStyles.mainFeaturueContainer}>
             <div className={satelliteStyles.imageBig}></div>
-            <p className={satelliteStyles.imageBigText}>Internet por satélite es la mejor opción para conectarte a Internet en zonas rurales, dispersas y diseminadas donde ni la Fibra Óptica, ADSL u otras tecnologías inalámbricas llegan. Podrás disfrutar de 30 Mb de velocidad con la sencilla instalación de una antena. Si ves el cielo, ¡la mejor conexión a un solo paso!.</p>
+            <p className={satelliteStyles.imageBigText}>Internet por satélite es la mejor opción para conectarte a Internet en zonas rurales, dispersas y diseminadas donde ni la Fibra Óptica, ADSL u otras tecnologías inalámbricas llegan. Podrás disfrutar de 30 Mb de velocidad con la sencilla instalación de una antena.
+            <br></br>
+            <br></br>
+            Si ves el cielo, ¡la mejor conexión a un solo paso!.</p>
           </div>
           <div className={`${dividerStyles.horizontalDivider} ${satelliteStyles.divider}`}></div>
           <div className={satelliteStyles.featuresContainer}>

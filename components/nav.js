@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'react-scroll'
 import classNames from 'classnames'
+import PropTypes from 'prop-types'
 
 const Scroll = require('react-scroll')
 const Events = Scroll.Events
 
+import Caret from './caret'
 import styles from '../styles/components/nav.scss'
 import buttonStyles from '../styles/components/button.scss'
 
-import PropTypes from 'prop-types'
 import { throttle } from '../helpers/throttle'
 
 const mainLinks = [
@@ -44,12 +45,14 @@ class Nav extends React.Component {
     super(props)
 
     this.state = {
-      showScrollToTop: false
+      showScrollToTop: false,
+      showMobileMenu: false
     }
 
     this.scroll = Scroll.animateScroll
 
     this.handlerScrollToTop = this.handlerScrollToTop.bind(this)
+    this.handlerTabClick = this.handlerTabClick.bind(this)
     this.throttleScroll = throttle(this.scrollListener, 100, this)
   }
 
@@ -63,6 +66,7 @@ class Nav extends React.Component {
 
   componentWillUnmount () {
     this.window.removeEventListener('scroll', this.throttleScroll)
+    this.window.removeEventListener('scroll', this.throttleScroll)
   }
 
   render () {
@@ -71,14 +75,17 @@ class Nav extends React.Component {
       <div className={styles.topMenuContainer}>
         <div className={styles.topMenuContent}>
           <ul className={styles.topMenu}>
-            {topNavLinks.map(({key, href, label}) => (
-              <li key={key} className={styles.topMenuItem}>
-                <a href={href} className={styles.topMenuLink}>{label}</a>
-              </li>
-            ))
-            }
-            <li className={classNames(styles.topMenuItem2, styles.topMenuItem)}>
+            <li className={styles.topMenuItem}>
+              <a href={'/area-cliente'} className={styles.topMenuLink}>Accede a tu área de cliente</a>
+            </li>
+            <li className={styles.topMenuItemMobile}>
+              <a href={'/area-cliente'} className={styles.topMenuLink}>Área de cliente</a>
+            </li>
+            <li className={classNames(styles.topMenuItem2)}>
               Llámanos al <strong>900 696 897</strong>
+            </li>
+            <li className={classNames(styles.topMenuItem2, styles.topMenuItem2Mobile)}>
+              <strong>900 696 897</strong>
             </li>
           </ul>
         </div>
@@ -87,7 +94,14 @@ class Nav extends React.Component {
       <div className={styles.mainMenuContainer}>
         <div className={styles.mainMenuContent}>
           <img className={styles.logo} src="/static/images/logo-embou-sat.svg" />
-          <ul className={styles.mainMenu}>
+          <div className={styles.mainMenuContentTab} onClick={this.handlerTabClick}>
+            <span className={styles.mainMenuContentTabLink}>Inicio</span>
+            <Caret />
+            <button type="button" className={classNames(buttonStyles.primaryButton, styles.callMeButtonTablet)}>
+              Te llamamos gratis
+            </button>
+          </div>
+          <ul className={classNames(styles.mainMenu, { [styles.openMobileMenu]: this.state.showMobileMenu })}>
             {mainLinks.map(({ anchor, label, key }) => (
               <li className={styles.listItem} key={key}>
                 <Link className={styles.menuLink} activeClass={styles.linkActive} to={anchor} spy={true} smooth={true} hashSpy={true} isDynamic={true} offset={-120}>
@@ -96,7 +110,7 @@ class Nav extends React.Component {
               </li>
             ))}
             <li className={styles.listItem}>
-              <button type="button" id="ola" className={buttonStyles.primaryButton}>
+              <button type="button" className={classNames(buttonStyles.primaryButton, styles.callMeButton)}>
                 Te llamamos gratis
               </button>
             </li>
@@ -110,6 +124,10 @@ class Nav extends React.Component {
 
   isLinkActive (href) {
     return this.props.pathName === href
+  }
+
+  handlerTabClick () {
+    this.showMobileMenu = this.setState({ showMobileMenu: !this.state.showMobileMenu })
   }
 
   handlerScrollToTop () {

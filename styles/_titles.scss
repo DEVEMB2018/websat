@@ -1,6 +1,12 @@
+@import '../grid';
+
 %title {
-  font-size: 36px;
+  font-size: 28px;
   font-family: Din;
   font-weight: 500;
   color: $black;
+
+  @include desktop {
+    font-size: 36px;
+  }
 }

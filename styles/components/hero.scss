@@ -62,14 +62,7 @@
 }
 
 .content {
-  justify-content: flex-start;
-  display: flex;
-  flex-direction: column;
-
-  @include tablet-desktop {
-    align-items: flex-start;
-    margin-top: 40px;
-  }
+  margin-top: 40px;
 }
 
 .priceLabelContainer {

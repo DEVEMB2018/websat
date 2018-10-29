@@ -1,8 +1,12 @@
 .priceContainer {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   font-weight: 700;
   margin-bottom: 20px;
+}
+
+.priceContainerCenter {
+  justify-content: center;
 }
 
 .price {

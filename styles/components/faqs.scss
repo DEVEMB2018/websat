@@ -16,18 +16,27 @@
   text-align: center;
 }
 
+Collapsible {
+  padding: 0 10px;
+}
+
 .titleContainer {
-  margin-top: 20px;
+  margin: 0;
+
+  @include tablet-desktop {
+    margin-top: 20px;
+  }
 }
 
 .title {
   @extend %title;
+  margin: 0;
   text-transform: uppercase;
   text-align: center;
 }
 
 .tab {
-  padding: 15px;
+  padding: 15px 10px;
   box-sizing: content-box;
   position: relative;
   display: block;
@@ -56,4 +65,15 @@
   border: 1px solid $grey-dark;
   margin: 5px 0;
   background-color: $white;
+}
+
+.faqTitleContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.faqTitle {
+  flex: 0 0 90%;
 }

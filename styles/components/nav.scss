@@ -29,49 +29,110 @@
 }
 
 .topMenu {
+  display: flex;
+  align-items: center;
   list-style: none;
-  display: none;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin: 0;
-  padding: 0 20px 0 40px;
+  padding: 0;
   font-size: 14px;
   color: $grey-black;
 
   @include tablet-desktop {
-    display: flex;
+    padding: 0 20px 0 40px;
+    justify-content: flex-end;
   }
 }
 
 .topMenuItem {
-  padding: 10px 0;
+  display: none;
+
+  @include tablet-desktop {
+    display: inline;
+    padding: 10px 0;
+  }
+}
+
+.topMenuItemMobile {
+  display: inline;
+  padding: 5px 10px;
+  flex: 50%;
+
+  @include tablet-desktop {
+    display: none;
+  }
 }
 
 .topMenuItem2 {
+  display: none;
+
+  @include tablet-desktop {
+    display: inline;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+.topMenuItem2Mobile {
+  display: inline;
   padding: 10px 20px;
   background-color: rgba(0, 0, 0, 0.15);
+  flex: 50%;
+
+  @include tablet-desktop {
+    display: none;
+  }
 }
 
 .mainMenuContent {
   @extend %content-container;
 
+  align-items: center;
   display: flex;
-  justify-content: center;
-  padding: 10px 20px;
+  padding: 10px 15px;
+  justify-content: space-between;
   margin: 0 auto;
 
   @include tablet-desktop {
+    justify-content: space-between;
+    padding: 5px 20px;
+  }
+
+  @include desktop {
     justify-content: flex-start;
   }
+}
+
+.mainMenuContentTab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $grey-black;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.mainMenuContentTabLink {
+  margin-right: 10px;
+}
+
+Caret {
+  top: 3px;
 }
 
 .mainMenu {
   list-style: none;
   background-color: white;
-  display: flex;
+  display: none;
   margin: 0;
   padding: 5px 0;
   width: 100%;
-  visibility: hidden;
   position: absolute;
   top: 100%;
   left: 0;
@@ -79,6 +140,7 @@
   justify-content: flex-start;
 
   @include desktop {
+    display: flex;
     justify-content: flex-end;
     align-items: center;
     position: relative;
@@ -89,9 +151,18 @@
   }
 }
 
+.openMobileMenu {
+  display: flex;
+}
+
 .logo {
-  height: 72px;
-  width: 182px;
+  height: 42px;
+  width: 152px;
+
+  @include tablet-desktop {
+    height: 72px;
+    width: 182px;
+  }
 }
 
 .topMenuLink {
@@ -99,8 +170,8 @@
   text-decoration: none;
   text-transform: uppercase;
   margin: 0 10px;
-  font-size: 10px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -133,6 +204,27 @@
   transition-property: transform;
   transition-duration: 0.6s;
   transition-timing-function: cubic-bezier(.87, -.41, .19, 1.44);
+}
+
+.callMeButton {
+  display: none;
+
+  @include desktop {
+    display: block;
+  }
+}
+
+.callMeButtonTablet {
+  display: none;
+
+  @include tablet {
+    display: inline-block;
+    margin-left: 20px;
+  }
+
+  @include desktop {
+    display: none;
+  }
 }
 
 .topNavigation.displayed {

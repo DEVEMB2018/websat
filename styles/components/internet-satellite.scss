@@ -90,15 +90,23 @@
 }
 
 .feature {
-  margin: 0 10px;
+  margin: 10px 0;
 
   @include tablet {
     flex: 45% 0;
   }
+
+  @include tablet-desktop {
+    margin: 0 10px;
+  }
 }
 
 .feature:first-of-type {
-  margin: 0;
+  margin: 10px 0;
+
+  @include tablet-desktop {
+    margin: 0;
+  }
 }
 
 .featureTitleSmall {

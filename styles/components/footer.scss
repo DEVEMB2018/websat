@@ -12,21 +12,32 @@
   display: flex;
   justify-content: center;
   padding: 20px 40px;
+  position: relative;
   color: $grey-black;
 
-  @include tablet-desktop {
+  padding-bottom: 90px;
+
+  @include desktop {
     justify-content: space-between;
+    padding-bottom: 20px;
   }
 }
 
 .copyItem {
   padding: 40px 0;
+  position: absolute;
+  bottom: 5px;
+
+  @include desktop {
+    position: relative;
+  }
 }
 
 .list {
   list-style: none;
   margin: 0;
   padding: 0;
+  text-align: center;
 
   @include tablet-desktop {
     padding: 40px 0;

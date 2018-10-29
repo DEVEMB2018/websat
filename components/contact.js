@@ -19,7 +19,7 @@ class Contact extends React.Component {
             <p className={contactStyles.subtitle}>Estamos a tu disposición para resolver cualquier duda que pueda surgirte.</p>
             <p className={contactStyles.subtitle}>Completa este formulario, llámanos gratis, o si lo prefieres, <span className={contactStyles.underlinedTitle}>nosotros te llamamos</span>.</p>
             <div className={contactStyles.callInfoContainer}>
-              <img src="/static/images/speech-bubble.svg"/>
+              <img className={contactStyles.img} src="/static/images/speech-bubble.svg"/>
               <div className={contactStyles.callInfo}>
                 <span className={contactStyles.callInfoTitle}>Llamada gratuita</span>
                 <span className={contactStyles.callInfoNumber}>900 696 897</span>
