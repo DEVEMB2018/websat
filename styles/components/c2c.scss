@@ -20,6 +20,11 @@
   @extend %modal-container;
 }
 
+.container {
+  max-width: 350px;
+  margin: 0 auto;
+}
+
 .textInput {
   @extend %input;
   width: 100%;

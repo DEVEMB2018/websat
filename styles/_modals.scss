@@ -1,5 +1,5 @@
-@import '../colors';
-@import '../titles';
+@import 'colors';
+@import 'titles';
 @import '../grid';
 
 %modal-title {
@@ -31,9 +31,10 @@
 
 %modal-container {
   position: absolute;
-  left: 33%;
-  right: 33%;
-  top: 15%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: $black;
   color: $white;
   overflow: auto;
@@ -42,4 +43,25 @@
   padding: 30px;
   text-align: left;
   z-index: 51;
+
+  @include tablet {
+    top: 15%;
+    left: 20%;
+    right: 20%;
+    bottom: auto;
+  }
+
+  @include desktop {
+    top: 15%;
+    left: 30%;
+    right: 30%;
+    bottom: auto;
+  }
+
+  @include desktop-hd {
+    top: 15%;
+    left: 35%;
+    right: 35%;
+    bottom: auto;
+  }
 }
