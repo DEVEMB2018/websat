@@ -34,7 +34,8 @@ class Nav extends React.Component {
 
   static propTypes = {
     idName: PropTypes.string,
-    showBackToTop: PropTypes.bool
+    showBackToTop: PropTypes.bool,
+    onClickC2C: PropTypes.func
   }
 
   scroll
@@ -97,7 +98,7 @@ class Nav extends React.Component {
           <div className={styles.mainMenuContentTab} onClick={this.handlerTabClick}>
             <span className={styles.mainMenuContentTabLink}>Inicio</span>
             <Caret />
-            <button type="button" className={classNames(buttonStyles.primaryButton, styles.callMeButtonTablet)}>
+            <button type="button" className={classNames(buttonStyles.primaryButton, styles.callMeButtonTablet)} onClick={this.props.onClickC2C}>
               Te llamamos gratis
             </button>
           </div>
@@ -110,7 +111,7 @@ class Nav extends React.Component {
               </li>
             ))}
             <li className={styles.listItem}>
-              <button type="button" className={classNames(buttonStyles.primaryButton, styles.callMeButton)}>
+              <button type="button" className={classNames(buttonStyles.primaryButton, styles.callMeButton)} onClick={this.props.onClickC2C}>
                 Te llamamos gratis
               </button>
             </li>

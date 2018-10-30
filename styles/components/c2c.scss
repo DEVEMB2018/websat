@@ -1,0 +1,58 @@
+@import '../colors';
+@import '../titles';
+@import '../grid';
+@import '../forms';
+@import '../modals';
+
+.modalTitle {
+  @extend %modal-title;
+}
+
+.closeModal {
+  @extend %modal-close;
+}
+
+.modalOverlay {
+  @extend %modal-overlay;
+}
+
+.modalContainer {
+  @extend %modal-container;
+}
+
+.textInput {
+  @extend %input;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.checkboxContainer {
+  @extend %checkbox-container;
+  margin: 10px 0;
+}
+
+.checkboxLabel {
+  margin: 0 10px;
+}
+
+// .checkbox {
+//   @extend %input-checkbox;
+// }
+
+.inputLabel {
+ @extend %checkbox-label;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.divider {
+  margin: 20px 0;
+}
+
+.contactPhone {
+  font-weight: bold;
+}

@@ -7,7 +7,8 @@ import buttonStyles from '../styles/components/button.scss'
 class Contact extends React.Component {
 
   static propTypes = {
-    idName: PropTypes.string
+    idName: PropTypes.string,
+    onClickC2C: PropTypes.func
   }
 
   render () {
@@ -17,7 +18,7 @@ class Contact extends React.Component {
           <div className={contactStyles.titleContainer}>
             <h1 className={contactStyles.title}>¿Tienes dudas?</h1>
             <p className={contactStyles.subtitle}>Estamos a tu disposición para resolver cualquier duda que pueda surgirte.</p>
-            <p className={contactStyles.subtitle}>Completa este formulario, llámanos gratis, o si lo prefieres, <span className={contactStyles.underlinedTitle}>nosotros te llamamos</span>.</p>
+            <p className={contactStyles.subtitle}>Completa este formulario, llámanos gratis, o si lo prefieres, <span className={contactStyles.underlinedTitle} onClick={this.props.onClickC2C}>nosotros te llamamos</span>.</p>
             <div className={contactStyles.callInfoContainer}>
               <img className={contactStyles.img} src="/static/images/speech-bubble.svg"/>
               <div className={contactStyles.callInfo}>
