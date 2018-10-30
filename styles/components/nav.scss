@@ -207,10 +207,10 @@ Caret {
 }
 
 .callMeButton {
-  display: none;
+  display: block;
 
-  @include desktop {
-    display: block;
+  @include tablet {
+    display: none;
   }
 }
 
