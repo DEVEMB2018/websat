@@ -17,7 +17,7 @@ class Hero extends React.Component {
       <div className={heroStyles.fullWidthContainer} id={this.props.idName}>
         <div className={heroStyles.container}>
             <div className={heroStyles.titleListContainer}>
-              <p className={heroStyles.title}>Llevamos internet donde ni siquiera llega el ADSL</p>
+              <h2 className={heroStyles.title}>Llevamos internet donde ni siquiera llega el ADSL</h2>
               <ul className={heroStyles.list}>
                 <li className={heroStyles.listItem}>30 Mb de velocidad de descarga</li>
                 <li className={heroStyles.listItem}>Alta, instalación y router WiFi GRATIS</li>

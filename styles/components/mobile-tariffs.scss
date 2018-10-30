@@ -116,9 +116,14 @@
 }
 
 .tariffTitle {
-  font-weight: 500;
+  font-weight: bold;
   margin: 2px 0;
   line-height: 1;
+  text-transform: uppercase;
+}
+
+.tariffTitle p {
+  margin: 5px 0;
 }
 
 .priceContainer {

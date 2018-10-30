@@ -107,9 +107,11 @@ class MobileTariffs extends React.Component {
   renderTariff (tariff) {
     return <div key={tariff.key} className={tariffsStyles.tariffCard}>
       <div className={tariffsStyles.tariffTitleContainer}>
-        <p className={tariffsStyles.tariffTitle}>Internet satélite {tariff.satelliteData} GB</p>
-        <p className={tariffsStyles.tariffTitle}>+</p>
-        <p className={tariffsStyles.tariffTitle}>{tariff.mobileData} de datos</p>
+        <h4 className={tariffsStyles.tariffTitle}>
+          <p>Internet satélite {tariff.satelliteData} GB</p>
+          <p>+</p>
+          <p>{tariff.mobileData} de datos</p>
+        </h4>
         <p className={tariffsStyles.tariffTitle}>Llamadas ilimitadas</p>
       </div>
       <div className={tariffsStyles.priceContainer}>

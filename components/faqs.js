@@ -57,7 +57,7 @@ class Faqs extends React.Component {
       <div className={faqsStyles.fullWidthContainer} id={this.props.idName}>
         <div className={faqsStyles.container}>
           <div className={faqsStyles.titleContainer}>
-            <h1 className={faqsStyles.title}>Preguntas frecuentes</h1>
+            <h2 className={faqsStyles.title}>Preguntas frecuentes</h2>
             <p className={faqsStyles.subtitle}>Aquí respondemos a las preguntas más habituales de nuestros clientes antes de contratar</p>
           </div>
           <div className={faqsStyles.faqsContainer}>
@@ -114,7 +114,7 @@ class CollapsibleCard extends React.Component {
 
   renderFaqTitle (title) {
     return <div className={faqsStyles.faqTitleContainer}>
-      <span className={faqsStyles.faqTitle}>{title}</span>
+      <h3 className={faqsStyles.faqTitle}>{title}</h3>
       <Caret up={!this.state.isCollapsed} />
     </div>
   }

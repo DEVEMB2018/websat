@@ -58,7 +58,7 @@ class InternetSatellite extends React.Component {
             {features.map(({ title, content, key, src }) => (
               <div key={key} className={satelliteStyles.feature}>
                 <img className={satelliteStyles.imageSmall} src={src}></img>
-                <p className={satelliteStyles.featureTitleSmall}>{title}</p>
+                <h2 className={satelliteStyles.featureTitleSmall}>{title}</h2>
                 <p className={satelliteStyles.imageSmallText}>{content}</p>
               </div>
             ))}
