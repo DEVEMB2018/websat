@@ -1,0 +1,22 @@
+
+.nav {
+  box-shadow: 0 1px 0 0 #dddddd;
+  margin: 0;
+}
+
+.mainMenuContainer {
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  list-style: none;
+}
+
+.listContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

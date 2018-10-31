@@ -9,16 +9,17 @@ class Price extends React.Component {
     price: PropTypes.number.isRequired,
     currency: PropTypes.string.isRequired,
     iva: PropTypes.string,
-    center: PropTypes.bool
+    center: PropTypes.bool,
+    small: PropTypes.bool
   }
 
   render () {
     return (
       <div className={classNames(styles.priceContainer, { [styles.priceContainerCenter]: this.props.center })}>
-          <div className={styles.price}>{this.getIntPrice(this.props.price)}</div>
+          <div className={this.props.small ? styles.priceSmall : styles.price}>{this.getIntPrice(this.props.price)}</div>
           <div className={styles.textContainer}>
             { this.renderCommaPrice(this.props.price) }
-            <div className={styles.currency}>{this.props.currency}</div>
+            <div className={this.props.small ? styles.currencySmall : styles.currency}>{this.props.currency}</div>
             { this.renderIva() }
           </div>
       </div>

@@ -1,0 +1,77 @@
+@import '../colors';
+@import '../grid';
+@import '../layout';
+
+.card {
+  background-color: $yellow-dark;
+  color: $grey-black;
+  font-weight: normal;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 400px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.cardTitle {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.descriptionSection {
+
+}
+.descriptionSection,
+.totalPriceSection,
+.orderSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.sectionTitle {
+  flex: 1 0 100%;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.infoColumn {
+  flex: 50%;
+}
+
+.priceColumn {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.priceContainer {
+  justify-content: flex-end;
+  text-align: right;
+  display: flex;
+}
+
+.tariffDetails {
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline-block;
+  margin-top: 0;
+}
+
+.tariffName {
+  margin-top: 0;
+}
+
+.smallPrice {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.totalTitle {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.totalSubtitle {
+  font-size: 16px;
+}

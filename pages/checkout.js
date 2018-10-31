@@ -1,27 +1,37 @@
 import React from 'react'
 import ReactModal from 'react-modal'
+import { withRouter } from 'next/router'
 
-import styles from '../styles/pages/index.scss'
+import styles from '../styles/pages/checkout.scss'
 
 import Head from '../components/head'
-import Nav from '../components/nav'
-import Hero from '../components/hero'
-import InternetSatellite from '../components/internet-satellite'
-import Tariffs from '../components/tariffs'
-import MobileTariffs from '../components/mobile-tariffs'
-import Faqs from '../components/faqs'
-import Contact from '../components/contact'
-import WhyUs from '../components/why-us'
+import NavCheckout from '../components/nav-checkout'
 import Footer from '../components/footer'
 import C2cModal from '../components/c2c'
 
-class Home extends React.Component {
-  constructor () {
+import TARIFFS from '../contexts/tariffs'
+import MOBILE_TARIFFS from '../contexts/mobile-tariffs'
+
+// import CheckoutInstallation from '../components/checkout-installation'
+// import CheckoutMobile from '../components/checkout-mobile'
+// import CheckoutBilling from '../components/checkout-billing'
+// import CheckoutPersonalData from '../components/checkout-personal-data'
+import CheckoutSummary from '../components/checkout-summary'
+
+// import SelectedTariff from '../contexts/tariff'
+
+class CheckoutPage extends React.Component {
+
+  constructor ({ router }) {
     super()
+
+    const tariffId = router.query.tariff
+    const mobileTariffId = router.query.mobile
 
     this.state = {
       isC2cModalOpen: false,
-      selectedTariff: null
+      tariff: TARIFFS.find((tariff) => tariff.id === tariffId),
+      mobileTariff: MOBILE_TARIFFS.find((mobile) => mobile.id === mobileTariffId)
     }
 
     this.handlerToggleC2C = this.handlerToggleC2C.bind(this)
@@ -32,16 +42,18 @@ class Home extends React.Component {
   render () {
     return (
       <div id="main" className={styles.layout}>
-        <C2cModal isOpen={this.state.isC2cModalOpen} handleClose={this.handlerToggleC2C} />
         <Head title="Embou, líder en Internet Rural en Aragón. Tecnología Wimax | Embou" />
-        <Nav idName={'nav'} onClickC2C={this.handlerToggleC2C} />
-        <Hero idName={'inicio'} />
-        <InternetSatellite idName={'internet-satelite'}/>
-        <Tariffs idName={'tarifas'} />
-        <MobileTariffs />
-        <Faqs idName={'preguntas-frecuentes'}/>
-        <Contact idName={'contacto'} onClickC2C={this.handlerToggleC2C} />
-        <WhyUs />
+        <div className={styles.contentContainer}>
+          <C2cModal isOpen={this.state.isC2cModalOpen} handleClose={this.handlerToggleC2C} />
+          <NavCheckout onClickC2C={this.handlerToggleC2C} />
+          <div className={styles.checkoutBody}>
+            {/* <CheckoutInstallation />
+            <CheckoutMobile />
+            <CheckoutPersonalData />
+            <CheckoutBilling />*/ }
+            <CheckoutSummary tariff={this.state.tariff} mobileTariff={this.state.mobileTariff} />
+          </div>
+        </div>
         <Footer />
         <style jsx global>{`
           body {
@@ -115,15 +127,6 @@ class Home extends React.Component {
   handlerToggleC2C () {
     this.setState({ isC2cModalOpen: !this.state.isC2cModalOpen })
   }
-
-  // handlerSelectTariff (tariff, mobileTariff) {
-  //   this.setState({ selectedTariff: tariff })
-  //   if (mobileTariff) {
-  //     Router.push(`/checkout?tariff=${tariff.id}`)
-  //   } else {
-  //     Router.push(`/checkout?tariff=${tariff.id}`)
-  //   }
-  // }
 }
 
-export default Home
+export default withRouter(CheckoutPage)

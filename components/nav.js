@@ -66,8 +66,7 @@ class Nav extends React.Component {
   }
 
   componentWillUnmount () {
-    this.window.removeEventListener('scroll', this.throttleScroll)
-    this.window.removeEventListener('scroll', this.throttleScroll)
+    window.removeEventListener('scroll', this.throttleScroll)
   }
 
   render () {
@@ -105,7 +104,7 @@ class Nav extends React.Component {
           <ul className={classNames(styles.mainMenu, { [styles.openMobileMenu]: this.state.showMobileMenu })}>
             {mainLinks.map(({ anchor, label, key }) => (
               <li className={styles.listItem} key={key}>
-                <Link className={styles.menuLink} activeClass={styles.linkActive} to={anchor} spy={true} smooth={true} hashSpy={true} isDynamic={true} offset={-120}>
+                <Link className={styles.menuLink} activeClass={styles.linkActive} to={anchor} spy={true} smooth={true} hashSpy={false} isDynamic={true} offset={-120}>
                   {label}
                 </Link>
               </li>
