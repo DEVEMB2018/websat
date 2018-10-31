@@ -1,3 +1,5 @@
+@import 'grid';
+
 %input {
   display: block;
   padding: 10px;
@@ -13,4 +15,42 @@
 %checkbox-label {
   margin-left: 10px;
   text-align: left;
+}
+
+.formGroup {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.inputContainer {
+  display: inline-block;
+  position: relative;
+  flex: 100% 0;
+  margin: 5px 15px 5px 0;
+  text-align: left;
+
+  @include tablet {
+    flex: 51% 0;
+  }
+
+  @include desktop {
+    flex: 35% 0;
+  }
+}
+
+.inputLabel {
+  display: block;
+  margin: 10px 0;
+  text-align: left;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.input {
+  display: block;
+  box-sizing: border-box;
+  margin: 5px 0;
+  padding: 5px;
+  width: 100%;
 }

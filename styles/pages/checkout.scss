@@ -8,3 +8,16 @@
 .checkoutBody {
   padding: 50px;
 }
+
+.cardsContainer {
+  display: flex;
+}
+
+.formsContainer {
+  flex: 1 65%;
+}
+
+.summaryContainer {
+  margin-left: 20px;
+  flex: 0 30%;
+}

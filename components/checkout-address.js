@@ -3,12 +3,14 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import styles from '../styles/components/checkout.scss'
+import formStyles from '../styles/_forms.scss'
+import buttonStyles from '../styles/components/button.scss'
 
-class CheckoutMobile extends React.Component {
+class CheckoutAddress extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool,
-    editing: PropTypes.bool,
     completed: PropTypes.bool,
+    editing: PropTypes.bool,
     onSave: PropTypes.func
   }
 
@@ -21,7 +23,7 @@ class CheckoutMobile extends React.Component {
           [styles.cardCompleted]: this.props.completed
         })
       }>
-        <h3 className={styles.title}>2. Datos de la línea móvil</h3>
+        <h3 className={styles.title}>1. Dirección de instalación</h3>
         { this.renderSubtitle() }
         { this.renderForm() }
       </div>
@@ -29,9 +31,9 @@ class CheckoutMobile extends React.Component {
   }
 
   renderSubtitle () {
-    if (!this.props.completed) {
+    if (this.props.editing) {
       return (
-        <p className={styles.subtitle}>Dinos si quieres un número nuevo o conservar tu número actual, nosotros nos encargaremos de realizar todos los trámites.</p>
+        <p className={styles.subtitle}>Esta es la dirección donde instalaremos la antena parabólica para que puedas conectarte a Internet.</p>
       )
     }
   }
@@ -41,7 +43,7 @@ class CheckoutMobile extends React.Component {
       return (
         <form>
           <div className={formStyles.formGroup}>
-            <div className={formStyles.inputContainer}>
+            <div className={classNames(formStyles.inputContainer, styles.addressInputContainer)}>
               <label className={formStyles.inputLabel}>Dirección</label>
               <input className={formStyles.input} placeholder="Calle, número, piso, puerta"></input>
             </div>
@@ -51,7 +53,7 @@ class CheckoutMobile extends React.Component {
             </div>
           </div>
           <div className={formStyles.formGroup}>
-            <div className={formStyles.inputContainer}>
+            <div className={classNames(formStyles.inputContainer, styles.cityInputContainer)}>
               <label className={formStyles.inputLabel}>Localidad</label>
               <input className={formStyles.input} placeholder="Localidad"></input>
             </div>
@@ -68,4 +70,4 @@ class CheckoutMobile extends React.Component {
 
 }
 
-export default CheckoutMobile
+export default CheckoutAddress

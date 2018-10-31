@@ -1,0 +1,52 @@
+@import '../colors';
+@import '../grid';
+
+%cardContainer {
+  box-sizing: content-box;
+  padding: 15px 30px;
+  margin: 10px 0;
+}
+
+.cardCompleted {
+  @extend %cardContainer;
+  border-left: 8px solid $green;
+}
+
+.cardActive {
+  @extend %cardContainer;
+  border-left: 8px solid $yellow-dark;
+}
+
+.cardDisabled {
+  @extend %cardContainer;
+  border-left: 8px solid $grey;
+}
+
+.title {
+ font-size: 24px;
+ font-weight: bold;
+}
+
+.addressInputContainer {
+  flex: 70% 0;
+
+  @include tablet {
+    flex: 70% 0 !important;
+  }
+
+  @include desktop {
+    flex: 70% 0 !important;
+  }
+}
+
+.cityInputContainer {
+  flex: 60% 0;
+
+  @include tablet {
+    flex: 60% 0;
+  }
+
+  @include desktop {
+    flex: 60% 0;
+  }
+}
