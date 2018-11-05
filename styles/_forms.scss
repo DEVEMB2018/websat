@@ -22,6 +22,18 @@
   flex-wrap: nowrap;
 }
 
+.checkboxGroup {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15px 0;
+  cursor: pointer;
+}
+
+.checkboxContainer {
+  display: block;
+  margin: 5px 0;
+}
+
 .inputContainer {
   display: inline-block;
   position: relative;
@@ -38,6 +50,10 @@
   }
 }
 
+.checkboxContainer {
+  display: flex;
+}
+
 .inputLabel {
   display: block;
   margin: 10px 0;
@@ -47,10 +63,50 @@
   text-transform: uppercase;
 }
 
+.checkboxLabel {
+  margin-left: 10px;
+  text-align: left;
+  flex: 100%;
+}
+
+.checkbox {
+  cursor: pointer;
+}
+
+.firstHorizontalCheckbox {
+  @extend .checkbox;
+  margin-left: 0;
+}
+
+.horizontalCheckbox {
+  @extend .checkbox;
+  margin-left: 20px;
+}
+
 .input {
   display: block;
   box-sizing: border-box;
   margin: 5px 0;
   padding: 5px;
   width: 100%;
+}
+
+.inputArea {
+  box-sizing: border-box;
+  min-height: 100px;
+  margin: 5px 0;
+  padding: 5px;
+  width: 100%;;
+}
+
+.inlineInput {
+  @extend .input;
+  display: inline-block;
+  width: 45px;
+  margin-left: 5px;
+}
+
+.firstInlineInput {
+  @extend .inlineInput;
+  margin-left: 0;
 }

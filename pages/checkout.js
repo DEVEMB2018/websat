@@ -13,11 +13,11 @@ import C2cModal from '../components/c2c'
 import TARIFFS from '../contexts/tariffs'
 import MOBILE_TARIFFS from '../contexts/mobile-tariffs'
 
-// import CheckoutBilling from '../components/checkout-billing'
-// import CheckoutPersonalData from '../components/checkout-personal-data'
-import CheckoutAddress from '../components/checkout-address'
-import CheckoutMobile from '../components/checkout-mobile'
-import CheckoutSummary from '../components/checkout-summary'
+import CheckoutPersonalData from '../components/checkout/checkout-personal-data'
+import CheckoutAddress from '../components/checkout/checkout-address'
+import CheckoutMobile from '../components/checkout/checkout-mobile'
+import CheckoutSummary from '../components/checkout/checkout-summary'
+import CheckoutBilling from '../components/checkout/checkout-billing'
 
 // import SelectedTariff from '../contexts/tariff'
 
@@ -37,6 +37,7 @@ class CheckoutPage extends React.Component {
     }
 
     this.handlerToggleC2C = this.handlerToggleC2C.bind(this)
+    this.handlerOnSave = this.handlerOnSave.bind(this)
 
     ReactModal.setAppElement('#main')
   }
@@ -52,20 +53,30 @@ class CheckoutPage extends React.Component {
             <h1>Contrata tu tarifa de internet satélite</h1>
             <div className={styles.cardsContainer}>
               <div className={styles.formsContainer}>
-                <CheckoutAddress editing={this.state.stage === 0} completed={this.state.stage > 0} />
+                <CheckoutAddress stage={0} editing={this.state.stage === 0} completed={this.state.stage > 0} disabled={false} onSave={this.handlerOnSave} />
+
                 <div className={dividerStyles.horizontalDivider}></div>
+
                 { this.state.mobileTariff
-                  ? <CheckoutMobile editing={this.state.stage === 1} completed={this.state.stage > 1} disabled={this.state.stage < 1} />
+                  ? (
+                    <div>
+                      <CheckoutMobile stage={1} editing={this.state.stage === 1} completed={this.state.stage > 1} disabled={this.state.stage < 1} onSave={this.handlerOnSave} />
+                      <div className={dividerStyles.horizontalDivider}></div>
+                    </div>
+                  )
                   : ''
                 }
+
+                <CheckoutPersonalData stage={this.state.mobileTariff ? 2 : 1} editing={this.state.stage === 2} completed={this.state.stage > 2} disabled={this.state.stage < 2} onSave={this.handlerOnSave} />
+
                 <div className={dividerStyles.horizontalDivider}></div>
+
+                <CheckoutBilling stage={3} editing={this.state.stage === 3} completed={this.state.stage > 3} disabled={this.state.stage < 3} onSave={this.handlerOnSave} />
               </div>
               <div className={styles.summaryContainer}>
                 <CheckoutSummary tariff={this.state.tariff} mobileTariff={this.state.mobileTariff} />
               </div>
             </div>
-            { /* <CheckoutPersonalData />
-            <CheckoutBilling />*/ }
           </div>
         </div>
         <Footer />
@@ -138,8 +149,29 @@ class CheckoutPage extends React.Component {
     )
   }
 
+  renderCheckoutMobile () {
+    return (
+      <div>
+        <CheckoutMobile stage={1} editing={this.state.stage === 1} completed={this.state.stage > 1} disabled={this.state.stage < 1} />
+        <div className={dividerStyles.horizontalDivider}></div>
+      </div>
+    )
+  }
+
   handlerToggleC2C () {
     this.setState({ isC2cModalOpen: !this.state.isC2cModalOpen })
+  }
+
+  handlerOnSave () {
+    let increment = 1
+
+    if (this.state.stage === 0 && this.mobileTariffId) {
+      increment = 2
+    }
+
+    this.setState({
+      stage: this.state.stage + increment
+    })
   }
 }
 

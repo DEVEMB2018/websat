@@ -25,7 +25,7 @@ class Tariffs extends React.Component {
             <p className={tariffsStyles.contentText}>Te ofrecemos las <b>mejores tarifas</b> del mercado de internet por satélite, con 60 GB y 150 GB para que puedas hacer un uso intensivo de tu conexión sin preocupaciones (audio, vídeo, multimedia, navegación y descarga).</p>
           </div>
         {TARIFFS.map((tariff, index) => (
-          <span key={tariff.id}>{
+          <span key={tariff.id} className={tariffsStyles.tariffCardContainer}>{
             this.renderTariff(tariff, index)
           }</span>
         ))}

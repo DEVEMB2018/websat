@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import Price from './price'
-import styles from '../styles/components/checkout-summary.scss'
-import dividerStyles from '../styles/components/divider.scss'
+import Price from '../price'
+import styles from '../../styles/components/checkout-summary.scss'
+import dividerStyles from '../../styles/components/divider.scss'
 
 class CheckoutSummary extends React.Component {
   static propTypes = {

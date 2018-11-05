@@ -20,6 +20,7 @@
 .cardDisabled {
   @extend %cardContainer;
   border-left: 8px solid $grey;
+  opacity: .5;
 }
 
 .title {
@@ -49,4 +50,26 @@
   @include desktop {
     flex: 60% 0;
   }
+}
+
+.submit {
+  margin-top: 20px;
+}
+
+.textInputsContainer {
+  background-color: $grey;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.inputSubtitle {
+  margin: 0;
+}
+
+.submit {
+  margin-top: 20px;
+}
+
+.yearInput {
+  width: 60px;
 }

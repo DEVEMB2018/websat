@@ -67,6 +67,10 @@
   // padding: 0 10px;
 }
 
+.tariffCardContainer {
+  flex: 1 0 30%;
+}
+
 .tariffCard {
   display: inline-block;
   flex: 100%;
@@ -82,7 +86,6 @@
     flex: 25% 0;
     margin-top: 0;
     margin-left: 20px;
-    margin-left: 50px;
   }
 }
 
@@ -122,4 +125,3 @@
   margin: 0 auto;
   margin-top: 40px;
 }
-
