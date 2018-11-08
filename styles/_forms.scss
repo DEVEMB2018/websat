@@ -89,6 +89,7 @@
   margin: 5px 0;
   padding: 5px;
   width: 100%;
+  font-size: 16px;
 }
 
 .inputArea {
@@ -109,4 +110,14 @@
 .firstInlineInput {
   @extend .inlineInput;
   margin-left: 0;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 14px;
+}
+
+.errorInput {
+  color: red;
+  border: 1px solid red;
 }

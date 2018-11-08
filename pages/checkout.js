@@ -53,21 +53,21 @@ class CheckoutPage extends React.Component {
             <h1>Contrata tu tarifa de internet satélite</h1>
             <div className={styles.cardsContainer}>
               <div className={styles.formsContainer}>
-                <CheckoutAddress stage={0} editing={this.state.stage === 0} completed={this.state.stage > 0} disabled={false} onSave={this.handlerOnSave} />
+                <CheckoutPersonalData stage={0} editing={this.state.stage === 0} completed={this.state.stage > 0} onSave={this.handlerOnSave} />
+
+                <CheckoutAddress stage={1} editing={this.state.stage === 1} completed={this.state.stage > 1} disabled={false} onSave={this.handlerOnSave} />
 
                 <div className={dividerStyles.horizontalDivider}></div>
 
                 { this.state.mobileTariff
                   ? (
                     <div>
-                      <CheckoutMobile stage={1} editing={this.state.stage === 1} completed={this.state.stage > 1} disabled={this.state.stage < 1} onSave={this.handlerOnSave} />
+                      <CheckoutMobile stage={2} editing={this.state.stage === 2} completed={this.state.stage > 2} disabled={this.state.stage < 2} onSave={this.handlerOnSave} />
                       <div className={dividerStyles.horizontalDivider}></div>
                     </div>
                   )
                   : ''
                 }
-
-                <CheckoutPersonalData stage={this.state.mobileTariff ? 2 : 1} editing={this.state.stage === 2} completed={this.state.stage > 2} disabled={this.state.stage < 2} onSave={this.handlerOnSave} />
 
                 <div className={dividerStyles.horizontalDivider}></div>
 
