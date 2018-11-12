@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 import styles from '../../styles/components/checkout.scss'
 import formStyles from '../../styles/_forms.scss'
 import buttonStyles from '../../styles/components/button.scss'
 
 import { renderCard } from './checkout-base'
+import { phoneValidator } from '../../helpers/validators'
 
 class CheckoutMobile extends React.Component {
   static propTypes = {
@@ -21,7 +23,12 @@ class CheckoutMobile extends React.Component {
     super()
 
     this.state = {
-      option: 0
+      option: 0,
+      formData: {
+        phone: '',
+        operator: '',
+        icc: ''
+      }
     }
 
     this.handlerOptionChange = this.handlerOptionChange.bind(this)
@@ -50,72 +57,92 @@ class CheckoutMobile extends React.Component {
   renderForm () {
     if (this.props.editing) {
       return (
-        <form>
-          <div className={formStyles.checkboxGroup} onClick={() => this.handlerOptionChange(0)}>
-            <input type="checkbox" className={formStyles.checkbox} checked={this.state.option === 0} onChange={() => this.handlerOptionChange(0)} />
-            <span className={formStyles.checkboxLabel}>
-              Quiero mantener mi número y ahora tengo una línea de contrato
-            </span>
-          </div>
-          <div className={formStyles.checkboxGroup} onClick={() => this.handlerOptionChange(1)}>
-            <input type="checkbox" className={formStyles.checkbox} checked={this.state.option === 1} onChange={() => this.handlerOptionChange(1)} />
-            <span className={formStyles.checkboxLabel}>
-              Quiero mantener mi número y ahora tengo una línea de prepago
-            </span>
-          </div>
-          <div className={formStyles.checkboxGroup} onClick={() => this.handlerOptionChange(2)}>
-            <input type="checkbox" className={formStyles.checkbox} checked={this.state.option === 2} onChange={() => this.handlerOptionChange(2)} />
-            <span className={formStyles.checkboxLabel}>
-              Quiero un número nuevo
-            </span>
-          </div>
-          <div className={styles.textInputsContainer}>
-            {
-              this.renderMobileInfo()
-            }
-          </div>
-          <button type="button" className={classNames(buttonStyles.primaryButton, styles.submit)} onClick={this.handlerSubmit}>Continuar</button>
-        </form>
+        <Formik initialValues={this.state.formData}>
+          { (data) => (
+            <Form
+            onSubmit={(values, { setSubmitting }) => {
+              alert(JSON.stringify(values, null, 2));
+              setSubmitting(false);
+            }}>
+              <div className={formStyles.checkboxGroup} onClick={() => this.handlerOptionChange(0)}>
+                <div className={formStyles.checkboxContainer}>
+                  <input type="checkbox" className={formStyles.checkbox} checked={this.state.option === 0} onChange={() => this.handlerOptionChange(0)} />
+                  <span className={formStyles.checkboxLabel}>
+                    Quiero mantener mi número y ahora tengo una línea de contrato
+                  </span>
+                </div>
+              </div>
+              <div className={formStyles.checkboxGroup} onClick={() => this.handlerOptionChange(1)}>
+                <div className={formStyles.checkboxContainer}>
+                  <input type="checkbox" className={formStyles.checkbox} checked={this.state.option === 1} onChange={() => this.handlerOptionChange(1)} />
+                  <span className={formStyles.checkboxLabel}>
+                    Quiero mantener mi número y ahora tengo una línea de prepago
+                  </span>
+                </div>
+              </div>
+              <div className={formStyles.checkboxGroup} onClick={() => this.handlerOptionChange(2)}>
+                <div className={formStyles.checkboxContainer}>
+                  <input type="checkbox" className={formStyles.checkbox} checked={this.state.option === 2} onChange={() => this.handlerOptionChange(2)} />
+                  <span className={formStyles.checkboxLabel}>
+                    Quiero un número nuevo
+                  </span>
+                </div>
+              </div>
+              <div className={styles.textInputsContainer}>
+                {
+                  this.renderMobileInfo(data.errors)
+                }
+              </div>
+              <button type="button" className={classNames(buttonStyles.primaryButton, styles.submit)} onClick={this.handlerSubmit}>Continuar</button>
+            </Form>
+          )
+        }
+        </Formik>
       )
     }
   }
 
-  renderMobileInfo () {
+  renderMobileInfo (errors) {
     if (this.state.option === 0) {
       return (
         <div className={formStyles.formGroup}>
           <div className={formStyles.inputContainer}>
             <label className={formStyles.inputLabel}>Teléfono</label>
-            <input className={formStyles.input} placeholder="Tu número de teléfono actual"></input>
+            <Field name="phone" className={formStyles.input} placeholder="Tu número de teléfono actual" validate={phoneValidator}></Field>
+            <ErrorMessage name="phone" component="div" className={formStyles.errorMessage} />
           </div>
           <div className={formStyles.inputContainer}>
             <label className={formStyles.inputLabel}>Operador</label>
-            <input className={formStyles.input} placeholder="Selecciona tu operador"></input>
+            <Field name="operator" className={formStyles.input} placeholder="Selecciona tu operador"></Field>
+            <ErrorMessage name="operator" component="div" />
           </div>
         </div>
       )
     }
 
     if (this.state.option === 1) {
-      return (
+      return(
         <div>
           <div className={formStyles.formGroup}>
             <div className={formStyles.inputContainer}>
               <label className={formStyles.inputLabel}>Teléfono</label>
-              <input className={formStyles.input} placeholder="Tu número de teléfono actual"></input>
+              <Field name="phone" className={classNames(formStyles.input, {[formStyles.errorInput]: errors.phone }) } placeholder="Tu número de teléfono actual"></Field>
+              <ErrorMessage name="phone" component="div" />
             </div>
             <div className={formStyles.inputContainer}>
               <label className={formStyles.inputLabel}>Operador</label>
-              <input className={formStyles.input} placeholder="Selecciona tu operador"></input>
+              <Field name="operator" className={formStyles.input} placeholder="Selecciona tu operador"></Field>
+              <ErrorMessage name="operator" component="div" />
             </div>
           </div>
           <div className={formStyles.formGroup}>
               <div className={formStyles.inputContainer}>
                 <label className={formStyles.inputLabel}>ICC de la SIM actual</label>
-                <input className={formStyles.input} placeholder="Número ICC"></input>
+                <Field name="icc" className={formStyles.input} placeholder="Número ICC"></Field>
+                <ErrorMessage name="icc" component="div" />
               </div>
           </div>
-        </div>
+       </div>
       )
     }
 

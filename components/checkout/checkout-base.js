@@ -28,7 +28,7 @@ export function renderSubtitle (completed, subtitle) {
   }
 }
 
-export function renderAddressFromInputs () {
+export function renderAddressFormInputs () {
   return (
     <div>
       <div className={formStyles.formGroup}>

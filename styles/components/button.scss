@@ -22,3 +22,8 @@
   background-color: $yellow;
   color: $black;
 }
+
+.primaryButton[disabled],
+.secondaryButton[disabled] {
+  opacity: .7;
+}

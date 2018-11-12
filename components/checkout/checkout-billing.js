@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import styles from '../../styles/components/checkout.scss'
 import formStyles from '../../styles/_forms.scss'
 import dividerStyles from '../../styles/components/divider.scss'
-import { renderCard, renderAddressFromInputs } from './checkout-base'
+import { renderCard, renderAddressFormInputs } from './checkout-base'
 import buttonStyles from '../../styles/components/button.scss'
 
 class CheckoutBilling extends React.Component {
@@ -68,7 +68,7 @@ class CheckoutBilling extends React.Component {
           </div>
 
           { this.state.differentAddress
-            ? renderAddressFromInputs()
+            ? renderAddressFormInputs()
             : ''
           }
 

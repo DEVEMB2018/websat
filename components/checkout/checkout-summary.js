@@ -74,7 +74,7 @@ class CheckoutSummary extends React.Component {
       <span>
         <p className={styles.tariffName}>Internet satélite <strong>{this.props.tariff.data} GB</strong></p>
         { this.props.mobileTariff
-          ? (<p className={styles.mobileTariffName}>Móvil <strong>{this.props.mobileTariff.data}GB + llamadas ilimitadas</strong></p>)
+          ? (<p className={styles.mobileTariffName}>Móvil <strong>{this.props.mobileTariff.mobileData}GB + llamadas ilimitadas</strong></p>)
           : ''
         }
       </span>

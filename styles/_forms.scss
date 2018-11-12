@@ -1,4 +1,5 @@
 @import 'grid';
+@import 'colors';
 
 %input {
   display: block;
@@ -87,24 +88,32 @@
   display: block;
   box-sizing: border-box;
   margin: 5px 0;
-  padding: 5px;
+  padding: 9px;
   width: 100%;
   font-size: 16px;
+  border: 1px solid $grey-dark;
+}
+
+.input:focus {
+  box-shadow: 0 0 0 0;
+  outline: none;
+  border: 1px solid $grey-soft-black;
 }
 
 .inputArea {
   box-sizing: border-box;
   min-height: 100px;
   margin: 5px 0;
-  padding: 5px;
+  padding: 9px;
   width: 100%;;
 }
 
 .inlineInput {
   @extend .input;
   display: inline-block;
-  width: 45px;
+  width: 65px;
   margin-left: 5px;
+  margin-top: 0;
 }
 
 .firstInlineInput {
@@ -120,4 +129,8 @@
 .errorInput {
   color: red;
   border: 1px solid red;
+}
+
+.yearInput {
+  width: 60px;
 }

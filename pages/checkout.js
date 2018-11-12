@@ -12,12 +12,15 @@ import C2cModal from '../components/c2c'
 
 import TARIFFS from '../contexts/tariffs'
 import MOBILE_TARIFFS from '../contexts/mobile-tariffs'
+import { isClient } from '../helpers/client'
 
 import CheckoutPersonalData from '../components/checkout/checkout-personal-data'
 import CheckoutAddress from '../components/checkout/checkout-address'
 import CheckoutMobile from '../components/checkout/checkout-mobile'
 import CheckoutSummary from '../components/checkout/checkout-summary'
 import CheckoutBilling from '../components/checkout/checkout-billing'
+import CheckoutPersonalCustomer from '../components/checkout/forms/personal-data-customer'
+import CheckoutPersonalBusiness from '../components/checkout/forms/personal-data-business'
 
 // import SelectedTariff from '../contexts/tariff'
 
@@ -29,17 +32,50 @@ class CheckoutPage extends React.Component {
     const tariffId = router.query.tariff
     const mobileTariffId = router.query.mobile
 
+    if (isClient) {
+      window.sessionStorage.setItem('tariffId', tariffId)
+      window.sessionStorage.setItem('mobileTariffId', tariffId)
+    }
+
     this.state = {
       isC2cModalOpen: false,
       tariff: TARIFFS.find((tariff) => tariff.id === tariffId),
       mobileTariff: MOBILE_TARIFFS.find((mobile) => mobile.id === mobileTariffId),
-      stage: 0
+      stage: 0,
+      data: this.getInitialFormData(tariffId, mobileTariffId)
     }
 
     this.handlerToggleC2C = this.handlerToggleC2C.bind(this)
-    this.handlerOnSave = this.handlerOnSave.bind(this)
+    this.handlerContinue = this.handlerContinue.bind(this)
 
     ReactModal.setAppElement('#main')
+  }
+
+  getInitialFormData (tariffId, mobileTariffId) {
+    let backedData = {
+      personalData: {
+
+      }
+    }
+
+    if (isClient) {
+      const prevMobileTariffId = window.sessionStorage.getItem('mobileTariffId')
+
+      if (prevMobileTariffId && mobileTariffId || !prevMobileTariffId && !mobileTariffId) {
+        backedData = JSON.parse(window.sessionStorage.getItem('check')) || backedData
+      } else {
+        window.sessionStorage.removeItem('check')
+      }
+
+    }
+
+    return {
+      personalData: {
+        customer: backedData.personalData.customer || CheckoutPersonalCustomer.INITIAL_DATA,
+        business: backedData.personalData.business || CheckoutPersonalBusiness.INITIAL_DATA,
+        option: parseInt(backedData.personalTarget) || 0
+      }
+    }
   }
 
   render () {
@@ -53,16 +89,16 @@ class CheckoutPage extends React.Component {
             <h1>Contrata tu tarifa de internet satélite</h1>
             <div className={styles.cardsContainer}>
               <div className={styles.formsContainer}>
-                <CheckoutPersonalData stage={0} editing={this.state.stage === 0} completed={this.state.stage > 0} onSave={this.handlerOnSave} />
+                <CheckoutPersonalData stage={0} editing={this.state.stage === 0} completed={this.state.stage > 0} data={this.state.data.personalData} onSave={(data) => this.handlerContinue('personalData', data)} disabled={false} />
 
-                <CheckoutAddress stage={1} editing={this.state.stage === 1} completed={this.state.stage > 1} disabled={false} onSave={this.handlerOnSave} />
+                <CheckoutAddress stage={1} editing={this.state.stage === 1} completed={this.state.stage > 1} disabled={this.state.stage < 1} onSave={(data) => this.handlerContinue('address', data)} />
 
                 <div className={dividerStyles.horizontalDivider}></div>
 
                 { this.state.mobileTariff
                   ? (
                     <div>
-                      <CheckoutMobile stage={2} editing={this.state.stage === 2} completed={this.state.stage > 2} disabled={this.state.stage < 2} onSave={this.handlerOnSave} />
+                      <CheckoutMobile stage={2} editing={this.state.stage === 2} completed={this.state.stage > 2} disabled={this.state.stage < 2} onSave={(data) => this.handlerContinue('mobile', data)} />
                       <div className={dividerStyles.horizontalDivider}></div>
                     </div>
                   )
@@ -71,7 +107,7 @@ class CheckoutPage extends React.Component {
 
                 <div className={dividerStyles.horizontalDivider}></div>
 
-                <CheckoutBilling stage={3} editing={this.state.stage === 3} completed={this.state.stage > 3} disabled={this.state.stage < 3} onSave={this.handlerOnSave} />
+                <CheckoutBilling stage={3} editing={this.state.stage === 3} completed={this.state.stage > 3} disabled={this.state.stage < 3} onSave={(data) => this.handlerContinue('billing', data)} />
               </div>
               <div className={styles.summaryContainer}>
                 <CheckoutSummary tariff={this.state.tariff} mobileTariff={this.state.mobileTariff} />
@@ -162,7 +198,7 @@ class CheckoutPage extends React.Component {
     this.setState({ isC2cModalOpen: !this.state.isC2cModalOpen })
   }
 
-  handlerOnSave () {
+  handlerContinue (key, data) {
     let increment = 1
 
     if (this.state.stage === 0 && this.mobileTariffId) {
@@ -170,8 +206,17 @@ class CheckoutPage extends React.Component {
     }
 
     this.setState({
-      stage: this.state.stage + increment
+      stage: this.state.stage + increment,
+      data: {
+        ...this.state.data,
+        [key]: data
+      }
     })
+
+    if (isClient) {
+      window.sessionStorage.setItem('check', JSON.stringify(this.state.data))
+    }
+
   }
 }
 
