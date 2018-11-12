@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { connect, Formik } from 'formik'
+import { Formik } from 'formik'
 
 import styles from '../../../styles/components/checkout.scss'
 import formStyles from '../../../styles/_forms.scss'
@@ -36,14 +36,10 @@ class PersonalDataBusiness extends React.Component {
     this.handlerSubmit = this.handlerSubmit.bind(this)
   }
 
-  componentDidMount() {
-    this.props.formik.validateForm()
-  }
-
   render () {
       return (
         <Formik initialValues={this.props.data} onSubmit={this.handlerSubmit}>
-          { ({ handleSubmit, isValid}) => (
+          { ({ handleSubmit }) => (
             <div>
               <div className={formStyles.formGroup}>
                 <TextInput name="firstName" text="Nombre" placeholder="Nombre del titular" validate={nameValidator} />
@@ -57,7 +53,7 @@ class PersonalDataBusiness extends React.Component {
                 <TextInput name="email" text="Email de contacto" placeholder="Email" validate={emailValidator} />
               </div>
               <div className={formStyles.formGroup}>
-                <button type="submit" className={classNames(buttonStyles.primaryButton, styles.submit)} disabled={!isValid} onClick={handleSubmit}>Continuar</button>
+                <button type="submit" className={classNames(buttonStyles.primaryButton, styles.submit)} onClick={handleSubmit}>Continuar</button>
               </div>
             </div>
           )
@@ -76,4 +72,4 @@ class PersonalDataBusiness extends React.Component {
 
 }
 
-export default connect(PersonalDataBusiness)
+export default PersonalDataBusiness

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { withFormik, Formik, ErrorMessage } from 'formik'
+import { Formik, ErrorMessage } from 'formik'
 
 import styles from '../../../styles/components/checkout.scss'
 import formStyles from '../../../styles/_forms.scss'
@@ -56,12 +56,6 @@ class PersonalDataCustomer extends React.Component {
     this.handlerSubmit = this.handlerSubmit.bind(this)
   }
 
-  componentDidMount () {
-    setTimeout(() => {
-      this.props.validateForm()
-    }, 0)
-  }
-
   render () {
       return (
         <Formik initialValues={this.props.data} onSubmit={this.handlerSubmit}>
@@ -106,5 +100,4 @@ class PersonalDataCustomer extends React.Component {
 
 }
 
-export default withFormik({
-})(PersonalDataCustomer)
+export default PersonalDataCustomer
