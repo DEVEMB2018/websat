@@ -9,7 +9,7 @@ class TextInput extends React.Component {
   static propTypes = {
     formik: PropTypes.object,
     name: PropTypes.string.isRequired,
-    validate: PropTypes.func.isRequired,
+    validate: PropTypes.func,
     text: PropTypes.string.isRequired,
     placeholder: PropTypes.string
   }
@@ -40,11 +40,31 @@ class TextInput extends React.Component {
   }
 
   isTouched () {
-    return this.props.formik.touched[this.props.name]
+    // This check supports nested names: e.g address.cp
+    const path = this.props.name.split('.')
+    let value = this.props.formik.touched
+
+    for (let level of path) {
+      value = value[level]
+
+      if (!value) return value
+    }
+
+    return value
   }
 
   hasError () {
-    return this.props.formik.errors[this.props.name]
+    // This check supports nested names: e.g address.cp
+    const path = this.props.name.split('.')
+    let value = this.props.formik.errors
+
+    for (let level of path) {
+      value = value[level]
+
+      if (!value) return value
+    }
+
+    return value
   }
 
 }
