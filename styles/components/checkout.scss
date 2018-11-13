@@ -73,3 +73,20 @@
 .yearInput {
   width: 60px;
 }
+
+.summaryLine {
+  color: $black;
+  font-weight: normal;
+}
+
+.buttonModify {
+  border: none;
+  color: $grey-black;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-weight: normal;
+  font-size: 16px;
+  margin: 20px 0;
+  padding: 0;
+}

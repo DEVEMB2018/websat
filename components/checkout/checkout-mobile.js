@@ -12,7 +12,6 @@ import { phoneValidator } from '../../helpers/validators'
 
 class CheckoutMobile extends React.Component {
   static propTypes = {
-    disabled: PropTypes.bool,
     editing: PropTypes.bool,
     completed: PropTypes.bool,
     onSave: PropTypes.func,
@@ -41,7 +40,7 @@ class CheckoutMobile extends React.Component {
         {
         renderCard({
             editing: this.props.editing,
-            disabled: this.props.disabled,
+            disabled: !this.props.completed && !this.props.editing,
             completed: this.props.completed,
             stage: this.props.stage
           },

@@ -10,7 +10,6 @@ import buttonStyles from '../../styles/components/button.scss'
 
 class CheckoutBilling extends React.Component {
   static propTypes = {
-    disabled: PropTypes.bool,
     editing: PropTypes.bool,
     completed: PropTypes.bool,
     onSave: PropTypes.func,
@@ -34,7 +33,7 @@ class CheckoutBilling extends React.Component {
         {
         renderCard({
             editing: this.props.editing,
-            disabled: this.props.disabled,
+            disabled: !this.props.completed && !this.props.editing,
             completed: this.props.completed,
             stage: this.props.stage
           },

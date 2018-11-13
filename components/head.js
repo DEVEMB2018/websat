@@ -18,6 +18,7 @@ const Head = props => (
     <link rel="icon" sizes="192x192" href="/static/touch-icon.png" />
     <link rel="apple-touch-icon" href="/static/touch-icon.png" />
     <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
+    <link rel="stylesheet" type="text/css" href="/static/global-styles.css" />
     <link rel="shortcut icon" href="https://www.embou.com/data/favicon-16x16.png" sizes="16x16"/>
     <link rel="shortcut icon" href="https://www.embou.com/data/favicon-32x32.png" sizes="32x32"/>
     <link rel="shortcut icon" href="https://www.embou.com/data/favicon-96x96.png" sizes="96x96"/>

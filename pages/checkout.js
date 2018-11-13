@@ -22,7 +22,19 @@ import CheckoutBilling from '../components/checkout/checkout-billing'
 import CheckoutPersonalCustomer from '../components/checkout/forms/personal-data-customer'
 import CheckoutPersonalBusiness from '../components/checkout/forms/personal-data-business'
 
-// import SelectedTariff from '../contexts/tariff'
+const CHECKOUT_LOCAL_KEY = 'check'
+const CHECKOUT_MOBILE_TARIFF_KEY = 'mobileTariffId'
+const CHECKOUT_TARIFF_KEY = 'tariffId'
+const CHECKOUT_STAGE_LOCAL_KEY = 'checkStage'
+const CHECKOUT_COMPLETED_LOCAL_KEY = 'checkCompleted'
+
+const DEFAULT_CHECKOUT_DATA = {
+  personalData: {
+    customer: CheckoutPersonalCustomer.INITIAL_DATA,
+    business:  CheckoutPersonalBusiness.INITIAL_DATA,
+    option: 0
+  }
+}
 
 class CheckoutPage extends React.Component {
 
@@ -32,49 +44,84 @@ class CheckoutPage extends React.Component {
     const tariffId = router.query.tariff
     const mobileTariffId = router.query.mobile
 
-    if (isClient) {
-      window.sessionStorage.setItem('tariffId', tariffId)
-      window.sessionStorage.setItem('mobileTariffId', tariffId)
-    }
-
     this.state = {
       isC2cModalOpen: false,
       tariff: TARIFFS.find((tariff) => tariff.id === tariffId),
       mobileTariff: MOBILE_TARIFFS.find((mobile) => mobile.id === mobileTariffId),
       stage: 0,
-      data: this.getInitialFormData(tariffId, mobileTariffId)
+      completed: -1,
+      data: DEFAULT_CHECKOUT_DATA
     }
 
     this.handlerToggleC2C = this.handlerToggleC2C.bind(this)
     this.handlerContinue = this.handlerContinue.bind(this)
+    this.handlerEdit = this.handlerEdit.bind(this)
 
     ReactModal.setAppElement('#main')
   }
 
-  getInitialFormData (tariffId, mobileTariffId) {
-    let backedData = {
-      personalData: {
-
-      }
+  componentDidMount () {
+    if (isClient) {
+      window.sessionStorage.setItem(CHECKOUT_TARIFF_KEY, this.state.tariff)
+      window.sessionStorage.setItem(CHECKOUT_MOBILE_TARIFF_KEY, this.state.mobileTariff)
     }
+
+    const samePrevious = this.checkSamePrevious(this.state.tariff, this.state.mobileTariff)
+
+    if (!samePrevious) this.removePreviousStorage()
+
+    this.setState({
+      stage: this.getInitialStage(samePrevious),
+      completed: this.getInitialCompleted(samePrevious),
+      data: this.getInitialFormData(samePrevious)
+    })
+
+  }
+
+  getInitialStage (samePrevious) {
+    if (isClient && samePrevious) {
+      return parseInt(window.sessionStorage.getItem(CHECKOUT_STAGE_LOCAL_KEY)) || 0
+    }
+
+    return 0
+  }
+
+  getInitialCompleted (samePrevious) {
+    const defaultComp = -1
+
+    if (isClient && samePrevious) {
+      const prevComp = parseInt(window.sessionStorage.getItem(CHECKOUT_COMPLETED_LOCAL_KEY))
+      return prevComp || prevComp === 0 ? prevComp : defaultComp
+    }
+
+    return defaultComp
+  }
+
+  getInitialFormData (samePrevious) {
+    let defaultFormData = DEFAULT_CHECKOUT_DATA
+
+    if (isClient && samePrevious) {
+      return JSON.parse(window.sessionStorage.getItem(CHECKOUT_LOCAL_KEY)) || defaultFormData
+    }
+
+    return defaultFormData
+  }
+
+  removePreviousStorage () {
+    if (isClient) {
+      window.sessionStorage.removeItem(CHECKOUT_LOCAL_KEY)
+      window.sessionStorage.removeItem(CHECKOUT_STAGE_LOCAL_KEY)
+      window.sessionStorage.removeItem(CHECKOUT_COMPLETED_LOCAL_KEY)
+    }
+  }
+
+  checkSamePrevious (mobileTariffId) {
+    if (!isClient) return false
+
+    const prevMobileTariffId = window.sessionStorage.getItem(CHECKOUT_MOBILE_TARIFF_KEY)
 
     if (isClient) {
-      const prevMobileTariffId = window.sessionStorage.getItem('mobileTariffId')
-
-      if (prevMobileTariffId && mobileTariffId || !prevMobileTariffId && !mobileTariffId) {
-        backedData = JSON.parse(window.sessionStorage.getItem('check')) || backedData
-      } else {
-        window.sessionStorage.removeItem('check')
-      }
-
-    }
-
-    return {
-      personalData: {
-        customer: backedData.personalData.customer || CheckoutPersonalCustomer.INITIAL_DATA,
-        business: backedData.personalData.business || CheckoutPersonalBusiness.INITIAL_DATA,
-        option: parseInt(backedData.personalTarget) || 0
-      }
+      return prevMobileTariffId && mobileTariffId || !prevMobileTariffId && !mobileTariffId
     }
   }
 
@@ -89,16 +136,33 @@ class CheckoutPage extends React.Component {
             <h1>Contrata tu tarifa de internet satélite</h1>
             <div className={styles.cardsContainer}>
               <div className={styles.formsContainer}>
-                <CheckoutPersonalData stage={0} editing={this.state.stage === 0} completed={this.state.stage > 0} data={this.state.data.personalData} onSave={(data) => this.handlerContinue('personalData', data)} disabled={false} />
+                <CheckoutPersonalData
+                  stage={0}
+                  editing={this.state.stage === 0}
+                  completed={this.state.completed >= 0}
+                  data={this.state.data.personalData}
+                  onSave={(data) => this.handlerContinue('personalData', data)}
+                  onEdit={(stage) => this.handlerEdit(stage)}
+                />
 
-                <CheckoutAddress stage={1} editing={this.state.stage === 1} completed={this.state.stage > 1} disabled={this.state.stage < 1} onSave={(data) => this.handlerContinue('address', data)} />
+                 <CheckoutAddress
+                  stage={1}
+                  editing={this.state.stage === 1}
+                  completed={this.state.completed >= 1}
+                  onSave={(data) => this.handlerContinue('address', data)}
+                />
 
                 <div className={dividerStyles.horizontalDivider}></div>
 
                 { this.state.mobileTariff
                   ? (
                     <div>
-                      <CheckoutMobile stage={2} editing={this.state.stage === 2} completed={this.state.stage > 2} disabled={this.state.stage < 2} onSave={(data) => this.handlerContinue('mobile', data)} />
+                      <CheckoutMobile
+                      stage={2}
+                      editing={this.state.stage === 2}
+                      completed={this.state.completed >= 2}
+                      onSave={(data) => this.handlerContinue('mobile', data)}
+                    />
                       <div className={dividerStyles.horizontalDivider}></div>
                     </div>
                   )
@@ -107,7 +171,12 @@ class CheckoutPage extends React.Component {
 
                 <div className={dividerStyles.horizontalDivider}></div>
 
-                <CheckoutBilling stage={3} editing={this.state.stage === 3} completed={this.state.stage > 3} disabled={this.state.stage < 3} onSave={(data) => this.handlerContinue('billing', data)} />
+                <CheckoutBilling
+                  stage={3}
+                  editing={this.state.stage === 3}
+                  completed={this.state.completed >= 3}
+                  onSave={(data) => this.handlerContinue('billing', data)}
+                />
               </div>
               <div className={styles.summaryContainer}>
                 <CheckoutSummary tariff={this.state.tariff} mobileTariff={this.state.mobileTariff} />
@@ -116,71 +185,6 @@ class CheckoutPage extends React.Component {
           </div>
         </div>
         <Footer />
-        <style jsx global>{`
-          body {
-            padding: 0;
-            margin: 0;
-            font-size: 16px;
-            font-family: Lato, Din, Comic Sans;
-            font-weight: 100;
-          }
-
-          @font-face {
-            font-family: Lato;
-            font-weight: 300;
-            src: url('/static/fonts/lato/lato-light.ttf') format('truetype');
-          }
-
-          @font-face {
-            font-family: Lato;
-            font-weight: 500;
-            src: url('/static/fonts/lato/lato-regular.ttf') format('truetype');
-          }
-
-          @font-face {
-            font-family: Lato;
-            font-weight: 700;
-            src: url('/static/fonts/lato/lato-bold.ttf') format('truetype');
-          }
-
-          @font-face {
-            font-family: Lato;
-            font-weight: 900;
-            src: url('/static/fonts/lato/lato-black.ttf') format('truetype');
-          }
-
-          @font-face {
-            font-family: Din;
-            font-weight: 100;
-            src: url('/static/fonts/din/din-light.eot?#iefix') format('embedded-opentype'),
-              url('/static/fonts/din/din-light.woff') format('woff'),
-              url('/static/fonts/din/din-light.ttf') format('truetype');
-          }
-
-          @font-face {
-            font-family: Din;
-            font-weight: 300;
-            src: url('/static/fonts/din/din-regular.eot?#iefix') format('embedded-opentype'),
-              url('/static/fonts/din/din-regular.woff') format('woff'),
-              url('/static/fonts/din/din-regular.ttf') format('truetype');
-          }
-
-          @font-face {
-            font-family: Din;
-            font-weight: 500;
-            src: url('/static/fonts/din/din-medium.eot?#iefix') format('embedded-opentype'),
-              url('/static/fonts/din/din-medium.woff') format('woff'),
-              url('/static/fonts/din/din-medium.ttf') format('truetype');
-          }
-
-          @font-face {
-            font-family: Din;
-            font-weight: 700;
-            src: url('/static/fonts/din/din-bold.eot?#iefix') format('embedded-opentype'),
-              url('/static/fonts/din/din-bold.woff') format('woff'),
-              url('/static/fonts/din/din-bold.ttf') format('truetype');
-          }
-        `}</style>
       </div>
     )
   }
@@ -198,6 +202,12 @@ class CheckoutPage extends React.Component {
     this.setState({ isC2cModalOpen: !this.state.isC2cModalOpen })
   }
 
+  handlerEdit (stage) {
+    this.setState({
+      stage
+    })
+  }
+
   handlerContinue (key, data) {
     let increment = 1
 
@@ -207,6 +217,7 @@ class CheckoutPage extends React.Component {
 
     this.setState({
       stage: this.state.stage + increment,
+      completed: this.state.stage <= this.state.completed ? this.state.completed : this.state.completed + increment,
       data: {
         ...this.state.data,
         [key]: data
@@ -214,7 +225,9 @@ class CheckoutPage extends React.Component {
     })
 
     if (isClient) {
-      window.sessionStorage.setItem('check', JSON.stringify(this.state.data))
+      window.sessionStorage.setItem(CHECKOUT_LOCAL_KEY, JSON.stringify(this.state.data))
+      window.sessionStorage.setItem(CHECKOUT_STAGE_LOCAL_KEY, JSON.stringify(this.state.stage))
+      window.sessionStorage.setItem(CHECKOUT_COMPLETED_LOCAL_KEY, JSON.stringify(this.state.completed))
     }
 
   }
