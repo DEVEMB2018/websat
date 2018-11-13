@@ -22,7 +22,7 @@ export function nameValidator(value) {
   return error
 }
 
-export function validateAddress(value) {
+export function addressValidator(value) {
   let error
 
   if (!value) {
@@ -46,7 +46,7 @@ export function phoneValidator(value) {
   return error
 }
 
-export function validatePostalCode(value) {
+export function postalCodeValidator(value) {
   let error
 
   if (!value) {

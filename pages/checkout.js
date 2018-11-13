@@ -21,6 +21,7 @@ import CheckoutSummary from '../components/checkout/checkout-summary'
 import CheckoutBilling from '../components/checkout/checkout-billing'
 import CheckoutPersonalCustomer from '../components/checkout/forms/personal-data-customer'
 import CheckoutPersonalBusiness from '../components/checkout/forms/personal-data-business'
+import AddressForm from '../components/checkout/forms/address';
 
 const CHECKOUT_LOCAL_KEY = 'check'
 const CHECKOUT_MOBILE_TARIFF_KEY = 'mobileTariffId'
@@ -33,6 +34,11 @@ const DEFAULT_CHECKOUT_DATA = {
     customer: CheckoutPersonalCustomer.INITIAL_DATA,
     business:  CheckoutPersonalBusiness.INITIAL_DATA,
     option: 0
+  },
+  address: {
+    installation: AddressForm.INITIAL_DATA,
+    delivery: AddressForm.INITIAL_DATA,
+    differentAddress: false
   }
 }
 
@@ -60,13 +66,79 @@ class CheckoutPage extends React.Component {
     ReactModal.setAppElement('#main')
   }
 
+  render () {
+    return (
+      <div id="main" className={styles.layout}>
+        <Head title="Embou, líder en Internet Rural en Aragón. Tecnología Wimax | Embou" />
+        <div className={styles.contentContainer}>
+          <C2cModal isOpen={this.state.isC2cModalOpen} handleClose={this.handlerToggleC2C} />
+          <NavCheckout onClickC2C={this.handlerToggleC2C} />
+          <div className={styles.checkoutBody}>
+            <h1>Contrata tu tarifa de internet satélite</h1>
+            <div className={styles.cardsContainer}>
+              <div className={styles.formsContainer}>
+                <CheckoutPersonalData
+                  stage={0}
+                  editing={this.state.stage === 0}
+                  completed={this.state.completed >= 0}
+                  data={this.state.data.personalData}
+                  onSave={(data) => this.handlerContinue('personalData', data)}
+                  onEdit={(stage) => this.handlerEdit(stage)}
+                />
+
+                 <CheckoutAddress
+                  stage={1}
+                  editing={this.state.stage === 1}
+                  completed={this.state.completed >= 1}
+                  data={this.state.data.address}
+                  onSave={(data) => this.handlerContinue('address', data)}
+                  onEdit={(stage) => this.handlerEdit(stage)}
+                />
+
+                <div className={dividerStyles.horizontalDivider}></div>
+
+                { this.state.mobileTariff
+                  ? (
+                    <div>
+                      <CheckoutMobile
+                      stage={2}
+                      editing={this.state.stage === 2}
+                      completed={this.state.completed >= 2}
+                      onSave={(data) => this.handlerContinue('mobile', data)}
+                    />
+                      <div className={dividerStyles.horizontalDivider}></div>
+                    </div>
+                  )
+                  : ''
+                }
+
+                <div className={dividerStyles.horizontalDivider}></div>
+
+                <CheckoutBilling
+                  stage={3}
+                  editing={this.state.stage === 3}
+                  completed={this.state.completed >= 3}
+                  onSave={(data) => this.handlerContinue('billing', data)}
+                />
+              </div>
+              <div className={styles.summaryContainer}>
+                <CheckoutSummary tariff={this.state.tariff} mobileTariff={this.state.mobileTariff} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    )
+  }
+
   componentDidMount () {
     if (isClient) {
-      window.sessionStorage.setItem(CHECKOUT_TARIFF_KEY, this.state.tariff)
-      window.sessionStorage.setItem(CHECKOUT_MOBILE_TARIFF_KEY, this.state.mobileTariff)
+      window.sessionStorage.setItem(CHECKOUT_TARIFF_KEY, this.state.tariff.id)
+      window.sessionStorage.setItem(CHECKOUT_MOBILE_TARIFF_KEY, this.state.mobileTariff.id)
     }
 
-    const samePrevious = this.checkSamePrevious(this.state.tariff, this.state.mobileTariff)
+    const samePrevious = this.checkSamePrevious(this.state.tariff.id, this.state.mobileTariff.id)
 
     if (!samePrevious) this.removePreviousStorage()
 
@@ -125,70 +197,6 @@ class CheckoutPage extends React.Component {
     }
   }
 
-  render () {
-    return (
-      <div id="main" className={styles.layout}>
-        <Head title="Embou, líder en Internet Rural en Aragón. Tecnología Wimax | Embou" />
-        <div className={styles.contentContainer}>
-          <C2cModal isOpen={this.state.isC2cModalOpen} handleClose={this.handlerToggleC2C} />
-          <NavCheckout onClickC2C={this.handlerToggleC2C} />
-          <div className={styles.checkoutBody}>
-            <h1>Contrata tu tarifa de internet satélite</h1>
-            <div className={styles.cardsContainer}>
-              <div className={styles.formsContainer}>
-                <CheckoutPersonalData
-                  stage={0}
-                  editing={this.state.stage === 0}
-                  completed={this.state.completed >= 0}
-                  data={this.state.data.personalData}
-                  onSave={(data) => this.handlerContinue('personalData', data)}
-                  onEdit={(stage) => this.handlerEdit(stage)}
-                />
-
-                 <CheckoutAddress
-                  stage={1}
-                  editing={this.state.stage === 1}
-                  completed={this.state.completed >= 1}
-                  onSave={(data) => this.handlerContinue('address', data)}
-                />
-
-                <div className={dividerStyles.horizontalDivider}></div>
-
-                { this.state.mobileTariff
-                  ? (
-                    <div>
-                      <CheckoutMobile
-                      stage={2}
-                      editing={this.state.stage === 2}
-                      completed={this.state.completed >= 2}
-                      onSave={(data) => this.handlerContinue('mobile', data)}
-                    />
-                      <div className={dividerStyles.horizontalDivider}></div>
-                    </div>
-                  )
-                  : ''
-                }
-
-                <div className={dividerStyles.horizontalDivider}></div>
-
-                <CheckoutBilling
-                  stage={3}
-                  editing={this.state.stage === 3}
-                  completed={this.state.completed >= 3}
-                  onSave={(data) => this.handlerContinue('billing', data)}
-                />
-              </div>
-              <div className={styles.summaryContainer}>
-                <CheckoutSummary tariff={this.state.tariff} mobileTariff={this.state.mobileTariff} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    )
-  }
-
   renderCheckoutMobile () {
     return (
       <div>
@@ -215,9 +223,11 @@ class CheckoutPage extends React.Component {
       increment = 2
     }
 
+    const completed = this.state.stage <= this.state.completed ? this.state.completed : this.state.completed + increment
+
     this.setState({
-      stage: this.state.stage + increment,
-      completed: this.state.stage <= this.state.completed ? this.state.completed : this.state.completed + increment,
+      completed,
+      stage: completed + increment,
       data: {
         ...this.state.data,
         [key]: data
@@ -226,8 +236,8 @@ class CheckoutPage extends React.Component {
 
     if (isClient) {
       window.sessionStorage.setItem(CHECKOUT_LOCAL_KEY, JSON.stringify(this.state.data))
-      window.sessionStorage.setItem(CHECKOUT_STAGE_LOCAL_KEY, JSON.stringify(this.state.stage))
-      window.sessionStorage.setItem(CHECKOUT_COMPLETED_LOCAL_KEY, JSON.stringify(this.state.completed))
+      window.sessionStorage.setItem(CHECKOUT_STAGE_LOCAL_KEY, this.state.stage)
+      window.sessionStorage.setItem(CHECKOUT_COMPLETED_LOCAL_KEY, this.state.completed)
     }
 
   }

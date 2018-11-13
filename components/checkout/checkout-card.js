@@ -16,18 +16,11 @@ class CheckoutCard extends React.Component {
   }
 
   render () {
-    console.log(this.props.title)
-    console.log('editing: ', this.props.editing)
-    console.log('disabled: ', this.props.disabled)
-    console.log('completed: ', this.props.completed)
-
     const classes = classNames({
       [styles.cardActive]: this.props.editing,
       [styles.cardDisabled]: this.props.disabled,
       [styles.cardCompleted]: this.props.completed
     })
-
-    console.log('classes: ', classes)
 
     return (
       <div className={classes}>

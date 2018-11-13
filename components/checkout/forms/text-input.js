@@ -39,8 +39,9 @@ class TextInput extends React.Component {
     )
   }
 
+  // This check supports nested names: e.g address.cp
+  // https://jaredpalmer.com/formik/docs/guides/arrays
   isTouched () {
-    // This check supports nested names: e.g address.cp
     const path = this.props.name.split('.')
     let value = this.props.formik.touched
 
@@ -53,8 +54,9 @@ class TextInput extends React.Component {
     return value
   }
 
+  // This check supports nested names: e.g address.cp
+  // https://jaredpalmer.com/formik/docs/guides/arrays
   hasError () {
-    // This check supports nested names: e.g address.cp
     const path = this.props.name.split('.')
     let value = this.props.formik.errors
 

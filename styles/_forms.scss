@@ -65,6 +65,7 @@
 }
 
 .checkboxLabel {
+  cursor: pointer;
   margin-left: 10px;
   text-align: left;
   flex: 100%;
@@ -119,6 +120,10 @@
 .firstInlineInput {
   @extend .inlineInput;
   margin-left: 0;
+}
+
+.verticalCheckbox {
+  margin: 20px 0;
 }
 
 .errorMessage {

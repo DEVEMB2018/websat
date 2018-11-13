@@ -102,7 +102,7 @@ class CheckoutPersonalData extends React.Component {
         <div>
           <div className={checkoutStyles.summaryLine}>{data.companyName} {data.contactName}</div>
           <div className={checkoutStyles.summaryLine}>Tfno: {data.phone} - Email: {data.email}</div>
-          <button type="button" className={checkoutStyles.buttonModify}>Modificar</button>
+          <button type="button" className={checkoutStyles.buttonModify} onClick={this.handlerModify}>Modificar</button>
         </div>
       )
     }
