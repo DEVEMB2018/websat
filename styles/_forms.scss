@@ -95,6 +95,19 @@
   border: 1px solid $grey-dark;
 }
 
+.selectorInput {
+  @extend .input;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: white;
+  cursor: pointer;
+  background-image: url('/static/images/arrow-down.png');
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: 25px;
+}
+
 .input:focus {
   box-shadow: 0 0 0 0;
   outline: none;

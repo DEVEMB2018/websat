@@ -49,16 +49,12 @@ class PersonalDataCustomer extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      data: props.data || PersonalDataCustomer.INITIAL_DATA
-    }
-
     this.handlerSubmit = this.handlerSubmit.bind(this)
   }
 
   render () {
       return (
-        <Formik initialValues={this.props.data} onSubmit={this.handlerSubmit}>
+        <Formik initialValues={this.props.data || PersonalDataCustomer.INITIAL_DATA} onSubmit={this.handlerSubmit}>
           { ({ handleSubmit, isValid }) => (
             <div>
               <div className={formStyles.formGroup}>

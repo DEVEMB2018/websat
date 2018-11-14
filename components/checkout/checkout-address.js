@@ -66,8 +66,12 @@ class CheckoutAddress extends React.Component {
   }
 
   renderForm () {
+    const defaultValues = this.state.differentAddress
+      ? { installation: AddressForm.INITIAL_DATA }
+      : { installation: AddressForm.INITIAL_DATA, delivery: AddressForm.INITIAL_DATA}
+
     return (
-      <Formik initialValues={this.props.data} onSubmit={this.handlerSubmit}>
+      <Formik initialValues={this.props.data || defaultValues} onSubmit={this.handlerSubmit}>
           { ({ handleSubmit }) => (
             <div>
               <AddressForm name="installation" title="Dirección de instalación"></AddressForm>
@@ -94,12 +98,17 @@ class CheckoutAddress extends React.Component {
     if (this.props.completed) {
       return (
         <div>
+          {
+            this.props.data.differentAddress
+            ? (<div className={checkoutStyles.summaryLineTitle}>Dirección de instalación:</div>)
+            : ''
+          }
           <div className={checkoutStyles.summaryLine}>{this.props.data.installation.address}, {this.props.data.installation.postalCode} - {this.props.data.installation.city}, {this.props.data.installation.province}</div>
           {
             this.props.data.differentAddress
             ? (
               <div>
-                <div>Dirección de envío</div>
+                <div className={checkoutStyles.summaryLineTitle}>Dirección de envío:</div>
                 <div className={checkoutStyles.summaryLine}>{this.props.data.delivery.address}, {this.props.data.delivery.postalCode} - {this.props.data.delivery.city}, {this.props.data.delivery.province}</div>
               </div>
             )

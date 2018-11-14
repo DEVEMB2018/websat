@@ -38,7 +38,7 @@ class PersonalDataBusiness extends React.Component {
 
   render () {
       return (
-        <Formik initialValues={this.props.data} onSubmit={this.handlerSubmit}>
+        <Formik initialValues={this.props.data || PersonalDataBusiness.INITIAL_DATA} onSubmit={this.handlerSubmit}>
           { ({ handleSubmit }) => (
             <div>
               <div className={formStyles.formGroup}>

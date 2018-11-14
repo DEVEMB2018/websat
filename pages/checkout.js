@@ -39,6 +39,10 @@ const DEFAULT_CHECKOUT_DATA = {
     installation: AddressForm.INITIAL_DATA,
     delivery: AddressForm.INITIAL_DATA,
     differentAddress: false
+  },
+  mobile: {
+    option: 0,
+    ...CheckoutMobile.INITIAL_DATA
   }
 }
 
@@ -105,6 +109,8 @@ class CheckoutPage extends React.Component {
                       editing={this.state.stage === 2}
                       completed={this.state.completed >= 2}
                       onSave={(data) => this.handlerContinue('mobile', data)}
+                      onEdit={(stage) => this.handlerEdit(stage)}
+                      data={this.state.data.mobile}
                     />
                       <div className={dividerStyles.horizontalDivider}></div>
                     </div>
@@ -135,10 +141,12 @@ class CheckoutPage extends React.Component {
   componentDidMount () {
     if (isClient) {
       window.sessionStorage.setItem(CHECKOUT_TARIFF_KEY, this.state.tariff.id)
-      window.sessionStorage.setItem(CHECKOUT_MOBILE_TARIFF_KEY, this.state.mobileTariff.id)
+      if (this.state.mobileTariff) {
+        window.sessionStorage.setItem(CHECKOUT_MOBILE_TARIFF_KEY, this.state.mobileTariff.id)
+      }
     }
 
-    const samePrevious = this.checkSamePrevious(this.state.tariff.id, this.state.mobileTariff.id)
+    const samePrevious = this.checkSamePrevious(this.state.mobileTariff)
 
     if (!samePrevious) this.removePreviousStorage()
 
@@ -187,13 +195,13 @@ class CheckoutPage extends React.Component {
     }
   }
 
-  checkSamePrevious (mobileTariffId) {
+  checkSamePrevious (mobileTariff) {
     if (!isClient) return false
 
     const prevMobileTariffId = window.sessionStorage.getItem(CHECKOUT_MOBILE_TARIFF_KEY)
 
     if (isClient) {
-      return prevMobileTariffId && mobileTariffId || !prevMobileTariffId && !mobileTariffId
+      return prevMobileTariffId && mobileTariff || !prevMobileTariffId && !mobileTariff
     }
   }
 

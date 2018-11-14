@@ -1,9 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { Field } from 'formik'
 
 import formStyles from '../../../styles/_forms.scss'
 
 import TextInput from './text-input'
+
+import { PROVINCES } from '../../../contexts/provinces'
 
 import {
   nameValidator,
@@ -49,7 +53,23 @@ class AddressForm extends React.Component {
         </div>
         <div className={formStyles.formGroup}>
           <TextInput name={`${this.state.prefix}city`} text="Localidad" placeholder="Localidad" validate={nameValidator} />
-          <TextInput name={`${this.state.prefix}province`} text="Provincia" placeholder="Selecciona tu provincia" />
+
+          <div className={formStyles.inputContainer}>
+              <label className={formStyles.inputLabel}>
+                Provincia
+              </label>
+              <Field
+                className={classNames(formStyles.selectorInput)}
+                placeholder={this.props.placeholder}
+                component="select"
+                name={`${this.state.prefix}province`}>
+                { PROVINCES.map((prov) => (
+                    <option value={prov} key={prov}>{prov}</option>
+                  ))
+                }
+              </Field>
+          </div>
+
         </div>
         <div className={formStyles.formGroup}>
           <TextInput name={`${this.state.prefix}gps`} text="Coordenadas (opcional)" placeholder="Coordenadas geográficas" />

@@ -22,6 +22,18 @@ export function nameValidator(value) {
   return error
 }
 
+export function numberValidator(value) {
+  let error
+
+  if (!value) {
+    error = 'Es necesario introducir un número'
+  } else if (!/^([0-9]||\s)+/i.test(value)) {
+    error = 'El formato no es correcto'
+  }
+
+  return error
+}
+
 export function addressValidator(value) {
   let error
 
