@@ -43,6 +43,13 @@ const DEFAULT_CHECKOUT_DATA = {
   mobile: {
     option: 0,
     ...CheckoutMobile.INITIAL_DATA
+  },
+  bank: {
+    bank: '',
+    address: {},
+    differentAddress: false,
+    generalConditions: false,
+    communications: false
   }
 }
 
@@ -125,6 +132,8 @@ class CheckoutPage extends React.Component {
                   editing={this.state.stage === 3}
                   completed={this.state.completed >= 3}
                   onSave={(data) => this.handlerContinue('billing', data)}
+                  onEdit={(stage) => this.handlerEdit(stage)}
+                  data={this.state.data.bank}
                 />
               </div>
               <div className={styles.summaryContainer}>

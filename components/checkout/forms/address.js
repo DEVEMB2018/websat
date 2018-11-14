@@ -60,13 +60,14 @@ class AddressForm extends React.Component {
               </label>
               <Field
                 className={classNames(formStyles.selectorInput)}
-                placeholder={this.props.placeholder}
+                placeholder="Selecciona tu provincia"
                 component="select"
                 name={`${this.state.prefix}province`}>
-                { PROVINCES.map((prov) => (
-                    <option value={prov} key={prov}>{prov}</option>
-                  ))
-                }
+                  <option disabled value="">Selecciona tu provincia</option>
+                  { PROVINCES.map((prov) => (
+                      <option value={prov} key={prov}>{prov}</option>
+                    ))
+                  }
               </Field>
           </div>
 

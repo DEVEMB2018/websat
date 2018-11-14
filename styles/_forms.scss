@@ -51,6 +51,12 @@
   }
 }
 
+.inputContainerBig {
+  @include tablet-desktop {
+    flex: 65% 0;
+  }
+}
+
 .checkboxContainer {
   display: flex;
 }

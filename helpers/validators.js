@@ -103,6 +103,14 @@ export function NIFvalidator (nif) {
 
 }
 
+export const bankValidator = (account) => {
+  if (!account) return 'Es necesario introducir un número de cuenta'
+
+  const matcher = account.exec(/ES[0-9]{2}(-[0-9]{4}){5}/)
+
+  if (!matcher) return 'Formato de cuenta IBAN no válido'
+}
+
 export const NIEvalidator = (nie) => {
   if (!nie) return 'Es necesario introducir un nie'
 
