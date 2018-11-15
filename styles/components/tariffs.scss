@@ -64,29 +64,37 @@
 }
 
 .tariffsContainer {
-  // padding: 0 10px;
-}
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 
-.tariffCardContainer {
-  flex: 1 0 30%;
+  @include tablet-desktop {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
 }
 
 .tariffCard {
   display: inline-block;
-  flex: 100%;
+  flex: 1 0 90%;
   margin-top: 20px;
   padding: 30px 0;
 
-
   @include tablet {
-    flex: 35% 0;
-  }
-
-  @include desktop {
-    flex: 25% 0;
+    flex: 1 0 25%;
     margin-top: 0;
     margin-left: 20px;
   }
+
+  @include desktop {
+    flex: 1 0 20%;
+    margin-top: 0;
+    margin-left: 20px;
+  }
+}
+
+.tariffCard:first-of-type {
+    margin-left: 0;
 }
 
 .tariffWhite {
@@ -124,4 +132,6 @@
   display: block;
   margin: 0 auto;
   margin-top: 40px;
+  text-decoration: none;
+  font-weight: bold;
 }

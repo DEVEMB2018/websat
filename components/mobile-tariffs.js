@@ -92,7 +92,7 @@ class MobileTariffs extends React.Component {
 
     return (
       <Link href={href}>
-        <a className={`${buttonStyles.primaryButton} ${tariffsStyles.button}`}>¡Contrátala ahora!</a>
+        <a className={`${buttonStyles.primaryButton} ${tariffsStyles.button}`}>Lo quiero</a>
       </Link>
     )
   }

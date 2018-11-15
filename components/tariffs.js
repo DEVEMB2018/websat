@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import Price from './price'
 import Link from 'next/link'
@@ -24,11 +25,13 @@ class Tariffs extends React.Component {
             <h2 className={tariffsStyles.title}>Nuestras tarifas</h2>
             <p className={tariffsStyles.contentText}>Te ofrecemos las <b>mejores tarifas</b> del mercado de internet por satélite, con 60 GB y 150 GB para que puedas hacer un uso intensivo de tu conexión sin preocupaciones (audio, vídeo, multimedia, navegación y descarga).</p>
           </div>
-        {TARIFFS.map((tariff, index) => (
-          <span key={tariff.id} className={tariffsStyles.tariffCardContainer}>{
-            this.renderTariff(tariff, index)
-          }</span>
-        ))}
+          <div className={tariffsStyles.tariffsContainer}>
+            {TARIFFS.map((tariff, index) => (
+              <div key={tariff.id} className={classNames(tariffsStyles.tariffCard, this.getTariffColor(index))}>{
+                this.renderTariff(tariff, index)
+              }</div>
+            ))}
+          </div>
         </div>
       </div>
     )
@@ -40,7 +43,7 @@ class Tariffs extends React.Component {
     }.bind(this)
 
     return (
-      <div className={`${tariffsStyles.tariffCard} ${this.getTariffColor(index)}`}>
+      <div>
         <h3 className={tariffsStyles.tariffTitle}>{tariff.description}</h3>
         <div className={tariffsStyles.tariffPriceContainer}>
           <Price price={tariff.price} currency={'€/mes'} iva={'IVA incl.'} center={true} />
@@ -68,7 +71,7 @@ class Tariffs extends React.Component {
 
     return (
       <Link href={href}>
-        <a className={`${buttonStyles.primaryButton} ${tariffsStyles.contractButton}`}>¡Contrátala ahora!</a>
+        <a className={`${buttonStyles.primaryButton} ${tariffsStyles.contractButton}`}>Lo quiero</a>
       </Link>
     )
   }

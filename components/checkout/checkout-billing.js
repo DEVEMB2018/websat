@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Formik, Field, ErrorMessage } from 'formik'
+import { Formik, Field } from 'formik'
 
 import styles from '../../styles/components/checkout.scss'
 import formStyles from '../../styles/_forms.scss'

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-scroll'
 
 import Price from './price'
 
@@ -26,7 +27,9 @@ class Hero extends React.Component {
             <div className={heroStyles.content}>
               <span className={heroStyles.smallLabel}>Desde</span>
               <Price price={34.90} currency={'€/mes'} iva={'IVA incl.'} />
-              <button type="button" className={buttonStyles.secondaryButton}>VER TARIFAS</button>
+              <Link className={buttonStyles.secondaryButton} to="tarifas" offset={-120}>
+                VER TARIFAS
+              </Link>
             </div>
           </div>
         </div>
