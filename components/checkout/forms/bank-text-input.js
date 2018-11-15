@@ -3,9 +3,11 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { connect, Field, ErrorMessage } from 'formik'
 
-import { bankValidator } from '../../../helpers/validators'
+import { IBANValidator } from '../../../helpers/validators'
 
 import formStyles from '../../../styles/_forms.scss'
+
+const CHAR_SEPARATOR = '-'
 
 class BankTextInput extends React.Component {
   static propTypes = {
@@ -13,8 +15,8 @@ class BankTextInput extends React.Component {
     name: PropTypes.string.isRequired
   }
 
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
     this.handlerChange = this.handlerChange.bind(this)
   }
@@ -30,12 +32,11 @@ class BankTextInput extends React.Component {
           className={classNames(formStyles.input, { [formStyles.errorInput]: this.isTouched() && this.hasError() })}
           placeholder="ES00-0000-0000-0000-0000-0000"
           name={this.props.name}
-          // validate={bankValidator}
+          validate={IBANValidator}
           onChange={this.handlerChange}
-          >
-        </Field>
+        />
         { this.isTouched()
-          ? <ErrorMessage name={this.props.name} component="div" className={formStyles.errorMessage} />
+          ? (<ErrorMessage name="bank" component="div" className={formStyles.errorMessage} />)
           : null
         }
       </div>
@@ -44,40 +45,18 @@ class BankTextInput extends React.Component {
 
   handlerChange (evt) {
     let previousVal = this.props.formik.values[this.props.name]
-    let val = evt.target.value
-    // let val = evt.target.value ? evt.target.value.trim() : ''
+    let val = evt.target.value ? evt.target.value.trim() : ''
 
     if (previousVal && val === previousVal.slice(0, previousVal.length - 1)) {
       // removing character
       let lastChar = previousVal[previousVal.length - 1] || ''
 
-      if (lastChar === '-') {
+      if (lastChar === CHAR_SEPARATOR) {
         this.props.formik.setFieldValue(this.props.name, val.slice(0, val.length - 1))
 
         return
       }
     }
-
-    //   if (lastChar === '-') {
-    //     this.props.formik.setFieldValue(this.props.name, val.slice(0, val.length - 1))
-    //   } else {
-    //     this.props.formik.setFieldValue(this.props.name, val)
-    //   }
-    // } else {
-    //   // adding character
-    //   let lastChar = val[val.length - 1] || ''
-
-    //   if (!lastChar.match(/[A-z]|[0-9]/) && lastChar) return
-
-    //   const withoutSlash = val.replace('-', '')
-
-    //   if (withoutSlash.length && withoutSlash.length % 4 === 0) {
-    //     val = val + '-'
-    //   }
-
-    //   this.props.formik.setFieldValue(this.props.name, val)
-    // }
-
 
     val = val.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 24)
 
@@ -86,7 +65,7 @@ class BankTextInput extends React.Component {
     for (let i = 0; i < val.length; i++) {
       formatted = formatted + val[i]
 
-      if (i !== 0 && i + 1 < 24 && (i + 1) % 4 === 0) formatted += '-'
+      if (i !== 0 && i + 1 < 24 && (i + 1) % 4 === 0) formatted += CHAR_SEPARATOR
     }
 
     this.props.formik.setFieldValue(this.props.name, formatted)
@@ -122,6 +101,9 @@ class BankTextInput extends React.Component {
     return value
   }
 
+  getError () {
+    return this.props.formik.errors[this.props.name]
+  }
 }
 
 export default connect(BankTextInput)

@@ -103,10 +103,10 @@ export function NIFvalidator (nif) {
 
 }
 
-export const bankValidator = (account) => {
+export const IBANValidator = (account) => {
   if (!account) return 'Es necesario introducir un número de cuenta'
 
-  const matcher = account.exec(/ES[0-9]{2}(-[0-9]{4}){5}/)
+  const matcher = /ES[0-9]{2}(-[0-9]{4}){5}/.exec(account)
 
   if (!matcher) return 'Formato de cuenta IBAN no válido'
 }
@@ -156,4 +156,8 @@ export const dateValidator = (date) => {
   if ((err = dayValidator(day))) return err
   if ((err = monthValidator(month))) return err
   if ((err = yearValidator(year))) return err
+}
+
+export const generalConditionsValidator = (checked) => {
+  if (!checked) return 'Es necesario aceptar las condiciones generales de contratación'
 }

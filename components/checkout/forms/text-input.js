@@ -32,7 +32,7 @@ class TextInput extends React.Component {
           validate={this.props.validate}>
         </Field>
         { this.isTouched()
-          ? <ErrorMessage name={this.props.name} component="div" className={formStyles.errorMessage} />
+          ? (<ErrorMessage name={this.props.name} component="div" className={formStyles.errorMessage} />)
           : null
         }
       </div>
