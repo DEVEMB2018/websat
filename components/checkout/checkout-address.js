@@ -103,13 +103,19 @@ class CheckoutAddress extends React.Component {
             ? (<div className={checkoutStyles.summaryLineTitle}>Dirección de instalación:</div>)
             : ''
           }
-          <div className={checkoutStyles.summaryLine}>{this.props.data.installation.address}, {this.props.data.installation.postalCode} - {this.props.data.installation.city}, {this.props.data.installation.province}</div>
+          <div className={checkoutStyles.summaryLine}>
+            {this.props.data.installation.address}, {this.props.data.installation.postalCode} - {this.props.data.installation.city}, {this.props.data.installation.province}
+            { this.props.data.installation.gps ? (<span> - {this.props.data.installation.gps}</span>) : '' }
+          </div>
           {
             this.props.data.differentAddress
             ? (
               <div>
                 <div className={checkoutStyles.summaryLineTitle}>Dirección de envío:</div>
-                <div className={checkoutStyles.summaryLine}>{this.props.data.delivery.address}, {this.props.data.delivery.postalCode} - {this.props.data.delivery.city}, {this.props.data.delivery.province}</div>
+                <div className={checkoutStyles.summaryLine}>
+                  {this.props.data.delivery.address}, {this.props.data.delivery.postalCode} - {this.props.data.delivery.city}, {this.props.data.delivery.province}
+                  { this.props.data.delivery.gps ? (<span> - {this.props.data.delivery.gps}</span>) : '' }
+                </div>
               </div>
             )
             : ('')

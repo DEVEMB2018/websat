@@ -30,7 +30,11 @@ class CheckoutBilling extends React.Component {
   }
 
   static INITIAL_DATA = {
-    bank: ''
+    bank: '',
+    communication: false,
+    generalConditions: false,
+    differentAddress: false,
+    address: AddressForm.INITIAL_DATA
   }
 
   constructor (props) {
@@ -39,13 +43,15 @@ class CheckoutBilling extends React.Component {
     this.state = {
       differentAddress: props.data.differentAddress || false,
       generalConditions: props.data.generalConditions || false,
-      communications: props.data.communications || false
+      communications: props.data.communications || false,
+      message: props.data.message || ''
     }
 
     // this.validateForm = this.validateForm.bind(this)
     this.handlerSubmit = this.handlerSubmit.bind(this)
     this.handlerGeneralConditionsChange = this.handlerGeneralConditionsChange.bind(this)
     this.validateForm = this.validateForm.bind(this)
+    this.handlerMessageChange = this.handlerMessageChange.bind(this)
   }
 
   render () {
@@ -74,7 +80,7 @@ class CheckoutBilling extends React.Component {
   renderForm () {
     if (this.props.editing) {
       return (
-        <Formik initialValues={this.props.data ||CheckoutBilling.INITIAL_DATA} onSubmit={this.handlerSubmit} validate={this.validateForm}>
+        <Formik initialValues={this.props.data || CheckoutBilling.INITIAL_DATA} onSubmit={this.handlerSubmit} validate={this.validateForm}>
           { ({ handleSubmit, errors }) => (
             <div>
               <div className={formStyles.formGroup}>
@@ -83,7 +89,7 @@ class CheckoutBilling extends React.Component {
               <p className={styles.inputSubtitle}>Ordenas a la entidad bancaria que a partir de la fecha y hasta nueva orden, atienda con cargo a esta cuenta los pagos a favor de EMBOU.</p>
               <div className={formStyles.checkboxGroup}>
                 <div className={formStyles.checkboxContainer} onClick={() => this.handlerDifferentAddressChange()}>
-                  <input type="checkbox" className={formStyles.checkbox} checked={this.state.differentAddress} onChange={() => this.handlerDifferentAddressChange()} />
+                  <input type="checkbox" name="differentAddress" className={formStyles.checkbox} checked={this.state.differentAddress} onChange={() => this.handlerDifferentAddressChange()} />
                   <span className={formStyles.checkboxLabel}>
                     La dirección de facturación es diferente de la de instalación
                   </span>
@@ -108,14 +114,14 @@ class CheckoutBilling extends React.Component {
                   </span>
                 </div>
                 <div className={formStyles.checkboxContainer} onClick={() => this.handlerCommunicationsChange()}>
-                  <input type="checkbox" className={formStyles.checkbox} checked={this.state.communications} value={this.state.communications} onChange={() => this.handlerCommunicationsChange()} />
+                  <input type="checkbox" name="communications" className={formStyles.checkbox} checked={this.state.communications} value={this.state.communications} onChange={() => this.handlerCommunicationsChange()} />
                   <span className={formStyles.checkboxLabel}>
                     Quiero que mis datos sean utilizados para todas las finalidades especificadas en los Términos de Protección de Datos del servicio
                   </span>
                 </div>
               </div>
               <div className={formStyles.formGroup}>
-                  <input type="textarea" className={formStyles.inputArea} placeholder="Si tienes algún comentario que hacernos, déjanos un mensaje." onChange={() => this.handlerCommunicationsChange()} />
+                  <textarea name="message" className={formStyles.inputArea} placeholder="Si tienes algún comentario que hacernos, déjanos un mensaje." onChange={(evt) => this.handlerMessageChange(evt)} />
               </div>
               <div>
                 { errors.generalConditions
@@ -155,6 +161,12 @@ class CheckoutBilling extends React.Component {
     })
   }
 
+  handlerMessageChange (evt) {
+    this.setState({
+      message: evt.target.value
+    })
+  }
+
 
   handlerSubmit (values, { setSubmitting }) {
     setSubmitting(false)
@@ -163,7 +175,8 @@ class CheckoutBilling extends React.Component {
       ...values,
       differentAddress: this.state.differentAddress,
       generalConditions: this.state.generalConditions,
-      communications: this.state.communications
+      communications: this.state.communications,
+      message: this.state.message
     })
   }
 
