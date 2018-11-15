@@ -56,12 +56,21 @@ class Checkout extends React.Component {
   constructor (props) {
     super(props)
 
+    const samePrevious = this.checkSamePrevious(props.mobileTariff)
+
+    if (!samePrevious) this.removeAllStorage()
+
+    window.sessionStorage.setItem(CHECKOUT_TARIFF_KEY, props.tariff.id)
+    if (props.mobileTariff) {
+      window.sessionStorage.setItem(CHECKOUT_MOBILE_TARIFF_KEY, props.mobileTariff.id)
+    }
+
     this.state = {
       tariff: props.tariff,
       mobileTariff: props.mobileTariff,
-      stage: 0,
-      completed: -1,
-      data: DEFAULT_CHECKOUT_DATA
+      stage: this.getInitialStage(samePrevious),
+      completed: this.getInitialCompleted(samePrevious),
+      data: this.getInitialFormData(samePrevious)
     }
 
     this.handlerContinue = this.handlerContinue.bind(this)
@@ -117,9 +126,9 @@ class Checkout extends React.Component {
               <div className={dividerStyles.horizontalDivider}></div>
 
               <CheckoutBilling
-                stage={3}
-                editing={this.state.stage === 3}
-                completed={this.state.completed >= 3}
+                stage={this.state.mobileTariff ? 3 : 2}
+                editing={this.state.mobileTariff ? this.state.stage === 3 : this.state.stage === 2}
+                completed={this.state.mobileTariff ? this.state.completed >= 3 : this.state.completed >= 2}
                 onSave={(data) => this.handlerContinue('billing', data)}
                 onEdit={(stage) => this.handlerEdit(stage)}
                 data={this.state.data.bank}
@@ -134,28 +143,8 @@ class Checkout extends React.Component {
     )
   }
 
-  componentDidMount () {
-    if (isClient) {
-      window.sessionStorage.setItem(CHECKOUT_TARIFF_KEY, this.state.tariff.id)
-      if (this.state.mobileTariff) {
-        window.sessionStorage.setItem(CHECKOUT_MOBILE_TARIFF_KEY, this.state.mobileTariff.id)
-      }
-    }
-
-    const samePrevious = this.checkSamePrevious(this.state.mobileTariff)
-
-    if (!samePrevious) this.removePreviousStorage()
-
-    this.setState({
-      stage: this.getInitialStage(samePrevious),
-      completed: this.getInitialCompleted(samePrevious),
-      data: this.getInitialFormData(samePrevious)
-    })
-
-  }
-
   getInitialStage (samePrevious) {
-    if (isClient && samePrevious) {
+    if (samePrevious) {
       return parseInt(window.sessionStorage.getItem(CHECKOUT_STAGE_LOCAL_KEY)) || 0
     }
 
@@ -165,7 +154,7 @@ class Checkout extends React.Component {
   getInitialCompleted (samePrevious) {
     const defaultComp = -1
 
-    if (isClient && samePrevious) {
+    if (samePrevious) {
       const prevComp = parseInt(window.sessionStorage.getItem(CHECKOUT_COMPLETED_LOCAL_KEY))
       return prevComp || prevComp === 0 ? prevComp : defaultComp
     }
@@ -176,29 +165,25 @@ class Checkout extends React.Component {
   getInitialFormData (samePrevious) {
     let defaultFormData = DEFAULT_CHECKOUT_DATA
 
-    if (isClient && samePrevious) {
+    if (samePrevious) {
       return JSON.parse(window.sessionStorage.getItem(CHECKOUT_LOCAL_KEY)) || defaultFormData
     }
 
     return defaultFormData
   }
 
-  removePreviousStorage () {
-    if (isClient) {
-      window.sessionStorage.removeItem(CHECKOUT_LOCAL_KEY)
-      window.sessionStorage.removeItem(CHECKOUT_STAGE_LOCAL_KEY)
-      window.sessionStorage.removeItem(CHECKOUT_COMPLETED_LOCAL_KEY)
-    }
+  removeAllStorage () {
+    window.sessionStorage.removeItem(CHECKOUT_LOCAL_KEY)
+    window.sessionStorage.removeItem(CHECKOUT_TARIFF_KEY)
+    window.sessionStorage.removeItem(CHECKOUT_MOBILE_TARIFF_KEY)
+    window.sessionStorage.removeItem(CHECKOUT_STAGE_LOCAL_KEY)
+    window.sessionStorage.removeItem(CHECKOUT_COMPLETED_LOCAL_KEY)
   }
 
   checkSamePrevious (mobileTariff) {
-    if (!isClient) return false
-
     const prevMobileTariffId = window.sessionStorage.getItem(CHECKOUT_MOBILE_TARIFF_KEY)
 
-    if (isClient) {
-      return prevMobileTariffId && mobileTariff || !prevMobileTariffId && !mobileTariff
-    }
+    return prevMobileTariffId && mobileTariff || !prevMobileTariffId && !mobileTariff
   }
 
   handlerEdit (stage) {
@@ -225,12 +210,9 @@ class Checkout extends React.Component {
       }
     })
 
-    if (isClient) {
-      window.sessionStorage.setItem(CHECKOUT_LOCAL_KEY, JSON.stringify(this.state.data))
-      window.sessionStorage.setItem(CHECKOUT_STAGE_LOCAL_KEY, this.state.stage)
-      window.sessionStorage.setItem(CHECKOUT_COMPLETED_LOCAL_KEY, this.state.completed)
-    }
-
+    window.sessionStorage.setItem(CHECKOUT_LOCAL_KEY, JSON.stringify(this.state.data))
+    window.sessionStorage.setItem(CHECKOUT_STAGE_LOCAL_KEY, this.state.stage)
+    window.sessionStorage.setItem(CHECKOUT_COMPLETED_LOCAL_KEY, this.state.completed)
   }
 }
 
