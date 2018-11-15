@@ -1,3 +1,5 @@
+import { PROVINCES } from "../contexts/provinces";
+
 export function emailValidator(value) {
   let error
 
@@ -160,4 +162,8 @@ export const dateValidator = (date) => {
 
 export const generalConditionsValidator = (checked) => {
   if (!checked) return 'Es necesario aceptar las condiciones generales de contratación'
+}
+
+export const provinceValidator = (val) => {
+  if(!val || !PROVINCES.find((item) => item === val)) return 'Es necesario seleccionar tu provincia'
 }

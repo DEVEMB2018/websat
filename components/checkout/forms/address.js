@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Field } from 'formik'
+import { Field, ErrorMessage } from 'formik'
 
 import formStyles from '../../../styles/_forms.scss'
 
@@ -12,7 +12,8 @@ import { PROVINCES } from '../../../contexts/provinces'
 import {
   nameValidator,
   addressValidator,
-  postalCodeValidator
+  postalCodeValidator,
+  provinceValidator
 } from '../../../helpers/validators'
 
 class AddressForm extends React.Component {
@@ -62,6 +63,7 @@ class AddressForm extends React.Component {
                 className={classNames(formStyles.selectorInput)}
                 placeholder="Selecciona tu provincia"
                 component="select"
+                validate={provinceValidator}
                 name={`${this.state.prefix}province`}>
                   <option disabled value="">Selecciona tu provincia</option>
                   { PROVINCES.map((prov) => (
@@ -69,6 +71,7 @@ class AddressForm extends React.Component {
                     ))
                   }
               </Field>
+              <ErrorMessage name={`${this.state.prefix}province`} component="div" className={formStyles.errorMessage} />
           </div>
 
         </div>
