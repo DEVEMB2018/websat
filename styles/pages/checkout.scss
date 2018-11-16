@@ -1,5 +1,17 @@
 @import '../colors';
 @import '../grid';
+@import '../layout';
+
+.fullWidthContainer {
+  @extend %full-width-container;
+  background-color: $white;
+}
+
+.checkoutContent {
+  max-width: 1220px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
 
 .layout {
   min-width: 320px;
@@ -11,9 +23,14 @@
 
 .checkoutBody {
   padding: 20px 15px;
+  box-sizing: border-box;
 
-  @include tablet {
+  @include tablet-desktop {
     padding: 50px 40px;
+  }
+
+  @include desktop-hd {
+    padding: 0;
   }
 }
 

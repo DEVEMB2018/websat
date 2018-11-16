@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactModal from 'react-modal'
+import classNames from 'classnames'
 import { withRouter } from 'next/router'
 
 import styles from '../styles/pages/checkout.scss'
@@ -45,7 +46,7 @@ class CheckoutPage extends React.Component {
         <div className={styles.contentContainer}>
           <C2cModal isOpen={this.state.isC2cModalOpen} handleClose={this.handlerToggleC2C} />
           <NavCheckout onClickC2C={this.handlerToggleC2C} />
-          <div className={styles.checkoutBody}>
+          <div className={classNames(styles.checkoutBody, styles.fullWidthContainer)}>
             <DynamicCheckoutCmponentWithNoSSR tariff={this.state.tariff} mobileTariff={this.state.mobileTariff} />
           </div>
         </div>

@@ -5,8 +5,6 @@ import PropTypes from 'prop-types'
 import styles from '../../styles/pages/checkout.scss'
 import dividerStyles from '../../styles/components/divider.scss'
 
-import { isClient } from '../../helpers/client'
-
 import CheckoutPersonalData from './checkout-personal-data'
 import CheckoutAddress from './checkout-address'
 import CheckoutMobile from './checkout-mobile'
@@ -81,7 +79,7 @@ class Checkout extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className={styles.checkoutContent}>
         <h1>Contrata tu tarifa de internet satélite</h1>
         <div className={styles.cardsContainer}>
           <div className={styles.formsContainer}>
