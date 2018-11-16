@@ -51,14 +51,6 @@ class Home extends React.Component {
     this.setState({ isC2cModalOpen: !this.state.isC2cModalOpen })
   }
 
-  // handlerSelectTariff (tariff, mobileTariff) {
-  //   this.setState({ selectedTariff: tariff })
-  //   if (mobileTariff) {
-  //     Router.push(`/checkout?tariff=${tariff.id}`)
-  //   } else {
-  //     Router.push(`/checkout?tariff=${tariff.id}`)
-  //   }
-  // }
 }
 
 export default Home

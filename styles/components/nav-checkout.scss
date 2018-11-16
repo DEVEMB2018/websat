@@ -1,7 +1,7 @@
 @import '../grid';
 
 .nav {
-  box-shadow: 0 1px 0 0 #dddddd;
+  border-bottom: 1px solid #dddddd;
   margin: 0;
 }
 
@@ -21,8 +21,14 @@
   justify-content: space-between;
   align-items: center;
 
-  @include desktop {
-    padding: 10px 30px;
+  @include tablet-desktop {
+    padding: 20px 40px;
+  }
+
+  @include desktop-hd {
+    padding: 10px 0;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 }
 
@@ -43,6 +49,7 @@
 
   @include desktop {
     display: inline-block;
+    margin-right: 20px;
   }
 }
 

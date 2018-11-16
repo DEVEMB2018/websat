@@ -1,4 +1,4 @@
-import { PROVINCES } from "../contexts/provinces";
+import { PROVINCES } from '../contexts/provinces'
 
 export function emailValidator(value) {
   let error
