@@ -82,61 +82,59 @@ class Checkout extends React.Component {
   render () {
     return (
       <div>
-        <div className={styles.checkoutBody}>
-          <h1>Contrata tu tarifa de internet satélite</h1>
-          <div className={styles.cardsContainer}>
-            <div className={styles.formsContainer}>
-              <CheckoutPersonalData
-                stage={0}
-                editing={this.state.stage === 0}
-                completed={this.state.completed >= 0}
-                data={this.state.data.personalData}
-                onSave={(data) => this.handlerContinue('personalData', data)}
-                onEdit={(stage) => this.handlerEdit(stage)}
-              />
+        <h1>Contrata tu tarifa de internet satélite</h1>
+        <div className={styles.cardsContainer}>
+          <div className={styles.formsContainer}>
+            <CheckoutPersonalData
+              stage={0}
+              editing={this.state.stage === 0}
+              completed={this.state.completed >= 0}
+              data={this.state.data.personalData}
+              onSave={(data) => this.handlerContinue('personalData', data)}
+              onEdit={(stage) => this.handlerEdit(stage)}
+            />
 
-                <CheckoutAddress
-                stage={1}
-                editing={this.state.stage === 1}
-                completed={this.state.completed >= 1}
-                data={this.state.data.address}
-                onSave={(data) => this.handlerContinue('address', data)}
-                onEdit={(stage) => this.handlerEdit(stage)}
-              />
+              <CheckoutAddress
+              stage={1}
+              editing={this.state.stage === 1}
+              completed={this.state.completed >= 1}
+              data={this.state.data.address}
+              onSave={(data) => this.handlerContinue('address', data)}
+              onEdit={(stage) => this.handlerEdit(stage)}
+            />
 
-              <div className={dividerStyles.horizontalDivider}></div>
+            <div className={dividerStyles.horizontalDivider}></div>
 
-              { this.state.mobileTariff
-                ? (
-                  <div>
-                    <CheckoutMobile
-                    stage={2}
-                    editing={this.state.stage === 2}
-                    completed={this.state.completed >= 2}
-                    onSave={(data) => this.handlerContinue('mobile', data)}
-                    onEdit={(stage) => this.handlerEdit(stage)}
-                    data={this.state.data.mobile}
-                  />
-                    <div className={dividerStyles.horizontalDivider}></div>
-                  </div>
-                )
-                : ''
-              }
+            { this.state.mobileTariff
+              ? (
+                <div>
+                  <CheckoutMobile
+                  stage={2}
+                  editing={this.state.stage === 2}
+                  completed={this.state.completed >= 2}
+                  onSave={(data) => this.handlerContinue('mobile', data)}
+                  onEdit={(stage) => this.handlerEdit(stage)}
+                  data={this.state.data.mobile}
+                />
+                  <div className={dividerStyles.horizontalDivider}></div>
+                </div>
+              )
+              : ''
+            }
 
-              <div className={dividerStyles.horizontalDivider}></div>
+            <div className={dividerStyles.horizontalDivider}></div>
 
-              <CheckoutBilling
-                stage={this.state.mobileTariff ? 3 : 2}
-                editing={this.state.mobileTariff ? this.state.stage === 3 : this.state.stage === 2}
-                completed={this.state.mobileTariff ? this.state.completed >= 3 : this.state.completed >= 2}
-                onSave={(data) => this.handlerContinue('billing', data)}
-                onEdit={(stage) => this.handlerEdit(stage)}
-                data={this.state.data.bank}
-              />
-            </div>
-            <div className={styles.summaryContainer}>
-              <CheckoutSummary tariff={this.state.tariff} mobileTariff={this.state.mobileTariff} />
-            </div>
+            <CheckoutBilling
+              stage={this.state.mobileTariff ? 3 : 2}
+              editing={this.state.mobileTariff ? this.state.stage === 3 : this.state.stage === 2}
+              completed={this.state.mobileTariff ? this.state.completed >= 3 : this.state.completed >= 2}
+              onSave={(data) => this.handlerContinue('billing', data)}
+              onEdit={(stage) => this.handlerEdit(stage)}
+              data={this.state.data.bank}
+            />
+          </div>
+          <div className={styles.summaryContainer}>
+            <CheckoutSummary tariff={this.state.tariff} mobileTariff={this.state.mobileTariff} />
           </div>
         </div>
       </div>

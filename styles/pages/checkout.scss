@@ -1,6 +1,8 @@
 @import '../colors';
+@import '../grid';
 
 .layout {
+  min-width: 320px;
 }
 
 .contentContainer {
@@ -8,20 +10,39 @@
 }
 
 .checkoutBody {
-  padding: 50px;
+  padding: 20px 15px;
+
+  @include tablet {
+    padding: 50px 40px;
+  }
 }
 
 .cardsContainer {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+
+  @include desktop {
+    flex-wrap: nowrap;
+    flex-direction: row;
+  }
 }
 
 .formsContainer {
-  flex: 1 65%;
+  flex: 1 100%;
+
+  @include desktop {
+    flex: 1 65%;
+  }
 }
 
 .summaryContainer {
-  margin-left: 20px;
   flex: 0 30%;
+  margin: 20px 0 30px 0;
+
+  @include desktop {
+    margin: 0 0 0 20px;
+  }
 }
 
 .loading {

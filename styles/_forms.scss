@@ -20,7 +20,11 @@
 
 .formGroup {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+
+  @include tablet-desktop {
+    flex-wrap: nowrap;
+  }
 }
 
 .checkboxGroup {
@@ -52,7 +56,10 @@
 }
 
 .inputContainerBig {
+  width: 100%;
+
   @include tablet-desktop {
+    width: auto;
     flex: 65% 0;
   }
 }

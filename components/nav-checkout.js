@@ -24,11 +24,14 @@ class NavCheckout extends React.Component {
           <img className={styles.logo} src="/static/images/logo-embou-sat.svg" />
         </div>
         <div className={styles.listContainer}>
-          <span>¿Tienes dudas? Llámanos al <strong>900 696 897</strong></span>
+          <span className={styles.phoneCallToAction}>¿Tienes dudas? Llámanos al <strong>900 696 897</strong></span>
           <ul className={classNames(styles.menu)}>
             <li className={styles.listItem}>
               <button type="button" className={classNames(buttonStyles.primaryButton, styles.callMeButton)} onClick={this.props.onClickC2C}>
                 Te llamamos gratis
+              </button>
+              <button type="button" className={classNames(buttonStyles.primaryButton, styles.callMeButtonMobile)} onClick={this.props.onClickC2C}>
+                ¿Tienes dudas?
               </button>
             </li>
           </ul>

@@ -1,22 +1,64 @@
+@import '../grid';
 
 .nav {
   box-shadow: 0 1px 0 0 #dddddd;
   margin: 0;
 }
 
+.logo {
+  width: 152px;
+  height: 42px;
+
+  @include desktop {
+    width: 162px;
+    height: 52px;
+  }
+}
+
 .mainMenuContainer {
-  padding: 10px 30px;
+  padding: 10px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @include desktop {
+    padding: 10px 30px;
+  }
 }
 
 .menu {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .listContainer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.phoneCallToAction {
+  display: none;
+
+  @include desktop {
+    display: inline-block;
+  }
+}
+
+.callMeButton {
+  display: none;
+
+  @include desktop {
+    display: inline-block;
+  }
+}
+
+.callMeButtonMobile {
+  display: inline-block;
+  padding: 10px 15px !important;
+
+  @include desktop {
+    display: none;
+  }
 }

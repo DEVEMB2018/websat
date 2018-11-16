@@ -8,9 +8,13 @@
   font-weight: normal;
   padding: 20px;
   border-radius: 5px;
-  max-width: 400px;
+  max-width: auto;
   box-sizing: border-box;
   font-size: 14px;
+
+  @include desktop {
+    max-width: 400px;
+  }
 }
 
 .cardTitle {
